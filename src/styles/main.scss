@@ -1,0 +1,43 @@
+@import "../styles/partials/button";
+@import "../styles/partials/input";
+@import "../styles/partials/list-item";
+@import "../styles/partials/textarea";
+@import "../styles/partials/message";
+@import "../styles/partials/messages-list";
+@import "./constants";
+
+:root {
+  --background-color: $background-color;
+  --button-color: $green;
+}
+
+body {
+  background-color: var(--background-color);
+  min-height: 100vh;
+  font-family: Inter, serif;
+  width: 100%;
+  min-width: 320px;
+  font-size: 16px;
+  line-height: 1;
+  margin: 0;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.container {
+  height: 100vh;
+  margin: 0 auto;
+  padding-left: 75px;
+  padding-right: 75px;
+
+  &--auth {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 1200px;
+  }
+}
+
+h1, h2, h3 {
+  margin: 0;
+}

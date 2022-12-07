@@ -1,0 +1,11 @@
+@import "../constants";
+
+.message {
+  min-width: 175px;
+  max-width: 485px;
+  background: #F8F8F8;
+
+  &--my {
+    background: $my-message-color;
+  }
+}

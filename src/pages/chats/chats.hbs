@@ -1,0 +1,62 @@
+---
+styles: './chats.scss'
+chats: [ {name: 'Ivan Ivanov'}, {name: 'Petr Petrov'} ]
+btn-type: 'submit'
+btn-class: 'chats__main-btn btn--disabled'
+btn-text: 'Send'
+messages:
+-
+    id: 2,
+    my: false,
+    text: 'Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем что астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер все еще находятся на поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой.!'
+    time: '12:20'
+-
+    id: 1,
+    my: true,
+    text: 'Great!'
+    time: '12:20'
+---
+{{#extend "main"}}
+    {{#content "main"}}
+        <div class="chats">
+            <div class="container">
+                <div class="chats-wrapper">
+                    <div class="chats__sidebar chats-block">
+                        <div class="chats-search"></div>
+
+                        <ul class="chats__sidebar-list">
+                            <li>
+                                {{#each chats}}
+                                    {{> list-item this }}
+                                {{/each}}
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="chats__main chats-block">
+                        <div class="chats__main-head">
+                            <div class="chats__main-head_image"></div>
+
+                            <div class="chats__main-head_name">
+                                Ivan Ivanov
+                            </div>
+                        </div>
+
+                        <div class="chats__main-chat">
+                            {{> messages-list this }}
+                        </div>
+
+                        <div class="chats__main-textarea">
+                            <div class="form-textarea">
+                                <textarea placeholder="Write a message">
+                                </textarea>
+                            </div>
+
+                            {{> button }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/content}}
+{{/extend}}

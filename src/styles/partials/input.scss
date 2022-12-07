@@ -1,0 +1,21 @@
+@import "./../constants";
+
+.form-control {
+
+  input[type="text"],
+  input[type="password"],
+  input[type="tel"] {
+    border: none;
+    box-shadow: $input-box-shadow;
+    border-radius: 8px;
+    padding: 17px 40px;
+    font-size: 20px;
+    height: 62px;
+    outline: none;
+    margin-bottom: 15px;
+  }
+
+  input::placeholder {
+    color: $placeholder-color;
+  }
+}
