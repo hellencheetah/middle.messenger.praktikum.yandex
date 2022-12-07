@@ -1,0 +1,54 @@
+---
+styles: './edit-profile.scss'
+form:
+    -
+        type: 'text'
+        placeholder: 'Email'
+        modifier: 'form-control--label'
+        label: 'Email'
+    -
+        type: 'text'
+        placeholder: 'Login'
+        modifier: 'form-control--label'
+        label: 'Login'
+    -
+        type: 'text'
+        placeholder: 'Firstname'
+        modifier: 'form-control--label'
+        label: 'Firstname'
+    -
+        type: 'text'
+        placeholder: 'Lastname'
+        modifier: 'form-control--label'
+        label: 'Lastname'
+    -
+        type: 'text'
+        placeholder: 'Nickname'
+        modifier: 'form-control--label'
+        label: 'Nickname'
+    -
+        type: 'text'
+        placeholder: 'Phone'
+        modifier: 'form-control--label'
+        label: 'Phone'
+btn-text: 'Save'
+btn-class: 'edit-profile__btn'
+---
+
+{{#extend "main"}}
+    {{#content "main"}}
+        <div class="edit-profile">
+            <div class="container container--auth">
+                <div class="edit-profile-inner">
+                   <form class="edit-profile__form">
+                       {{#each form}}
+                           {{> input this }}
+                       {{/each}}
+
+                       {{> button  }}
+                   </form>
+                </div>
+            </div>
+        </div>
+    {{/content}}
+{{/extend}}

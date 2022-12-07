@@ -1,6 +1,7 @@
-<div class="form-control {{#if this.controlModifier}}{{this.controlModifier}}{{/if}}">
+<div class="form-control {{#if this.modifier}}{{this.modifier}}{{/if}}">
+    <label>{{#if this.label}}{{this.label}}{{/if}}</label>
     <input
-            type={{ this.controlType }}
-            placeholder="{{this.controlPlaceholder}}"
+            type={{this.type}}
+            placeholder="{{this.placeholder}}"
     >
 </div>

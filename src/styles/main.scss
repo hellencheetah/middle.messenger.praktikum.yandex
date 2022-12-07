@@ -6,13 +6,9 @@
 @import "../styles/partials/messages-list";
 @import "./constants";
 
-:root {
-  --background-color: $background-color;
-  --button-color: $green;
-}
 
 body {
-  background-color: var(--background-color);
+  background-color: $background-color;
   min-height: 100vh;
   font-family: Inter, serif;
   width: 100%;
@@ -40,4 +36,14 @@ body {
 
 h1, h2, h3 {
   margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
 }

@@ -1,6 +1,8 @@
 @import "./../constants";
 
 .form-control {
+  display: flex;flex-direction: column;
+  margin-bottom: 15px;
 
   input[type="text"],
   input[type="password"],
@@ -12,10 +14,29 @@
     font-size: 20px;
     height: 62px;
     outline: none;
-    margin-bottom: 15px;
+  }
+
+  label {
+    color: #1E1E1E;
+    margin-bottom: 5px;
   }
 
   input::placeholder {
     color: $placeholder-color;
+  }
+
+  &--label {
+    margin-bottom: 20px;
+
+    input[type="text"],
+    input[type="password"],
+    input[type="tel"] {
+      height: 40px;
+      font-size: 13px;
+    }
+
+    input::placeholder {
+      font-size: 13px;
+    }
   }
 }

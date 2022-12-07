@@ -1,0 +1,28 @@
+@import "src/styles/main";
+
+.page404 {
+
+  &-wrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-between;
+    height: 200px;
+  }
+
+  &__text {
+    color: #6B7280;
+    font-size: 32px;
+    font-weight: 600;
+
+    &--huge {
+      font-size: 64px;
+    }
+  }
+
+  &__link {
+    color: $link-color;
+    text-decoration: none;
+    font-weight: 600;
+  }
+}
