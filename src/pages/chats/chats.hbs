@@ -1,13 +1,13 @@
 ---
 styles: './chats.scss'
-chats: [ {name: 'Ivan Ivanov'}, {name: 'Petr Petrov'} ]
+contacts: [ {name: 'Ivan Ivanov'}, {name: 'Petr Petrov'} ]
 btn-type: 'submit'
 btn-class: 'chats__main-btn btn--disabled'
 btn-text: 'Send'
+choosen-contact: 'Ivan Ivanov'
 messages:
 -
     id: 2,
-    my: false,
     text: 'Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем что астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер все еще находятся на поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой.!'
     time: '12:20'
 -
@@ -24,10 +24,10 @@ messages:
                     <div class="chats__sidebar chats-block">
                         <div class="chats-search"></div>
 
-                        <ul class="chats__sidebar-list">
+                        <ul class="chats__sidebar-contacts">
                             <li>
-                                {{#each chats}}
-                                    {{> list-item this }}
+                                {{#each contacts}}
+                                    {{> contact this }}
                                 {{/each}}
                             </li>
                         </ul>
@@ -38,7 +38,7 @@ messages:
                             <div class="chats__main-head_image"></div>
 
                             <div class="chats__main-head_name">
-                                Ivan Ivanov
+                                {{choosen-contact}}
                             </div>
                         </div>
 
@@ -48,8 +48,7 @@ messages:
 
                         <div class="chats__main-textarea">
                             <div class="form-textarea">
-                                <textarea placeholder="Write a message">
-                                </textarea>
+                                <textarea placeholder="Write a message"></textarea>
                             </div>
 
                             {{> button }}

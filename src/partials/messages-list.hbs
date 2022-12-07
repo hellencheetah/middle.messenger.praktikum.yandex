@@ -1,5 +1,7 @@
 <ul class="messages">
     {{#each this.messages}}
-        {{> message this }}
+        <li class="messages__item {{#if this.my}}messages__item--my{{/if}}">
+            {{> message this }}
+        </li>
     {{/each}}
 </ul>
