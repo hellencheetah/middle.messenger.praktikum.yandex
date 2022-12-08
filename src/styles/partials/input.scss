@@ -10,33 +10,35 @@
     border: none;
     box-shadow: $input-box-shadow;
     border-radius: 8px;
-    padding: 17px 40px;
+    padding: 17px 30px;
     font-size: 20px;
     height: 62px;
     outline: none;
+    box-sizing: border-box;
   }
 
   label {
     color: #1E1E1E;
     margin-bottom: 5px;
+    font-weight: 600;
   }
 
   input::placeholder {
     color: $placeholder-color;
   }
 
-  &--label {
+  &--with-label {
     margin-bottom: 20px;
 
     input[type="text"],
     input[type="password"],
     input[type="tel"] {
       height: 40px;
-      font-size: 13px;
+      font-size: 14px;
     }
 
     input::placeholder {
-      font-size: 13px;
+      font-size: 14px;
     }
   }
 }

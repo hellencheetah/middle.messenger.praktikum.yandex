@@ -19,6 +19,8 @@ data:
     -
         field: 'Phone'
         value: '+7 (909) 765 12 34'
+btn-text: 'Logout'
+btn-class: 'btn--link-like profile__options-btn'
 ---
 
 {{#extend "main"}}
@@ -41,9 +43,9 @@ data:
                         </div>
 
                         <div class="profile__options">
-                            <a href="#" class="profile__options-link">Change info</a>
-                            <a href="#" class="profile__options-link">Change password</a>
-                            <button class="profile__options-btn">Logout</button>
+                            <a href="../edit-profile/edit-profile.hbs" class="profile__options-link">Change info</a>
+                            <a href="../edit-password/edit-password.hbs" class="profile__options-link">Change password</a>
+                            {{> button }}
                         </div>
                     </div>
                 </div>
