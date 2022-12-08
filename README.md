@@ -4,9 +4,10 @@
 + parcel
 + handleBars
 + sass
-Макеты в фигма
 
-Netlify: https://gorgeous-haupia-76fec9.netlify.app
+[Макеты в фигма](https://www.figma.com/file/ebtuEKFGeyZCVSTgLT8i8Z/Untitled?node-id=0%3A1&t=rQNavFykDeFsGpNy-0)
+
+Netlify: https://lucent-froyo-496833.netlify.app/
 
 ### Развертывание:
 1) Склонировать проект
