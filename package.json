@@ -14,7 +14,7 @@
   "scripts": {
     "build": "parcel build index.hbs",
     "dev": "parcel index.hbs",
-    "start": "node server/app.js"
+    "start": "npm run build && node server/app.js"
   },
   "repository": {
     "type": "git",
