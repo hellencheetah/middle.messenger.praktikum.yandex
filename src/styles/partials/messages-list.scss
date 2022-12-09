@@ -1,0 +1,21 @@
+.messages {
+  margin: 0;
+  padding: 30px;
+  list-style-type: none;
+
+  &__item {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 40px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &--my {
+      justify-content: flex-end;
+    }
+  }
+}

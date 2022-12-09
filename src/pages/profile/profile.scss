@@ -1,0 +1,59 @@
+@import "src/styles/main";
+
+.profile {
+
+
+  &-inner {
+    display: flex;justify-content: center;
+    background-color: $white;
+    height: 695px;
+    width: 800px;
+    border-radius: $block-border-radius;
+    box-shadow: $block-box-shadow;
+    box-sizing: border-box;
+    padding: 72px 0 90px;
+  }
+
+  &-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+  }
+
+  &__avatar {
+    width: 130px;
+    height: 130px;
+    background-color: $chat-avatar-color;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin: 0 auto 37px;
+  }
+
+  &__data {
+    margin-bottom: 41px;
+
+    &-list {
+
+      &_item {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid $border-color;
+        font-weight: 600;
+        line-height: 40px;
+      }
+    }
+  }
+
+  &__options {
+    display: flex;flex-direction: column;
+    margin-top: auto;
+
+    &-link {
+      margin-bottom: 15px;
+    }
+
+    &-btn {
+      color: $error-color;
+    }
+  }
+}
