@@ -17,6 +17,7 @@ class Block {
     protected props: any;
 
 
+
     constructor(tagName = "div", props = {}) {
         this.id = uuidv4();
         this._meta = {
@@ -24,7 +25,11 @@ class Block {
             props  // пропсы
         };
         this.props = this._makePropsProxy(props);
+        this._eventBus = new EventBus();
+        this._registerEvents(this._eventBus);
+        this._eventBus.emit(Block.EVENTS.INIT);
     }
+
 
     _registerEvents(eventBus) {
         eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
@@ -34,9 +39,6 @@ class Block {
     }
 
     _createResources() {
-        this._eventBus = new EventBus();
-        this._registerEvents(this._eventBus);
-        this._eventBus.emit(Block.EVENTS.INIT);
         const { tagName } = this._meta;
         this._element = this._createDocumentElement(tagName);
     }

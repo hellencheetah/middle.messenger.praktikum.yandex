@@ -6,13 +6,9 @@ export default `
 
                     <form class="login-form__items">
                         <div class="login-form__items-wrapper">
-                            {{#each form}}
-                                {{> input this }}
-                            {{/each}}
+
                         </div>
 
-
-                        {{> button }}
                     </form>
 
                     <div class="login-form__items-text">
