@@ -1,7 +1,7 @@
 import { renderDom } from "./utils/renderDom";
-import LoginPage from "./pages/login/login";
+import Menu from "./components/menu/menu";
 
 document.addEventListener("DOMContentLoaded", () => {
-    const authPage = new LoginPage();
+    const authPage = new Menu();
     renderDom("#app", authPage);
 });
