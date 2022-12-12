@@ -9,13 +9,13 @@ export default
             <a href="registration.html">Registration</a>
         </li>
         <li>
-            <a href="">Chats</a>
+            <a href="chats.html">Chats</a>
         </li>
         <li>
-            <a href="">404</a>
+            <a href="page404.html">404</a>
         </li>
         <li>
-            <a href="">500</a>
+            <a href="page5.html">500</a>
         </li>
         <li>
             <a href="">Profile</a>

@@ -1,18 +1,15 @@
-// @ts-ignore
-import Handlebars from 'handlebars';
-import tmpl from './login.template';
+import * as Handlebars from 'handlebars';
+import template from './login.template';
 import Block from '../../utils/block';
 
-export default class LoginPage extends Block {
-    public template: string = tmpl;
-
+export default class Login extends Block {
     constructor(props) {
         super();
         this.props = props;
     }
 
     public render() {
-        return Handlebars.compile(tmpl, { noEscape: true })(this.props);
+        return Handlebars.compile(template)(this.props);
     }
 }
 

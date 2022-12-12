@@ -1,14 +1,10 @@
 import Block from "./Block";
 
-export function renderDom(rootSelector: string, component: Block){
+export function renderDom(query: string, component: Block){
 
-    const root = document.querySelector(rootSelector);
+    const root = document.querySelector(query);
 
-    if(!root) {
-        throw new Error('Root not found')
-    }
     root.innerHTML = '';
 
     root.append(component.getContent()!)
-
 }

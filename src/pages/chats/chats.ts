@@ -1,14 +1,14 @@
 import * as Handlebars from 'handlebars';
-import menuTemplate from './menu.template';
+import template from './chats.template';
 import Block from '../../utils/block';
 
-export default class Menu extends Block {
+export default class Chats extends Block {
     constructor(props) {
         super();
         this.props = props;
     }
 
     public render() {
-        return Handlebars.compile(menuTemplate)(this.props);
+        return Handlebars.compile(template)(this.props);
     }
 }

@@ -6,9 +6,9 @@ export default `
 
                     <form class="login-form__items">
                         <div class="login-form__items-wrapper">
-
+                            {{{form}}}
                         </div>
-
+                        {{{button}}}
                     </form>
 
                     <div class="login-form__items-text">

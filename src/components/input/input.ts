@@ -1,14 +1,15 @@
 import * as Handlebars from 'handlebars';
-import menuTemplate from './menu.template';
+import inputTemplate from './input.template';
 import Block from '../../utils/block';
 
-export default class Menu extends Block {
+export default class Input extends Block {
+
     constructor(props) {
         super();
         this.props = props;
     }
 
     public render() {
-        return Handlebars.compile(menuTemplate)(this.props);
+        return Handlebars.compile(inputTemplate)(this.props);
     }
 }

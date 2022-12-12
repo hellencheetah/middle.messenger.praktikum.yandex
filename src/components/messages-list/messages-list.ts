@@ -1,5 +1,5 @@
 import * as Handlebars from 'handlebars';
-import menuTemplate from './menu.template';
+import template from './messages-list.template';
 import Block from '../../utils/block';
 
 export default class Menu extends Block {
@@ -9,6 +9,6 @@ export default class Menu extends Block {
     }
 
     public render() {
-        return Handlebars.compile(menuTemplate)(this.props);
+        return Handlebars.compile(template)(this.props);
     }
 }
