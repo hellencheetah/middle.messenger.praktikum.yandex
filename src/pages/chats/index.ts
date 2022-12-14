@@ -1,5 +1,7 @@
 import Button from '../../components/button/button';
 import Contact from '../../components/contact/contact';
+import Message from '../../components/message/message';
+import MessageList from '../../components/messages-list/messages-list';
 import Chats from './chats';
 
 const buttonOpts = {
@@ -40,14 +42,20 @@ const messagesData = [
 ]
 
 const button = new Button(buttonOpts).render();
-
 const contacts = contactsData
     .map(contact => {
         return new Contact(contact).render();
     })
     .join('')
 
+const message = messagesData
+    .map(message => {
+        return new Message(message).render();
+    })
+    .join('')
 
-const chatsBlock = new Chats({button, contacts, choosenContact}).render();
+const messages = new MessageList({ message }).render();
+const chatsBlock = new Chats({button, contacts, choosenContact, messages}).render();
+
 
 document.querySelector('#app').innerHTML = chatsBlock;

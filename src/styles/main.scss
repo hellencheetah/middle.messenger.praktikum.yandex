@@ -1,9 +1,9 @@
-@import "../styles/partials/button";
-@import "../styles/partials/input";
-@import "partials/contact";
-@import "../styles/partials/textarea";
-@import "../styles/partials/message";
-@import "../styles/partials/messages-list";
+@import "../components/messages-list/messages-list";
+@import "../components/contact/contact";
+@import "../components/input/input";
+@import "../components/message/message";
+@import "../components/button/button";
+@import "../components/textarea/textarea";
 @import "./constants";
 
 
