@@ -1,6 +1,7 @@
 import Button from '../../components/button/button';
 import Login from './login';
 import Input from "../../components/input/input";
+import {initForm} from "./utils";
 
 const buttonOpts = {
     btnText: 'Sign in',
@@ -32,4 +33,7 @@ const button = new Button(buttonOpts).render();
 
 const loginBlock = new Login({button, form}).render();
 
+
 document.querySelector('#app').innerHTML = loginBlock;
+
+initForm();

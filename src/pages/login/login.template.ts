@@ -4,7 +4,7 @@ export default `
                 <div class="login-form">
                     <h1 class="login-form__title">Sign in</h1>
 
-                    <form class="login-form__items">
+                    <form id="login-form" class="login-form__items" >
                         <div class="login-form__items-wrapper">
                             {{{form}}}
                         </div>
