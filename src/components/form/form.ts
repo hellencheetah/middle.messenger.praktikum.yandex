@@ -1,12 +1,16 @@
 import * as Handlebars from 'handlebars';
-import template from './input.template';
+import template from './form.template';
 import Block from '../../utils/block';
 
-export default class Input extends Block {
+export default class Form extends Block {
     constructor(props) {
         super({
             ...props,
         });
+    }
+
+    protected initChildrenComponents() {
+
     }
 
 

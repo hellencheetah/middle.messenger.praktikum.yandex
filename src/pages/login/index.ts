@@ -32,7 +32,7 @@ const form = formData
 
 const button = new Button(buttonOpts).render();
 
-const loginBlock = new Login({button});
+const loginBlock = new Login({});
 
 
 renderDom("#app", loginBlock);

@@ -6,7 +6,8 @@ export default `
 
                     <form id="login-form" class="login-form__items" >
                         <div class="login-form__items-wrapper">
-                            {{{form}}}
+                            {{{inputEmail}}}
+                            {{{inputPassword}}}
                         </div>
                         {{{button}}}
                     </form>

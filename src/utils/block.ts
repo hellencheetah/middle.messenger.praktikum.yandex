@@ -23,7 +23,7 @@ class Block {
 
         const { props, children } = this.getChildren(propsAndChildren);
         this.children = children;
-        this.initChildren();
+        this.initChildrenComponents();
         this._meta = {props};
         this.props = this._makePropsProxy(props);
         this.eventBus = new EventBus();
@@ -97,7 +97,7 @@ class Block {
 
     private _render() {
         const block = this.render();
-        const firstChild = block.firstElementChild;
+        const firstChild = block.firstElementChild as HTMLElement;
 
         if (this._element) {
             this._removeEventListeners();
@@ -111,7 +111,7 @@ class Block {
         return new DocumentFragment();
     }
 
-    compile(template: (props: any) => string, props: any) {
+    compile(template: string, props: any) {
         const fragment = this._createDocumentElement('template');
 
         Object.entries(this.children).forEach(([key, child]) => {
@@ -147,14 +147,15 @@ class Block {
         return fragment.content;
     }
 
-    protected initChildren() {}
+    protected initChildrenComponents() {
+
+    }
 
     _addEventListeners() {
-        const { events }= this.props;
+        const { events } = this.props;
 
-        if (!events) {
-            return;
-        }
+        if (!events) return;
+
 
         Object.keys(events).forEach((eventName) => {
             this._element!.addEventListener(eventName, events[eventName]);
@@ -163,10 +164,9 @@ class Block {
 
     _removeEventListeners() {
         const { events } = this.props;
+        if (!events) return;
 
-        if (!events) {
-            return;
-        }
+
     }
 
     getContent(): HTMLElement | null {
