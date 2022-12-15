@@ -2,6 +2,7 @@ import Button from '../../components/button/button';
 import Login from './login';
 import Input from "../../components/input/input";
 import {initForm} from "./utils";
+import {renderDom} from "../../utils/renderDom";
 
 const buttonOpts = {
     btnText: 'Sign in',
@@ -31,9 +32,9 @@ const form = formData
 
 const button = new Button(buttonOpts).render();
 
-const loginBlock = new Login({button, form}).render();
+const loginBlock = new Login({button});
 
 
-document.querySelector('#app').innerHTML = loginBlock;
+renderDom("#app", loginBlock);
 
-initForm();
+
