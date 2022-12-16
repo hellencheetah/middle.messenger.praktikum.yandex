@@ -4,19 +4,6 @@ import { Button } from "../../components/button";
 import { Input } from "../../components/input/input";
 import "./login.scss";
 
-const formData = [
-    new Input({
-        inputPlaceholder: 'Email',
-        inputType: 'text',
-        inputName: 'login',
-    }),
-    new Input({
-        inputPlaceholder: 'Password',
-        inputType: 'password',
-        inputName: 'password',
-    }),
-]
-
 export class Login extends Block {
     constructor(props) {
 
@@ -32,25 +19,23 @@ export class Login extends Block {
             }
         });
 
-        const inputEmail = new Input({
-            inputPlaceholder: 'Email',
-            inputType: 'text',
-            inputName: 'login',
-            required: true,
-        });
-
-        const inputPassword = new Input({
-            inputPlaceholder: 'Password',
-            inputType: 'password',
-            inputName: 'password',
-            required: true,
-        });
+        const form = [
+            new Input({
+                inputPlaceholder: 'Email',
+                inputType: 'text',
+                inputName: 'login',
+            }),
+            new Input({
+                inputPlaceholder: 'Password',
+                inputType: 'password',
+                inputName: 'password',
+            }),
+        ].map(p => p.getInnerHtml())
 
 
         super({
             button,
-            inputEmail,
-            inputPassword,
+            form,
             ...props,
         });
     }

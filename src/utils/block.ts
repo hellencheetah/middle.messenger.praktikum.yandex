@@ -58,6 +58,7 @@ class Block {
         eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
     }
 
+
     init() {
         this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
     }
@@ -93,6 +94,13 @@ class Block {
 
     get element() {
         return this._element;
+    }
+
+    getInnerHtml(): string {
+        const wrap = document.createElement('div');
+        wrap.appendChild(this._element);
+
+        return wrap.innerHTML;
     }
 
     private _render() {
