@@ -1,9 +1,9 @@
-import * as Handlebars from 'handlebars';
-import template from './chats.template';
+import template from './edit-password.template';
 import Block from '../../utils/block';
-import './chats.scss';
+import './edit-password.scss';
 
-export class Chats extends Block {
+
+export class EditPassword extends Block {
     constructor(props) {
         super({
             ...props,

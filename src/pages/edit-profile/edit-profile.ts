@@ -1,9 +1,9 @@
-import * as Handlebars from 'handlebars';
-import template from './chats.template';
+import template from './edit-profile.template';
 import Block from '../../utils/block';
-import './chats.scss';
+import './edit-profile.scss';
 
-export class Chats extends Block {
+
+export class EditProfile extends Block {
     constructor(props) {
         super({
             ...props,

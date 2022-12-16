@@ -1,14 +1,16 @@
 import * as Handlebars from 'handlebars';
 import template from './page404.template';
 import Block from '../../utils/block';
+import './page404.scss';
 
-export default class Page404 extends Block {
+export class Page404 extends Block {
     constructor(props) {
-        super();
-        this.props = props;
+        super({
+            ...props,
+        });
     }
 
-    public render() {
-        return Handlebars.compile(template)(this.props);
+    render() {
+        return this.compile(template, {...this.props});
     }
 }

@@ -1,8 +1,6 @@
-@import "src/styles/main";
+@import "../../styles/constants";
 
 .profile {
-
-
   &-inner {
     display: flex;justify-content: center;
     background-color: $white;

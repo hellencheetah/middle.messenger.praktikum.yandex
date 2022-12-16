@@ -1,14 +1,16 @@
 import * as Handlebars from 'handlebars';
 import template from './page5.template';
 import Block from '../../utils/block';
+import './page5.scss';
 
-export default class Page500 extends Block {
+export class Page500 extends Block {
     constructor(props) {
-        super();
-        this.props = props;
+        super({
+            ...props,
+        });
     }
 
-    public render() {
-        return Handlebars.compile(template)(this.props);
+    render() {
+        return this.compile(template, {...this.props});
     }
 }

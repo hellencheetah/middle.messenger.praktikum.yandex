@@ -1,8 +1,8 @@
 import template from './login.template';
 import Block from '../../utils/block';
-import Button from "../../components/button/button";
-import Input from "../../components/input/input";
-import Form from "../../components/form/form";
+import { Button } from "../../components/button";
+import { Input } from "../../components/input/input";
+import "./login.scss";
 
 const formData = [
     new Input({
@@ -17,7 +17,7 @@ const formData = [
     }),
 ]
 
-export default class Login extends Block {
+export class Login extends Block {
     constructor(props) {
 
         const button = new Button({

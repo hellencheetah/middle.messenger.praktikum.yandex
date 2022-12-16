@@ -1,8 +1,9 @@
 import * as Handlebars from 'handlebars';
 import template from './contact.template';
 import Block from '../../utils/block';
+import './contact.scss';
 
-export default class Menu extends Block {
+export class Contact extends Block {
     constructor(props) {
         super();
         this.props = props;

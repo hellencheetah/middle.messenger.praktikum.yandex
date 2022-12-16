@@ -1,13 +1,4 @@
-import Button from '../../components/button/button';
-import Registration from './registration';
-import Input from "../../components/input/input";
-
-const buttonOpts = {
-    btnText: 'Sign up',
-    btnType: 'submit',
-    btnClass: '',
-}
-
+export { Registration } from './registration'
 const formData = [
     {
         inputPlaceholder: 'Firstname',
@@ -41,13 +32,4 @@ const formData = [
     },
 ]
 
-const form = formData
-    .map(p => {
-        return new Input(p).render();
-    })
-    .join('')
-const button = new Button(buttonOpts).render();
 
-const registrationBlock = new Registration({button, form}).render();
-
-document.querySelector('#app').innerHTML = registrationBlock;

@@ -1,8 +1,9 @@
 import * as Handlebars from 'handlebars';
 import template from './input.template';
 import Block from '../../utils/block';
+import './input.scss';
 
-export default class Input extends Block {
+export class Input extends Block {
     constructor(props) {
         super({
             ...props,

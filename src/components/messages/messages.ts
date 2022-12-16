@@ -1,8 +1,9 @@
 import * as Handlebars from 'handlebars';
-import template from './messages-list.template';
+import template from './messages.template';
 import Block from '../../utils/block';
+import './messages.scss';
 
-export default class Menu extends Block {
+export class Messages extends Block {
     constructor(props) {
         super();
         this.props = props;

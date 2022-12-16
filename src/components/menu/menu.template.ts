@@ -6,25 +6,25 @@ export default
             <a href="/login">Login</a>
         </li>
         <li>
-            <a href="registration.html">Registration</a>
+            <a href="/registration">Registration</a>
         </li>
         <li>
-            <a href="chats.html">Chats</a>
+            <a href="/chats">Chats</a>
         </li>
         <li>
-            <a href="page404.html">404</a>
+            <a href="/page404">404</a>
         </li>
         <li>
-            <a href="page5.html">500</a>
+            <a href="/page5">500</a>
         </li>
         <li>
-            <a href="">Profile</a>
+            <a href="/profile">Profile</a>
         </li>
         <li>
-            <a href="/src/pages/edit-profile/edit-profile.hbs">Edit profile</a>
+            <a href="/edit-profile">Edit profile</a>
         </li>
         <li>
-            <a href="/src/pages/edit-password/edit-password.hbs">Edit password</a>
+            <a href="/edit-password">Edit password</a>
         </li>
     </ul>
 </nav>
