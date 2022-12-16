@@ -3,7 +3,7 @@ export default
 <nav>
     <ul>
         <li>
-            <a href="login.html">Login</a>
+            <a href="/login">Login</a>
         </li>
         <li>
             <a href="registration.html">Registration</a>
