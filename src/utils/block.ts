@@ -97,10 +97,10 @@ class Block {
     }
 
     getInnerHtml(): string {
-        const wrap = document.createElement('div');
-        wrap.appendChild(this._element);
+        const container = document.createElement('div');
+        container.appendChild(this._element);
 
-        return wrap.innerHTML;
+        return container.innerHTML;
     }
 
     private _render() {
@@ -125,9 +125,8 @@ class Block {
         Object.entries(this.children).forEach(([key, child]) => {
             if (Array.isArray(child)) {
                 props[key] = child.map(
-                    (ch) => `<div data-id="id-${child.id}"></div>`
+                    (ch) => `<div data-id="id-${ch.id}"></div>`
                 );
-
                 return;
             }
 
@@ -135,13 +134,17 @@ class Block {
         });
 
         const htmlString = Handlebars.compile(template)(props);
-
         fragment.innerHTML = htmlString;
 
         Object.entries(this.children).forEach(([key, child]) => {
             if (Array.isArray(child)) {
-                props[key] = child.map((ch) => `<div data-id="id-${child.id}"></div>`);
-                return;
+                child.forEach(ch => {
+                    const stub = fragment.content.querySelector(`[data-id="id-${ch.id}"]`);
+                    if (!stub) {
+                        return;
+                    }
+                    stub.replaceWith(ch.getContent()!);
+                })
             }
 
             const stub = fragment.content.querySelector(`[data-id="id-${child.id}"]`);

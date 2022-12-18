@@ -7,8 +7,9 @@ export default `
                     <form id="login-form" class="login-form__items" >
                         <div class="login-form__items-wrapper">
                            {{#each form}}
-                               {{{this}}}
+                              {{{this}}}
                            {{/each}}
+                            {{{input}}}
                         </div>
                         {{{button}}}
                     </form>

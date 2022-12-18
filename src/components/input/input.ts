@@ -8,6 +8,7 @@ export class Input extends Block {
         super({
             ...props,
         });
+        console.log(props)
     }
 
 
