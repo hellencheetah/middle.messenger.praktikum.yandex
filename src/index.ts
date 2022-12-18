@@ -1,14 +1,22 @@
 import './styles/main.scss';
 import { renderDom } from "./utils/renderDom";
-import { Menu } from "./components/menu";
-import { Login } from "./pages/login";
-import { Registration } from "./pages/registration";
-import { Chats } from "./pages/chats";
-import { Page500 } from "./pages/page5";
-import { Page404 } from "./pages/page404";
-import { Profile } from "./pages/profile";
-import { EditProfile } from './pages/edit-profile';
-import { EditPassword } from "./pages/edit-password";
+import Menu from "./components/menu";
+import Login from "./pages/login";
+import Registration from "./pages/registration";
+import  Chats  from "./pages/chats";
+import  Page500  from "./pages/page5";
+import  Page404  from "./pages/page404";
+import  Profile  from "./pages/profile";
+import  EditProfile  from './pages/edit-profile';
+import  EditPassword  from "./pages/edit-password";
+import registerComponent from "./utils/registerComponent";
+import Button from "./components/button";
+import Input from "./components/input";
+import BaseInput from "./components/baseInput";
+
+registerComponent(Button);
+registerComponent(Input);
+registerComponent(BaseInput);
 const Main = new Menu({});
 const LoginPage = new Login({});
 const RegistrationPage = new Registration({});
@@ -18,7 +26,6 @@ const Page4 = new Page404({});
 const ProfilePage = new Profile({});
 const EditPasswordPage = new EditPassword({});
 const EditProfilePage = new EditProfile({});
-
 
 if (window.location.pathname === '/') {
     renderDom("#app", Main);

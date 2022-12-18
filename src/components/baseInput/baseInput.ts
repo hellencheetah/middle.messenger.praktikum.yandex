@@ -1,13 +1,13 @@
 import * as Handlebars from 'handlebars';
-import template from './input.template';
+import template from './baseInput.template';
 import Block from '../../utils/block';
+import './baseInput.scss';
 
-export class Input extends Block {
+export class BaseInput extends Block {
     constructor(props) {
         super({
             ...props,
         });
-        console.log(props)
     }
 
     protected render(): string {

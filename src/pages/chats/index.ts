@@ -1,4 +1,4 @@
-export { Chats } from './chats';
+export { Chats as default } from './chats';
 
 const buttonOpts = {
     btnText: 'Send',

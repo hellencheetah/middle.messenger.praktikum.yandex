@@ -4,12 +4,13 @@ import './profile.scss';
 
 export class Profile extends Block {
     constructor(props) {
+
         super({
-            ...props,
+            ...props
         });
     }
 
-    render() {
-        return this.compile(template, {...this.props});
+    render(): string {
+        return template;
     }
 }

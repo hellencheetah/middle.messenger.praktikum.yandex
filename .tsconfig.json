@@ -1,13 +1,16 @@
 {
   "compilerOptions": {
     "outDir": "dist",
-    "target": "es2018",
+    "target": "es2017",
     "declaration": false,
     "module": "commonjs",
     "strictNullChecks": true,
     "sourceMap": true,
     "noImplicitAny": true,
     "noUnusedLocals": true,
-    "noUnusedParameters": true
+    "noUnusedParameters": true,
+    "typeRoots": ["node_modules/@types", "typings/app.d.ts"],
+    "baseUrl": "./src",
+    "rootDir": "./src"
   }
 }

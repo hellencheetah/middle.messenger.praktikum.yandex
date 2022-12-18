@@ -1,3 +1,3 @@
-export { Page500 } from './page5';
+export { Page500 as default } from './page5';
 
 

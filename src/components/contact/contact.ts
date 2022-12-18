@@ -5,11 +5,13 @@ import './contact.scss';
 
 export class Contact extends Block {
     constructor(props) {
-        super();
-        this.props = props;
+
+        super({
+            ...props
+        });
     }
 
-    public render() {
-        return Handlebars.compile(template)(this.props);
+    render(): string {
+        return template;
     }
 }

@@ -5,12 +5,13 @@ import './chats.scss';
 
 export class Chats extends Block {
     constructor(props) {
+
         super({
-            ...props,
+            ...props
         });
     }
 
-    render() {
-        return this.compile(template, {...this.props});
+    render(): string {
+        return template;
     }
 }

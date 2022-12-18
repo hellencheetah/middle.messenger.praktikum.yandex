@@ -1,4 +1,4 @@
-export { Registration } from './registration'
+export { Registration as default } from './registration'
 const formData = [
     {
         inputPlaceholder: 'Firstname',

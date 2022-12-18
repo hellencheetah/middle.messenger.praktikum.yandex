@@ -6,11 +6,23 @@ export default `
 
                     <form id="login-form" class="login-form__items" >
                         <div class="login-form__items-wrapper">
-                           {{#each form}}
-                               {{{this}}}
-                           {{/each}}
+                           {{{BaseInput
+                                inputType="text"
+                                inputName="login"
+                                inputPlaceholder="Email"
+                           }}}
+                           
+                           {{{BaseInput
+                                inputType="text"
+                                inputName="password"
+                                inputPlaceholder="Password"
+                           }}}
                         </div>
-                        {{{button}}}
+                        
+                       {{{Button 
+                            btnText="Sign in"
+                            btnType="submit"
+                        }}}
                     </form>
 
                     <div class="login-form__items-text">
