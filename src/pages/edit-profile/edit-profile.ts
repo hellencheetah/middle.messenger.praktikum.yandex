@@ -5,13 +5,12 @@ import './edit-profile.scss';
 
 export class EditProfile extends Block {
     constructor(props) {
-
         super({
-            ...props
+            ...props,
         });
     }
 
-    render(): string {
-        return template;
+    render() {
+        return this.compile(template, {...this.props});
     }
 }

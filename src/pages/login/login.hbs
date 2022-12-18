@@ -1,16 +1,34 @@
-export default `
-    <div class="login">
+---
+styles: './login.scss'
+btn-text: 'Sign in'
+btn-type: 'submit'
+form:
+-
+    placeholder: 'Email'
+    type: 'text'
+    name: 'login'
+-
+    placeholder: 'Password'
+    type: 'password'
+    name: 'password'
+---
+
+{{#extend "main"}}
+    {{#content "main"}}
+        <div class="login">
             <div class="container container--auth">
                 <div class="login-form">
                     <h1 class="login-form__title">Sign in</h1>
 
-                    <form id="login-form" class="login-form__items" >
+                    <form class="login-form__items">
                         <div class="login-form__items-wrapper">
-                           {{#each form}}
-                               {{{this}}}
-                           {{/each}}
+                            {{#each form}}
+                                {{> input this }}
+                            {{/each}}
                         </div>
-                        {{{button}}}
+
+
+                        {{> button }}
                     </form>
 
                     <div class="login-form__items-text">
@@ -19,4 +37,5 @@ export default `
                 </div
             </div>
         </div>
-`
+    {{/content}}
+{{/extend}}

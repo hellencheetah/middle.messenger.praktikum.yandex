@@ -10,7 +10,7 @@ export class Button extends Block {
         });
     }
 
-    protected render(): string {
-        return template;
+    render() {
+        return this.compile(template, {...this.props});
     }
 }

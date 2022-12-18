@@ -5,13 +5,11 @@ import './messages.scss';
 
 export class Messages extends Block {
     constructor(props) {
-
-        super({
-            ...props
-        });
+        super();
+        this.props = props;
     }
 
-    render(): string {
-        return template;
+    public render() {
+        return Handlebars.compile(template)(this.props);
     }
 }
