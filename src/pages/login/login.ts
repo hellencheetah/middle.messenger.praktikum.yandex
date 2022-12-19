@@ -1,10 +1,8 @@
 import template from './login.template';
 import Block from '../../utils/block';
 import { Button } from "../../components/button";
-import { Input } from "../../components/input/input";
-import "./login.scss";
-import Form from "../../components/form/form";
 import {BaseInput} from "../../components/baseInput";
+import "./login.scss";
 
 export class Login extends Block {
     constructor(props) {
@@ -25,19 +23,20 @@ export class Login extends Block {
             new BaseInput({
                 inputPlaceholder: 'Email',
                 inputType: 'text',
-                inputName: 'login',
+                inputName: 'email',
                 inputError: '',
+                errorId: 'emailError',
                 events: {
                     blur: e => {
                         let error = ''
                         if (e.target.value.length < 4) {
                             error = 'FUUU';
                         }
-                        const err = document.querySelector('.error')
+                        const err = document.getElementById('emailError')
                         err.innerHTML = error
                     },
                     focus: e => {
-                        const err = document.querySelector('.error')
+                        const err = document.getElementById('emailError')
                         err.innerHTML = ''
                     }
                 }
@@ -46,17 +45,29 @@ export class Login extends Block {
                 inputPlaceholder: 'Password',
                 inputType: 'password',
                 inputName: 'password',
+                inputError: '',
+                errorId: 'passwordError',
+                events: {
+                    blur: e => {
+                        let error = ''
+                        if (e.target.value.length < 4) {
+                            error = 'FUUU';
+                        }
+                        const err = document.getElementById('passwordError')
+                        err.innerHTML = error
+                    },
+                    focus: e => {
+                        const err = document.getElementById('passwordError')
+                        err.innerHTML = ''
+                    }
+                }
             }),
         ]
 
 
 
 
-        super({
-            button,
-            form,
-            ...props,
-        });
+        super({ button, form, ...props });
     }
 
 

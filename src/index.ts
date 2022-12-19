@@ -8,7 +8,7 @@ import { Page500 } from "./pages/page5";
 import { Page404 } from "./pages/page404";
 import { Profile } from "./pages/profile";
 import { EditProfile } from './pages/edit-profile';
-import { EditPassword } from "./pages/edit-password";
+import EditPassword from "./pages/edit-password";
 const Main = new Menu({});
 const LoginPage = new Login({});
 const RegistrationPage = new Registration({});

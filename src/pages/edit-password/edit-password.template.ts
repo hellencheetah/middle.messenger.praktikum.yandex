@@ -5,7 +5,7 @@ export default
         <div class="edit-password-inner">
                <form class="edit-password__form">
                    {{#each form}}
-                            {{input this }}
+                            {{{this}}}
                     {{/each}}
 
                      {{{button}}}

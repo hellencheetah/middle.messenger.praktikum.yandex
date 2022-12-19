@@ -1,4 +1,3 @@
-import * as Handlebars from 'handlebars';
 import template from './input.template';
 import Block from '../../utils/block';
 import './input.scss';
@@ -8,7 +7,6 @@ export class Input extends Block {
         super({
             ...props,
         });
-        console.log(props)
     }
 
 

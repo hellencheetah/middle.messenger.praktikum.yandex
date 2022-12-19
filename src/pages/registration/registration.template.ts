@@ -6,7 +6,9 @@ export default `
 
                     <form class="registration-form__items">
                         <div class="registration-form__items-wrapper">
-                          {{{form}}}
+                          {{#each form}}
+                              {{{this}}}
+                           {{/each}}
                         </div>
 
                         {{{button}}}

@@ -9,7 +9,6 @@ export default `
                            {{#each form}}
                               {{{this}}}
                            {{/each}}
-                            {{{input}}}
                         </div>
                         {{{button}}}
                     </form>

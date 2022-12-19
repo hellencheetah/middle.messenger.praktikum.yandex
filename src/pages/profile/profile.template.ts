@@ -6,20 +6,13 @@ export default `
                        <div class="profile__avatar"></div>
 
                         <div class="profile__data">
-                            <ul class="profile__data-list">
-                                {{#each data}}
-                                    <li class="profile__data-list_item">
-                                        <div>{{field}}</div>
-                                        <div>{{value}}</div>
-                                    </li>
-                                {{/each}}
-                            </ul>
+                            {{{profileData}}}
                         </div>
 
                         <div class="profile__options">
-                            <a href="../edit-profile/edit-profile.hbs" class="profile__options-link">Change info</a>
-                            <a href="../edit-password/edit-password.hbs" class="profile__options-link">Change password</a>
-                            {{{button }}}
+                            <a href="/edit-profile" class="profile__options-link">Change info</a>
+                            <a href="/edit-password" class="profile__options-link">Change password</a>
+                            {{{button}}}
                         </div>
                     </div>
                 </div>

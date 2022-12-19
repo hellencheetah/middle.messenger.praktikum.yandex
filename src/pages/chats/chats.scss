@@ -32,27 +32,6 @@
         flex-direction: column;
         justify-content: space-between;
 
-        &-head {
-            display: flex;
-            align-items: center;
-            height: 80px;
-            box-sizing: border-box;
-            border-bottom: 1px solid $border-color;
-            padding: 0 14px;
-
-
-            &_image {
-                width: 60px;
-                height: 60px;
-                border-radius: 50%;
-                background: $chat-avatar-color;
-                margin-right: 20px;
-            }
-
-            &_name {
-                font-weight: 600;
-            }
-        }
 
         &-chat {
             flex-grow: 1;

@@ -7,19 +7,15 @@ export default `
 
                         <ul class="chats__sidebar-contacts">
                             <li>
-                                {{{contacts}}}
+                                {{#each contacts}}
+                                    {{{this}}}
+                                {{/each}}
                             </li>
                         </ul>
                     </div>
 
                     <div class="chats__main chats-block">
-                        <div class="chats__main-head">
-                            <div class="chats__main-head_image"></div>
-
-                            <div class="chats__main-head_name">
-                                {{{choosenContact.name}}}
-                            </div>
-                        </div>
+                        {{{activeContact}}}
 
                         <div class="chats__main-chat">
                             {{{messages}}}
@@ -27,7 +23,7 @@ export default `
 
                         <div class="chats__main-textarea">
                             <div class="form-textarea">
-                                <textarea placeholder="Write a message" name="message"></textarea>
+                                {{{textarea}}}
                             </div>
 
                             {{{button}}}

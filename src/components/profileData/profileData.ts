@@ -1,14 +1,13 @@
-import template from './textarea.template';
+import template from './profileData.template';
 import Block from '../../utils/block';
-import './textarea.scss';
+import './profileData.scss';
 
-export class Textarea extends Block {
+export class ProfileData extends Block {
     constructor(props) {
         super({
             ...props,
         });
     }
-
 
     render() {
         return this.compile(template, {...this.props});

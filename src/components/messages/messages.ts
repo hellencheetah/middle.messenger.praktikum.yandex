@@ -1,15 +1,18 @@
-import * as Handlebars from 'handlebars';
 import template from './messages.template';
 import Block from '../../utils/block';
 import './messages.scss';
+import {Message} from "../message";
 
 export class Messages extends Block {
     constructor(props) {
-        super();
-        this.props = props;
+        const messages = props.messagesData.map(p => {
+            return new Message(p);
+        })
+
+        super({ messages, ...props });
     }
 
-    public render() {
-        return Handlebars.compile(template)(this.props);
+    render() {
+        return this.compile(template, {...this.props});
     }
 }
