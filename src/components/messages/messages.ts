@@ -1,7 +1,7 @@
 import template from './messages.template';
 import Block from '../../utils/block';
 import './messages.scss';
-import {Message} from "../message";
+import Message from "../message";
 
 export class Messages extends Block {
     constructor(props) {

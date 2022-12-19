@@ -1,9 +1,9 @@
-import * as Handlebars from 'handlebars';
 import template from './registration.template';
 import Block from '../../utils/block';
 import './registration.scss';
-import {Button} from "../../components/button";
-import {BaseInput} from "../../components/baseInput";
+import Button from "../../components/button";
+import BaseInput from "../../components/baseInput";
+import {validateForm, ValidateRuleType} from "../../utils/validations";
 
 export class Registration extends Block {
     constructor(props) {
@@ -28,10 +28,7 @@ export class Registration extends Block {
                 errorId: 'firstnameError',
                 events: {
                     blur: e => {
-                        let error = ''
-                        if (e.target.value.length < 4) {
-                            error = 'FUUU';
-                        }
+                        let error = validateForm(ValidateRuleType.Firstname, e.target.value);
                         const err = document.getElementById('firstnameError')
                         err.innerHTML = error
                     },
@@ -49,10 +46,7 @@ export class Registration extends Block {
                 errorId: 'lastnameError',
                 events: {
                     blur: e => {
-                        let error = ''
-                        if (e.target.value.length < 4) {
-                            error = 'FUUU';
-                        }
+                        let error = validateForm(ValidateRuleType.Lastname, e.target.value);
                         const err = document.getElementById('lastnameError')
                         err.innerHTML = error
                     },
@@ -70,10 +64,7 @@ export class Registration extends Block {
                 errorId: 'loginError',
                 events: {
                     blur: e => {
-                        let error = ''
-                        if (e.target.value.length < 4) {
-                            error = 'FUUU';
-                        }
+                        let error = validateForm(ValidateRuleType.Login, e.target.value);
                         const err = document.getElementById('loginError')
                         err.innerHTML = error
                     },
@@ -91,15 +82,30 @@ export class Registration extends Block {
                 errorId: 'emailError',
                 events: {
                     blur: e => {
-                        let error = ''
-                        if (e.target.value.length < 4) {
-                            error = 'FUUU';
-                        }
+                        let error = validateForm(ValidateRuleType.Email, e.target.value);
                         const err = document.getElementById('emailError')
                         err.innerHTML = error
                     },
                     focus: e => {
                         const err = document.getElementById('emailError')
+                        err.innerHTML = ''
+                    }
+                }
+            }),
+            new BaseInput({
+                inputPlaceholder: 'Phone',
+                inputType: 'text',
+                inputName: 'phone',
+                inputError: '',
+                errorId: 'phoneError',
+                events: {
+                    blur: e => {
+                        let error = validateForm(ValidateRuleType.Phone, e.target.value);
+                        const err = document.getElementById('phoneError')
+                        err.innerHTML = error
+                    },
+                    focus: e => {
+                        const err = document.getElementById('phoneError')
                         err.innerHTML = ''
                     }
                 }
@@ -112,10 +118,7 @@ export class Registration extends Block {
                 errorId: 'passwordError',
                 events: {
                     blur: e => {
-                        let error = ''
-                        if (e.target.value.length < 4) {
-                            error = 'FUUU';
-                        }
+                        let error = validateForm(ValidateRuleType.Password, e.target.value);
                         const err = document.getElementById('passwordError')
                         err.innerHTML = error
                     },

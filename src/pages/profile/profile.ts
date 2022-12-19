@@ -1,8 +1,8 @@
 import template from './profile.template';
 import Block from '../../utils/block';
-import './profile.scss';
 import ProfileData from "../../components/profileData";
-import {Button} from "../../components/button";
+import Button from "../../components/button";
+import './profile.scss';
 
 export class Profile extends Block {
     constructor(props) {

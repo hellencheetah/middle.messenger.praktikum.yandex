@@ -1,4 +1,3 @@
-import * as Handlebars from 'handlebars';
 import template from './page404.template';
 import Block from '../../utils/block';
 import './page404.scss';

@@ -1,8 +1,9 @@
 import template from './login.template';
 import Block from '../../utils/block';
-import { Button } from "../../components/button";
-import {BaseInput} from "../../components/baseInput";
+import Button from "../../components/button";
+import BaseInput from "../../components/baseInput";
 import "./login.scss";
+import {validateForm, ValidateRuleType} from "../../utils/validations";
 
 export class Login extends Block {
     constructor(props) {
@@ -28,10 +29,7 @@ export class Login extends Block {
                 errorId: 'emailError',
                 events: {
                     blur: e => {
-                        let error = ''
-                        if (e.target.value.length < 4) {
-                            error = 'FUUU';
-                        }
+                        let error = validateForm(ValidateRuleType.Email, e.target.value);
                         const err = document.getElementById('emailError')
                         err.innerHTML = error
                     },
@@ -49,10 +47,7 @@ export class Login extends Block {
                 errorId: 'passwordError',
                 events: {
                     blur: e => {
-                        let error = ''
-                        if (e.target.value.length < 4) {
-                            error = 'FUUU';
-                        }
+                        let error = validateForm(ValidateRuleType.Password, e.target.value);
                         const err = document.getElementById('passwordError')
                         err.innerHTML = error
                     },

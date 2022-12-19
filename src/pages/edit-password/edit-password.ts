@@ -1,8 +1,8 @@
 import template from './edit-password.template';
 import Block from '../../utils/block';
 import './edit-password.scss';
-import {Button} from "../../components/button";
-import {BaseInput} from "../../components/baseInput";
+import Button from "../../components/button";
+import BaseInput from "../../components/baseInput";
 
 export class EditPassword extends Block {
     constructor(props) {
@@ -31,7 +31,7 @@ export class EditPassword extends Block {
                     blur: e => {
                         let error = ''
                         if (e.target.value.length < 4) {
-                            error = 'FUUU';
+                            error = 'error';
                         }
                         const err = document.getElementById('oldPasswordError')
                         err.innerHTML = error
@@ -54,7 +54,7 @@ export class EditPassword extends Block {
                     blur: e => {
                         let error = ''
                         if (e.target.value.length < 4) {
-                            error = 'FUUU';
+                            error = 'error';
                         }
                         const err = document.getElementById('newPasswordError')
                         err.innerHTML = error
@@ -77,7 +77,7 @@ export class EditPassword extends Block {
                     blur: e => {
                         let error = ''
                         if (e.target.value.length < 4) {
-                            error = 'FUUU';
+                            error = 'error';
                         }
                         const err = document.getElementById('confirmPasswordError')
                         err.innerHTML = error

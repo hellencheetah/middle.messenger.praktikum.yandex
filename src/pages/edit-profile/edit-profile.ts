@@ -1,8 +1,9 @@
 import template from './edit-profile.template';
 import Block from '../../utils/block';
 import './edit-profile.scss';
-import {Button} from "../../components/button";
-import {BaseInput} from "../../components/baseInput";
+import Button from "../../components/button";
+import BaseInput from "../../components/baseInput";
+import {validateForm, ValidateRuleType} from "../../utils/validations";
 
 
 export class EditProfile extends Block {
@@ -30,16 +31,13 @@ export class EditProfile extends Block {
                 errorId: 'emailError',
                 events: {
                     blur: e => {
-                        let error = ''
-                        if (e.target.value.length < 4) {
-                            error = 'FUUU';
-                        }
-                        const err = document.getElementById('emailError')
-                        err.innerHTML = error
+                        let error = validateForm(ValidateRuleType.Email, e.target.value);
+                        const err = document.getElementById('emailError');
+                        err.innerHTML = error;
                     },
                     focus: e => {
-                        const err = document.getElementById('emailError')
-                        err.innerHTML = ''
+                        const err = document.getElementById('emailError');
+                        err.innerHTML = '';
                     }
                 }
             }),
@@ -53,16 +51,13 @@ export class EditProfile extends Block {
                 errorId: 'loginError',
                 events: {
                     blur: e => {
-                        let error = ''
-                        if (e.target.value.length < 4) {
-                            error = 'FUUU';
-                        }
-                        const err = document.getElementById('loginError')
-                        err.innerHTML = error
+                        let error = validateForm(ValidateRuleType.Login, e.target.value);
+                        const err = document.getElementById('loginError');
+                        err.innerHTML = error;
                     },
                     focus: e => {
-                        const err = document.getElementById('loginError')
-                        err.innerHTML = ''
+                        const err = document.getElementById('loginError');
+                        err.innerHTML = '';
                     }
                 }
             }),
@@ -76,16 +71,13 @@ export class EditProfile extends Block {
                 errorId: 'firstnameError',
                 events: {
                     blur: e => {
-                        let error = ''
-                        if (e.target.value.length < 4) {
-                            error = 'FUUU';
-                        }
-                        const err = document.getElementById('firstnameError')
-                        err.innerHTML = error
+                        let error = validateForm(ValidateRuleType.Firstname, e.target.value);
+                        const err = document.getElementById('firstnameError');
+                        err.innerHTML = error;
                     },
                     focus: e => {
-                        const err = document.getElementById('firstnameError')
-                        err.innerHTML = ''
+                        const err = document.getElementById('firstnameError');
+                        err.innerHTML = '';
                     }
                 }
             }),
@@ -99,16 +91,13 @@ export class EditProfile extends Block {
                 errorId: 'lastnameError',
                 events: {
                     blur: e => {
-                        let error = ''
-                        if (e.target.value.length < 4) {
-                            error = 'FUUU';
-                        }
-                        const err = document.getElementById('lastnameError')
-                        err.innerHTML = error
+                        let error = validateForm(ValidateRuleType.Lastname, e.target.value);
+                        const err = document.getElementById('lastnameError');
+                        err.innerHTML = error;
                     },
                     focus: e => {
-                        const err = document.getElementById('lastnameError')
-                        err.innerHTML = ''
+                        const err = document.getElementById('lastnameError');
+                        err.innerHTML = '';
                     }
                 }
             }),
@@ -122,16 +111,13 @@ export class EditProfile extends Block {
                 errorId: 'nicknameError',
                 events: {
                     blur: e => {
-                        let error = ''
-                        if (e.target.value.length < 4) {
-                            error = 'FUUU';
-                        }
-                        const err = document.getElementById('nicknameError')
-                        err.innerHTML = error
+                        let error = validateForm('', e.target.value);
+                        const err = document.getElementById('nicknameError');
+                        err.innerHTML = error;
                     },
                     focus: e => {
-                        const err = document.getElementById('nicknameError')
-                        err.innerHTML = ''
+                        const err = document.getElementById('nicknameError');
+                        err.innerHTML = '';
                     }
                 }
             }),
@@ -145,16 +131,13 @@ export class EditProfile extends Block {
                 errorId: 'phoneError',
                 events: {
                     blur: e => {
-                        let error = ''
-                        if (e.target.value.length < 4) {
-                            error = 'FUUU';
-                        }
-                        const err = document.getElementById('phoneError')
-                        err.innerHTML = error
+                        let error = validateForm(ValidateRuleType.Phone, e.target.value);
+                        const err = document.getElementById('phoneError');
+                        err.innerHTML = error;
                     },
                     focus: e => {
-                        const err = document.getElementById('phoneError')
-                        err.innerHTML = ''
+                        const err = document.getElementById('phoneError');
+                        err.innerHTML = '';
                     }
                 }
             }),

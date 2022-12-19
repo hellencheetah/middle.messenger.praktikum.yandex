@@ -2,9 +2,9 @@ import * as Handlebars from 'handlebars';
 import template from './chats.template';
 import Block from '../../utils/block';
 import './chats.scss';
-import {Button} from "../../components/button";
-import {Contact} from "../../components/contact";
-import {Messages} from "../../components/messages";
+import Button from "../../components/button";
+import Contact from "../../components/contact";
+import Messages from "../../components/messages";
 import Textarea from "../../components/textarea";
 import ActiveContact from "../../components/activeContact";
 

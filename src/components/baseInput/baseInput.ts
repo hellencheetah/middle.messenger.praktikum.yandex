@@ -2,7 +2,7 @@ import * as Handlebars from 'handlebars';
 import template from './baseInput.template';
 import Block from '../../utils/block';
 import './baseInput.scss';
-import {Input} from "../input";
+import Input from "../input";
 
 export class BaseInput extends Block {
 

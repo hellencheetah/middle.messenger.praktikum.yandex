@@ -1,26 +1,41 @@
 @import '../../styles/constants.scss';
 
 .edit-profile {
-  &-inner {
-    display: flex;
-    justify-content: center;
-    background-color: $white;
-    min-height: 750px;
-    width: 800px;
-    border-radius: $block-border-radius;
-    box-shadow: $block-box-shadow;
-    box-sizing: border-box;
-    padding: 36px 0 34px;
-  }
+    &-inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $white;
+        min-height: 750px;
+        width: 800px;
+        border-radius: $block-border-radius;
+        box-shadow: $block-box-shadow;
+        box-sizing: border-box;
+        padding: 36px 0 34px;
+    }
 
-  &__form {
-    display: flex;
-    flex-direction: column;
-  }
 
-  &__btn {
-    width: 210px;
-    height: 50px;
-    margin: auto;
-  }
+    &__form {
+        display: flex;
+        flex-direction: column;
+
+        &-title {
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        &-wrapper {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            column-gap: 30px;
+            width: 600px;
+            margin-bottom: 30px;
+        }
+    }
+
+    &__btn {
+        width: 210px;
+        height: 50px;
+        margin: auto;
+    }
 }
