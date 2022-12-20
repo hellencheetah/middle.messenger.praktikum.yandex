@@ -13,6 +13,10 @@ type ValidateRule = {
     type: ValidateRuleType;
 }
 
+export enum FormValidityType {
+    Valid = 'valid',
+    Invalid = 'invalid',
+}
 
 const validations = {
     message: {
@@ -53,54 +57,49 @@ const validations = {
 
 export function validateForm (type, value) {
     let error = '';
-
-    // switch (type) {
-    //     case ValidateRuleType.Login:
-    //         error = validateLogin(value);
-    //         break;
-    //     case ValidateRuleType.Email:
-    //         error = validateEmail(value);
-    //         break;
-    //     case ValidateRuleType.Password:
-    //         error = validatePassword(value);
-    //         break;
-    //     case ValidateRuleType.Firstname:
-    //         error = validateName(value);
-    //         break;
-    //     case ValidateRuleType.Lastname:
-    //         error =validateName(value);
-    //         break;
-    //     case ValidateRuleType.Phone:
-    //         error = validatePhone(value);
-    //         break;
-    //     case ValidateRuleType.Message:
-    //         error = validateMessage(value);
-    //         break;
-    // }
-
     const regex = validations[type].regex;
 
-    if (!regex.test(value)) {
+    if (value.length === 0) {
+        error = 'Поле обязательно для заполнения';
+    } else if (!regex.test(value)) {
         error = validations[type].msg;
     }
     return error;
 }
 
-function validateLogin(value) {
+export function validateFullForm(formId: string) {
+    // Получаем форму в виде объекта
+    const form = getDataFromForm(formId);
 
+    // Создаем объект ошибок
+    let errorsObject = {}
+    const formKeys = Object.keys(form);
+    formKeys.forEach(key => {
+        errorsObject[key] = validateForm(key, form[key])
+    })
+
+    // Устанавливаем ошибки в соответствующие блоки
+    const errorKeys = Object.keys(errorsObject);
+    const formInvalid = errorKeys.some(key => errorsObject[key] !== '');
+
+    if (!formInvalid) {
+        return form;
+    }
+
+    errorKeys.forEach(key => {
+        const errorElem = document.getElementById(`${key}_error`);
+        errorElem.innerHTML = errorsObject[key];
+    })
+
+    return 'invalid';
 }
-function validateEmail(value) {
 
-}
-function validatePassword(value) {
-
-}
-function validateName(value) {
-
-}
-function validatePhone(value) {
-
-}
-function validateMessage(value) {
-
+export function getDataFromForm(formId: string) {
+    const formElement = document.getElementById(formId) as HTMLFormElement;
+    const formData = new FormData(formElement);
+    let form = {};
+    for (let [key, value] of formData.entries()) {
+        form[key] = value;
+    }
+    return form;
 }

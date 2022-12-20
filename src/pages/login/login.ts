@@ -3,7 +3,7 @@ import Block from '../../utils/block';
 import Button from "../../components/button";
 import BaseInput from "../../components/baseInput";
 import "./login.scss";
-import {validateForm, ValidateRuleType} from "../../utils/validations";
+import {validateForm, validateFullForm, ValidateRuleType} from "../../utils/validations";
 
 export class Login extends Block {
     constructor(props) {
@@ -15,7 +15,11 @@ export class Login extends Block {
             events: {
                 click: e => {
                     e.preventDefault();
+                    const result = validateFullForm('login-form');
 
+                    if (result !== 'invalid') {
+                        // api
+                    }
                 }
             }
         });
@@ -26,15 +30,15 @@ export class Login extends Block {
                 inputType: 'text',
                 inputName: 'email',
                 inputError: '',
-                errorId: 'emailError',
+                errorId: 'email_error',
                 events: {
                     blur: e => {
                         let error = validateForm(ValidateRuleType.Email, e.target.value);
-                        const err = document.getElementById('emailError')
+                        const err = document.getElementById('email_error')
                         err.innerHTML = error
                     },
                     focus: e => {
-                        const err = document.getElementById('emailError')
+                        const err = document.getElementById('email_error')
                         err.innerHTML = ''
                     }
                 }
@@ -44,15 +48,15 @@ export class Login extends Block {
                 inputType: 'password',
                 inputName: 'password',
                 inputError: '',
-                errorId: 'passwordError',
+                errorId: 'password_error',
                 events: {
                     blur: e => {
                         let error = validateForm(ValidateRuleType.Password, e.target.value);
-                        const err = document.getElementById('passwordError')
+                        const err = document.getElementById('password_error')
                         err.innerHTML = error
                     },
                     focus: e => {
-                        const err = document.getElementById('passwordError')
+                        const err = document.getElementById('password_error')
                         err.innerHTML = ''
                     }
                 }

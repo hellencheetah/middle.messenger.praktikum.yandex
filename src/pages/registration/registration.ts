@@ -3,7 +3,7 @@ import Block from '../../utils/block';
 import './registration.scss';
 import Button from "../../components/button";
 import BaseInput from "../../components/baseInput";
-import {validateForm, ValidateRuleType} from "../../utils/validations";
+import {validateForm, validateFullForm, ValidateRuleType} from "../../utils/validations";
 
 export class Registration extends Block {
     constructor(props) {
@@ -15,6 +15,11 @@ export class Registration extends Block {
                 click: e => {
                     e.preventDefault();
 
+                    const result = validateFullForm('registration-form');
+
+                    if (result !== 'invalid') {
+                        // api
+                    }
                 }
             }
         });
@@ -25,15 +30,15 @@ export class Registration extends Block {
                 inputType: 'text',
                 inputName: 'first_name',
                 inputError: '',
-                errorId: 'firstnameError',
+                errorId: 'first_name_error',
                 events: {
                     blur: e => {
                         let error = validateForm(ValidateRuleType.Firstname, e.target.value);
-                        const err = document.getElementById('firstnameError')
+                        const err = document.getElementById('first_name_error')
                         err.innerHTML = error
                     },
                     focus: e => {
-                        const err = document.getElementById('firstnameError')
+                        const err = document.getElementById('first_name_error')
                         err.innerHTML = ''
                     }
                 }
@@ -41,17 +46,17 @@ export class Registration extends Block {
             new BaseInput({
                 inputPlaceholder: 'Lastname',
                 inputType: 'text',
-                inputName: 'last_name',
+                inputName: 'second_name',
                 inputError: '',
-                errorId: 'lastnameError',
+                errorId: 'second_name_error',
                 events: {
                     blur: e => {
                         let error = validateForm(ValidateRuleType.Lastname, e.target.value);
-                        const err = document.getElementById('lastnameError')
+                        const err = document.getElementById('second_name_error')
                         err.innerHTML = error
                     },
                     focus: e => {
-                        const err = document.getElementById('lastnameError')
+                        const err = document.getElementById('second_name_error')
                         err.innerHTML = ''
                     }
                 }
@@ -61,15 +66,15 @@ export class Registration extends Block {
                 inputType: 'text',
                 inputName: 'login',
                 inputError: '',
-                errorId: 'loginError',
+                errorId: 'login_error',
                 events: {
                     blur: e => {
                         let error = validateForm(ValidateRuleType.Login, e.target.value);
-                        const err = document.getElementById('loginError')
+                        const err = document.getElementById('login_error')
                         err.innerHTML = error
                     },
                     focus: e => {
-                        const err = document.getElementById('loginError')
+                        const err = document.getElementById('login_error')
                         err.innerHTML = ''
                     }
                 }
@@ -79,15 +84,15 @@ export class Registration extends Block {
                 inputType: 'text',
                 inputName: 'email',
                 inputError: '',
-                errorId: 'emailError',
+                errorId: 'email_error',
                 events: {
                     blur: e => {
                         let error = validateForm(ValidateRuleType.Email, e.target.value);
-                        const err = document.getElementById('emailError')
+                        const err = document.getElementById('email_error')
                         err.innerHTML = error
                     },
                     focus: e => {
-                        const err = document.getElementById('emailError')
+                        const err = document.getElementById('email_error')
                         err.innerHTML = ''
                     }
                 }
@@ -97,15 +102,15 @@ export class Registration extends Block {
                 inputType: 'text',
                 inputName: 'phone',
                 inputError: '',
-                errorId: 'phoneError',
+                errorId: 'phone_error',
                 events: {
                     blur: e => {
                         let error = validateForm(ValidateRuleType.Phone, e.target.value);
-                        const err = document.getElementById('phoneError')
+                        const err = document.getElementById('phone_error')
                         err.innerHTML = error
                     },
                     focus: e => {
-                        const err = document.getElementById('phoneError')
+                        const err = document.getElementById('phone_error')
                         err.innerHTML = ''
                     }
                 }
@@ -115,15 +120,15 @@ export class Registration extends Block {
                 inputType: 'password',
                 inputName: 'password',
                 inputError: '',
-                errorId: 'passwordError',
+                errorId: 'password_error',
                 events: {
                     blur: e => {
                         let error = validateForm(ValidateRuleType.Password, e.target.value);
-                        const err = document.getElementById('passwordError')
+                        const err = document.getElementById('password_error')
                         err.innerHTML = error
                     },
                     focus: e => {
-                        const err = document.getElementById('passwordError')
+                        const err = document.getElementById('password_error')
                         err.innerHTML = ''
                     }
                 }

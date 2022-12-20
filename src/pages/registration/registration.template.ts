@@ -4,7 +4,7 @@ export default `
                 <div class="registration-form">
                     <h1 class="registration-form__title">Sign up</h1>
 
-                    <form class="registration-form__items">
+                    <form id="registration-form" class="registration-form__items">
                         <div class="registration-form__items-wrapper">
                           {{#each form}}
                               {{{this}}}
