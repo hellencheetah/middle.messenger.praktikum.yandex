@@ -6,7 +6,7 @@ export default `
 
                     <div class="page500__text">Мы уже фиксим</div>
 
-                    <a href="" class="page500__link">Назад к чатам</a>
+                    <a href="/chats" class="page500__link">Назад к чатам</a>
                 </div>
             </div>
         </div>

@@ -1,0 +1,29 @@
+@import "src/styles/constants";
+
+.form-textarea {
+    position: relative;
+
+    textarea {
+        height: 80px;
+        width: 100%;
+        border: none;
+        box-shadow: $input-box-shadow;
+        border-radius: 8px;
+        padding: 17px 40px;
+        font-size: 20px;
+        outline: none;
+        resize: none;
+    }
+
+    textarea::placeholder {
+        color: $placeholder-color;
+    }
+
+    &__error {
+        position: absolute;
+        color: $error-color;
+        font-weight: 600;
+        font-size: 14px;
+        margin-top: 4px;
+    }
+}

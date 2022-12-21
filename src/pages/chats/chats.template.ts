@@ -21,13 +21,11 @@ export default `
                             {{{messages}}}
                         </div>
 
-                        <div class="chats__main-textarea">
-                            <div class="form-textarea">
-                                {{{textarea}}}
-                            </div>
+                        <form id="message-form" class="chats__main-textarea">
+                            {{{baseTextarea}}}
 
                             {{{button}}}
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -5,32 +5,31 @@ import './chats.scss';
 import Button from "../../components/button";
 import Contact from "../../components/contact";
 import Messages from "../../components/messages";
-import Textarea from "../../components/textarea";
 import ActiveContact from "../../components/activeContact";
+import BaseTextarea from "../../components/baseTextarea";
+import {validateForm, validateFullForm, ValidateRuleType} from "../../utils/validations";
 
 export class Chats extends Block {
     constructor(props) {
-
-        const button = new Button({
-            btnText: 'Send',
-            btnType: 'button',
-            btnClass: 'chats__main-btn',
-            events: {
-                click: e => {
-                    e.preventDefault();
-
-                }
-            }
-        });
 
         const contacts = [
             new Contact({
                 id: '1',
                 name: 'Ivan Ivanov',
+                events: {
+                    click: e => {
+                        console.log(e)
+                    }
+                }
             }),
             new Contact({
                 id: '2',
                 name: 'Petr Petrov',
+                events: {
+                    click: e => {
+                        console.log(e)
+                    }
+                }
             }),
         ]
 
@@ -43,13 +42,43 @@ export class Chats extends Block {
             },
             {
                 id: '2',
-                text: 'Thnak you, how are you?',
+                text: 'Thank you, how are you?',
                 time: '12:20',
                 my: false,
             }
         ]
 
-        const textarea = new Textarea({})
+        const baseTextarea = new BaseTextarea({
+            textareaErrorId: 'message_error',
+            events: {
+                blur: e => {
+                    const error = validateForm(ValidateRuleType.Message, e.target.value);
+                    const err = document.getElementById('message_error');
+                    err.innerHTML = error;
+                },
+                focus: e => {
+                    const err = document.getElementById('message_error');
+                    err.innerHTML = '';
+                }
+            }
+        })
+
+        const button = new Button({
+            btnText: 'Send',
+            btnType: 'submit',
+            btnClass: 'chats__main-btn',
+            events: {
+                click: e => {
+                    e.preventDefault();
+                    const result = validateFullForm('message-form');
+
+                    if (result !== 'invalid') {
+                        // api
+                        console.log(result)
+                    }
+                }
+            }
+        });
 
         const messages = new Messages({messagesData})
 
@@ -57,7 +86,7 @@ export class Chats extends Block {
             name: 'Ivan Ivanov',
         })
 
-        super({button, contacts, messages, textarea, activeContact,  ...props});
+        super({button, contacts, messages, baseTextarea, activeContact,  ...props});
     }
 
     render() {

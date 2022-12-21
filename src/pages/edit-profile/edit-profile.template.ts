@@ -3,7 +3,7 @@ export default `
      <div class="container container--auth">
         <div class="edit-profile-inner">
       
-        <form class="edit-profile__form">
+        <form id="edit-profile-form" class="edit-profile__form">
             <h1 class="edit-profile__form-title">Edit profile</h1>
             <div class="edit-profile__form-wrapper">
                 {{#each form}}

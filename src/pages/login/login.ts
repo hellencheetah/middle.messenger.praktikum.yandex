@@ -19,6 +19,7 @@ export class Login extends Block {
 
                     if (result !== 'invalid') {
                         // api
+                        console.log(result)
                     }
                 }
             }

@@ -26,18 +26,15 @@ export class EditPassword extends Block {
                 inputModifier: 'form-control--with-label',
                 inputName: 'oldPassword',
                 inputError: '',
-                errorId: 'oldPasswordError',
+                errorId: 'oldPassword_error',
                 events: {
                     blur: e => {
                         let error = ''
-                        if (e.target.value.length < 4) {
-                            error = 'error';
-                        }
-                        const err = document.getElementById('oldPasswordError')
+                        const err = document.getElementById('oldPassword_error')
                         err.innerHTML = error
                     },
                     focus: e => {
-                        const err = document.getElementById('oldPasswordError')
+                        const err = document.getElementById('oldPassword_error')
                         err.innerHTML = ''
                     }
                 }
@@ -49,18 +46,15 @@ export class EditPassword extends Block {
                 inputName: 'newPassword',
                 inputModifier: 'form-control--with-label',
                 inputError: '',
-                errorId: 'newPasswordError',
+                errorId: 'newPassword_error',
                 events: {
                     blur: e => {
                         let error = ''
-                        if (e.target.value.length < 4) {
-                            error = 'error';
-                        }
-                        const err = document.getElementById('newPasswordError')
+                        const err = document.getElementById('newPassword_error')
                         err.innerHTML = error
                     },
                     focus: e => {
-                        const err = document.getElementById('newPasswordError')
+                        const err = document.getElementById('newPassword_error')
                         err.innerHTML = ''
                     }
                 }
@@ -72,18 +66,15 @@ export class EditPassword extends Block {
                 inputName: 'confirmPassword',
                 inputError: '',
                 inputModifier: 'form-control--with-label',
-                errorId: 'confirmPasswordError',
+                errorId: 'confirmPassword_error',
                 events: {
                     blur: e => {
                         let error = ''
-                        if (e.target.value.length < 4) {
-                            error = 'error';
-                        }
-                        const err = document.getElementById('confirmPasswordError')
+                        const err = document.getElementById('confirmPassword_error')
                         err.innerHTML = error
                     },
                     focus: e => {
-                        const err = document.getElementById('confirmPasswordError')
+                        const err = document.getElementById('confirmPassword_error')
                         err.innerHTML = ''
                     }
                 }

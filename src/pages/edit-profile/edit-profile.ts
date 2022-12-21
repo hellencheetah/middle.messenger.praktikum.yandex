@@ -3,7 +3,7 @@ import Block from '../../utils/block';
 import './edit-profile.scss';
 import Button from "../../components/button";
 import BaseInput from "../../components/baseInput";
-import {validateForm, ValidateRuleType} from "../../utils/validations";
+import {validateForm, validateFullForm, ValidateRuleType} from "../../utils/validations";
 
 
 export class EditProfile extends Block {
@@ -15,7 +15,12 @@ export class EditProfile extends Block {
             events: {
                 click: e => {
                     e.preventDefault();
-
+                    e.preventDefault();
+                    const result = validateFullForm('edit-profile-form');
+                    if (result !== 'invalid') {
+                        // api
+                        console.log(result)
+                    }
                 }
             }
         });
@@ -28,15 +33,15 @@ export class EditProfile extends Block {
                 inputName: 'email',
                 inputModifier: 'form-control--with-label',
                 inputError: '',
-                errorId: 'emailError',
+                errorId: 'email_error',
                 events: {
                     blur: e => {
                         let error = validateForm(ValidateRuleType.Email, e.target.value);
-                        const err = document.getElementById('emailError');
+                        const err = document.getElementById('email_error');
                         err.innerHTML = error;
                     },
                     focus: e => {
-                        const err = document.getElementById('emailError');
+                        const err = document.getElementById('email_error');
                         err.innerHTML = '';
                     }
                 }
@@ -48,15 +53,15 @@ export class EditProfile extends Block {
                 inputModifier: 'form-control--with-label',
                 inputName: 'login',
                 inputError: '',
-                errorId: 'loginError',
+                errorId: 'login_error',
                 events: {
                     blur: e => {
                         let error = validateForm(ValidateRuleType.Login, e.target.value);
-                        const err = document.getElementById('loginError');
+                        const err = document.getElementById('login_error');
                         err.innerHTML = error;
                     },
                     focus: e => {
-                        const err = document.getElementById('loginError');
+                        const err = document.getElementById('login_error');
                         err.innerHTML = '';
                     }
                 }
@@ -68,15 +73,15 @@ export class EditProfile extends Block {
                 inputName: 'first_name',
                 inputError: '',
                 inputModifier: 'form-control--with-label',
-                errorId: 'firstnameError',
+                errorId: 'first_name_error',
                 events: {
                     blur: e => {
                         let error = validateForm(ValidateRuleType.Firstname, e.target.value);
-                        const err = document.getElementById('firstnameError');
+                        const err = document.getElementById('first_name_error');
                         err.innerHTML = error;
                     },
                     focus: e => {
-                        const err = document.getElementById('firstnameError');
+                        const err = document.getElementById('first_name_error');
                         err.innerHTML = '';
                     }
                 }
@@ -88,39 +93,39 @@ export class EditProfile extends Block {
                 inputName: 'second_name',
                 inputError: '',
                 inputModifier: 'form-control--with-label',
-                errorId: 'lastnameError',
+                errorId: 'second_name_error',
                 events: {
                     blur: e => {
                         let error = validateForm(ValidateRuleType.Lastname, e.target.value);
-                        const err = document.getElementById('lastnameError');
+                        const err = document.getElementById('second_name_error');
                         err.innerHTML = error;
                     },
                     focus: e => {
-                        const err = document.getElementById('lastnameError');
+                        const err = document.getElementById('second_name_error');
                         err.innerHTML = '';
                     }
                 }
             }),
-            new BaseInput({
-                inputPlaceholder: 'Nickname',
-                inputLabel: 'Nickname',
-                inputType: 'text',
-                inputName: 'display_name',
-                inputError: '',
-                inputModifier: 'form-control--with-label',
-                errorId: 'nicknameError',
-                events: {
-                    blur: e => {
-                        let error = validateForm('', e.target.value);
-                        const err = document.getElementById('nicknameError');
-                        err.innerHTML = error;
-                    },
-                    focus: e => {
-                        const err = document.getElementById('nicknameError');
-                        err.innerHTML = '';
-                    }
-                }
-            }),
+            // new BaseInput({
+            //     inputPlaceholder: 'Nickname',
+            //     inputLabel: 'Nickname',
+            //     inputType: 'text',
+            //     inputName: 'display_name',
+            //     inputError: '',
+            //     inputModifier: 'form-control--with-label',
+            //     errorId: 'display_name_error',
+            //     events: {
+            //         blur: e => {
+            //             let error = validateForm('', e.target.value);
+            //             const err = document.getElementById('display_name_error');
+            //             err.innerHTML = error;
+            //         },
+            //         focus: e => {
+            //             const err = document.getElementById('display_name_error');
+            //             err.innerHTML = '';
+            //         }
+            //     }
+            // }),
             new BaseInput({
                 inputPlaceholder: 'Phone',
                 inputLabel: 'Phone',
@@ -128,15 +133,15 @@ export class EditProfile extends Block {
                 inputName: 'phone',
                 inputError: '',
                 inputModifier: 'form-control--with-label',
-                errorId: 'phoneError',
+                errorId: 'phone_error',
                 events: {
                     blur: e => {
                         let error = validateForm(ValidateRuleType.Phone, e.target.value);
-                        const err = document.getElementById('phoneError');
+                        const err = document.getElementById('phone_error');
                         err.innerHTML = error;
                     },
                     focus: e => {
-                        const err = document.getElementById('phoneError');
+                        const err = document.getElementById('phone_error');
                         err.innerHTML = '';
                     }
                 }

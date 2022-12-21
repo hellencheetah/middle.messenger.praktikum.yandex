@@ -20,8 +20,9 @@ export enum FormValidityType {
 
 const validations = {
     message: {
-        regex: /(.|\s)*\S(.|\s)*/,
+        regex: /^[-\s]+(\s+[-\s]+)*$/,
         message: 'Поле обязательно для заполнения',
+        msg: 'Поле обязательно для заполнения',
     },
     first_name: {
         regex: /^[А-ЯЁA-Z][А-ЯЁA-Zа-яёa-z-]+$/,
@@ -56,6 +57,9 @@ const validations = {
 };
 
 export function validateForm (type, value) {
+    if (type === ValidateRuleType.Message) {
+        return validateMessageField(value);
+    }
     let error = '';
     const regex = validations[type].regex;
 
@@ -82,16 +86,24 @@ export function validateFullForm(formId: string) {
     const errorKeys = Object.keys(errorsObject);
     const formInvalid = errorKeys.some(key => errorsObject[key] !== '');
 
-    if (!formInvalid) {
-        return form;
+    if (formInvalid) {
+        errorKeys.forEach(key => {
+            const errorElem = document.getElementById(`${key}_error`);
+            errorElem.innerHTML = errorsObject[key];
+        })
+
+        return 'invalid';
     }
 
-    errorKeys.forEach(key => {
-        const errorElem = document.getElementById(`${key}_error`);
-        errorElem.innerHTML = errorsObject[key];
-    })
+    return form;
+}
 
-    return 'invalid';
+function validateMessageField(value) {
+    const { message: { regex, msg } } = validations;
+    if (value.length === 0 || regex.test(value)) {
+        return msg;
+    }
+    return '';
 }
 
 export function getDataFromForm(formId: string) {

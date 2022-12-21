@@ -6,7 +6,7 @@ export default `
 
                     <div class="page404__text">Вы не туда попали</div>
 
-                    <a href="" class="page404__link">Назад к чатам</a>
+                    <a href="/chats" class="page404__link">Назад к чатам</a>
                 </div>
             </div>
         </div>

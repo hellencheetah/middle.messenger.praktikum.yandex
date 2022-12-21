@@ -14,11 +14,10 @@ export class Registration extends Block {
             events: {
                 click: e => {
                     e.preventDefault();
-
                     const result = validateFullForm('registration-form');
-
                     if (result !== 'invalid') {
                         // api
+                        console.log(result)
                     }
                 }
             }
@@ -34,12 +33,12 @@ export class Registration extends Block {
                 events: {
                     blur: e => {
                         let error = validateForm(ValidateRuleType.Firstname, e.target.value);
-                        const err = document.getElementById('first_name_error')
-                        err.innerHTML = error
+                        const err = document.getElementById('first_name_error');
+                        err.innerHTML = error;
                     },
                     focus: e => {
-                        const err = document.getElementById('first_name_error')
-                        err.innerHTML = ''
+                        const err = document.getElementById('first_name_error');
+                        err.innerHTML = '';
                     }
                 }
             }),
