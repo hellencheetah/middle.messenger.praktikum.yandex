@@ -12,7 +12,7 @@ export class EditPassword extends Block {
             btnClass: 'edit-password__btn',
             btnType: 'submit',
             events: {
-                click: e => {
+                click: (e: Event) => {
                     e.preventDefault();
                 }
             }
@@ -25,7 +25,6 @@ export class EditPassword extends Block {
                 inputType: 'password',
                 inputModifier: 'form-control--with-label',
                 inputName: 'oldPassword',
-                inputError: '',
                 errorId: 'oldPassword_error',
                 events: {
                     blur: e => {
@@ -45,7 +44,6 @@ export class EditPassword extends Block {
                 inputType: 'password',
                 inputName: 'newPassword',
                 inputModifier: 'form-control--with-label',
-                inputError: '',
                 errorId: 'newPassword_error',
                 events: {
                     blur: e => {
@@ -64,7 +62,6 @@ export class EditPassword extends Block {
                 inputLabel: 'Confirm password',
                 inputType: 'password',
                 inputName: 'confirmPassword',
-                inputError: '',
                 inputModifier: 'form-control--with-label',
                 errorId: 'confirmPassword_error',
                 events: {

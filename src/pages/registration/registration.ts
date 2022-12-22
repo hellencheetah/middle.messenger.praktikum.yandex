@@ -4,6 +4,7 @@ import './registration.scss';
 import Button from "../../components/button";
 import BaseInput from "../../components/baseInput";
 import {validateForm, validateFullForm, ValidateRuleType} from "../../utils/validations";
+import {onBlur, onFocus} from "../../helpers/events";
 
 export class Registration extends Block {
     constructor(props) {
@@ -28,17 +29,13 @@ export class Registration extends Block {
                 inputPlaceholder: 'Firstname',
                 inputType: 'text',
                 inputName: 'first_name',
-                inputError: '',
                 errorId: 'first_name_error',
                 events: {
-                    blur: e => {
-                        let error = validateForm(ValidateRuleType.Firstname, e.target.value);
-                        const err = document.getElementById('first_name_error');
-                        err.innerHTML = error;
+                    blur: (e: FocusEvent) => {
+                        onBlur(e, ValidateRuleType.Firstname);
                     },
-                    focus: e => {
-                        const err = document.getElementById('first_name_error');
-                        err.innerHTML = '';
+                    focus: (e: FocusEvent) => {
+                        onFocus(ValidateRuleType.Firstname);
                     }
                 }
             }),
@@ -46,17 +43,13 @@ export class Registration extends Block {
                 inputPlaceholder: 'Lastname',
                 inputType: 'text',
                 inputName: 'second_name',
-                inputError: '',
                 errorId: 'second_name_error',
                 events: {
-                    blur: e => {
-                        let error = validateForm(ValidateRuleType.Lastname, e.target.value);
-                        const err = document.getElementById('second_name_error')
-                        err.innerHTML = error
+                    blur: (e: FocusEvent) => {
+                        onBlur(e, ValidateRuleType.Lastname);
                     },
-                    focus: e => {
-                        const err = document.getElementById('second_name_error')
-                        err.innerHTML = ''
+                    focus: (e: FocusEvent) => {
+                        onFocus(ValidateRuleType.Lastname);
                     }
                 }
             }),
@@ -64,17 +57,13 @@ export class Registration extends Block {
                 inputPlaceholder: 'Login',
                 inputType: 'text',
                 inputName: 'login',
-                inputError: '',
                 errorId: 'login_error',
                 events: {
-                    blur: e => {
-                        let error = validateForm(ValidateRuleType.Login, e.target.value);
-                        const err = document.getElementById('login_error')
-                        err.innerHTML = error
+                    blur: (e: FocusEvent) => {
+                        onBlur(e, ValidateRuleType.Login);
                     },
-                    focus: e => {
-                        const err = document.getElementById('login_error')
-                        err.innerHTML = ''
+                    focus: (e: FocusEvent) => {
+                        onFocus(ValidateRuleType.Login);
                     }
                 }
             }),
@@ -82,17 +71,13 @@ export class Registration extends Block {
                 inputPlaceholder: 'Email',
                 inputType: 'text',
                 inputName: 'email',
-                inputError: '',
                 errorId: 'email_error',
                 events: {
-                    blur: e => {
-                        let error = validateForm(ValidateRuleType.Email, e.target.value);
-                        const err = document.getElementById('email_error')
-                        err.innerHTML = error
+                    blur: (e: FocusEvent) => {
+                        onBlur(e, ValidateRuleType.Email);
                     },
-                    focus: e => {
-                        const err = document.getElementById('email_error')
-                        err.innerHTML = ''
+                    focus: (e: FocusEvent) => {
+                        onFocus(ValidateRuleType.Email);
                     }
                 }
             }),
@@ -100,17 +85,13 @@ export class Registration extends Block {
                 inputPlaceholder: 'Phone',
                 inputType: 'text',
                 inputName: 'phone',
-                inputError: '',
                 errorId: 'phone_error',
                 events: {
-                    blur: e => {
-                        let error = validateForm(ValidateRuleType.Phone, e.target.value);
-                        const err = document.getElementById('phone_error')
-                        err.innerHTML = error
+                    blur: (e: FocusEvent) => {
+                        onBlur(e, ValidateRuleType.Phone);
                     },
-                    focus: e => {
-                        const err = document.getElementById('phone_error')
-                        err.innerHTML = ''
+                    focus: (e: FocusEvent) => {
+                        onFocus(ValidateRuleType.Phone);
                     }
                 }
             }),
@@ -118,17 +99,13 @@ export class Registration extends Block {
                 inputPlaceholder: 'Password',
                 inputType: 'password',
                 inputName: 'password',
-                inputError: '',
                 errorId: 'password_error',
                 events: {
-                    blur: e => {
-                        let error = validateForm(ValidateRuleType.Password, e.target.value);
-                        const err = document.getElementById('password_error')
-                        err.innerHTML = error
+                    blur: (e: FocusEvent) => {
+                        onBlur(e, ValidateRuleType.Password);
                     },
-                    focus: e => {
-                        const err = document.getElementById('password_error')
-                        err.innerHTML = ''
+                    focus: (e: FocusEvent) => {
+                        onFocus(ValidateRuleType.Password);
                     }
                 }
             }),

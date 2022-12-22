@@ -2,11 +2,13 @@ import template from './activeContact.template';
 import Block from '../../utils/block';
 import './activeContact.scss';
 
+export interface ActiveContact {
+    name: string;
+}
+
 export class ActiveContact extends Block {
-    constructor(props) {
-        super({
-            ...props,
-        });
+    constructor({name, ...props}) {
+        super({name, ...props});
     }
 
     render() {

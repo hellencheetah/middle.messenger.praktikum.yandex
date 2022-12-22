@@ -48,6 +48,7 @@ class HTTPTransport {
     ): Promise<XMLHttpRequest> =>  {
         const {headers = {}, method, data} = options;
 
+        // @ts-ignore
         return new Promise(function(resolve, reject) {
             if (!method) {
                 reject('No method');

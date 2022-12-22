@@ -4,11 +4,12 @@ import Button from "../../components/button";
 import BaseInput from "../../components/baseInput";
 import "./login.scss";
 import {validateForm, validateFullForm, ValidateRuleType} from "../../utils/validations";
+import {onBlur, onFocus} from "../../helpers/events";
 
 export class Login extends Block {
     constructor(props) {
 
-        const button = new Button({
+        const button: Block = new Button({
             btnText: 'Sign in',
             btnType: 'submit',
             btnClass: '',
@@ -25,22 +26,18 @@ export class Login extends Block {
             }
         });
 
-        const form = [
+        const form: Block[] = [
             new BaseInput({
                 inputPlaceholder: 'Email',
                 inputType: 'text',
                 inputName: 'email',
-                inputError: '',
                 errorId: 'email_error',
                 events: {
-                    blur: e => {
-                        let error = validateForm(ValidateRuleType.Email, e.target.value);
-                        const err = document.getElementById('email_error')
-                        err.innerHTML = error
+                    blur: (e: FocusEvent) => {
+                        onBlur(e, ValidateRuleType.Email);
                     },
-                    focus: e => {
-                        const err = document.getElementById('email_error')
-                        err.innerHTML = ''
+                    focus: (e: FocusEvent) => {
+                        onFocus(ValidateRuleType.Email);
                     }
                 }
             }),
@@ -48,23 +45,17 @@ export class Login extends Block {
                 inputPlaceholder: 'Password',
                 inputType: 'password',
                 inputName: 'password',
-                inputError: '',
                 errorId: 'password_error',
                 events: {
-                    blur: e => {
-                        let error = validateForm(ValidateRuleType.Password, e.target.value);
-                        const err = document.getElementById('password_error')
-                        err.innerHTML = error
+                    blur: (e: FocusEvent) => {
+                        onBlur(e, ValidateRuleType.Password);
                     },
-                    focus: e => {
-                        const err = document.getElementById('password_error')
-                        err.innerHTML = ''
+                    focus: (e: FocusEvent) => {
+                        onFocus(ValidateRuleType.Password);
                     }
                 }
             }),
         ]
-
-
 
 
         super({ button, form, ...props });

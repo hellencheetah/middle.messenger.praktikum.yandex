@@ -3,15 +3,17 @@ import Block from '../../utils/block';
 import './input.scss';
 
 export interface InputProps {
-    inputType: string;
-    inputPlaceholder: string;
     inputName: string;
-    inputLabel?: string;
+    inputPlaceholder: string;
+    inputType: string;
+    events?: {
+        blur?: (e: Event) => void;
+        focus?: (e: Event) => void;
+    }
 }
 
-
 export class Input extends Block {
-    constructor(props) {
+    constructor(props: InputProps) {
         super({
             ...props,
         });

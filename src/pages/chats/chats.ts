@@ -8,16 +8,18 @@ import Messages from "../../components/messages";
 import ActiveContact from "../../components/activeContact";
 import BaseTextarea from "../../components/baseTextarea";
 import {validateForm, validateFullForm, ValidateRuleType} from "../../utils/validations";
+import {MessagesProps} from "../../components/messages/messages";
+import {onBlur, onFocus} from "../../helpers/events";
 
 export class Chats extends Block {
     constructor(props) {
 
-        const contacts = [
+        const contacts: Block[] = [
             new Contact({
                 id: '1',
                 name: 'Ivan Ivanov',
                 events: {
-                    click: e => {
+                    click: (e: Event) => {
                         console.log(e)
                     }
                 }
@@ -26,7 +28,7 @@ export class Chats extends Block {
                 id: '2',
                 name: 'Petr Petrov',
                 events: {
-                    click: e => {
+                    click: (e: Event) => {
                         console.log(e)
                     }
                 }
@@ -48,27 +50,24 @@ export class Chats extends Block {
             }
         ]
 
-        const baseTextarea = new BaseTextarea({
+        const baseTextarea: Block = new BaseTextarea({
             textareaErrorId: 'message_error',
             events: {
-                blur: e => {
-                    const error = validateForm(ValidateRuleType.Message, e.target.value);
-                    const err = document.getElementById('message_error');
-                    err.innerHTML = error;
+                blur: (e: FocusEvent) => {
+                    onBlur(e, ValidateRuleType.Message);
                 },
-                focus: e => {
-                    const err = document.getElementById('message_error');
-                    err.innerHTML = '';
+                focus: (e: FocusEvent) => {
+                    onFocus(ValidateRuleType.Message);
                 }
             }
         })
 
-        const button = new Button({
+        const button: Block = new Button({
             btnText: 'Send',
             btnType: 'submit',
             btnClass: 'chats__main-btn',
             events: {
-                click: e => {
+                click: (e: Event) => {
                     e.preventDefault();
                     const result = validateFullForm('message-form');
 
@@ -80,9 +79,9 @@ export class Chats extends Block {
             }
         });
 
-        const messages = new Messages({messagesData})
+        const messages: Block = new Messages({messagesData})
 
-        const activeContact =  new ActiveContact({
+        const activeContact: Block =  new ActiveContact({
             name: 'Ivan Ivanov',
         })
 
