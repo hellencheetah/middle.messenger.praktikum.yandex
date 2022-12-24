@@ -3,28 +3,28 @@ export default
 <nav>
     <ul>
         <li>
-            <a href="/login">Login</a>
+            <a href="../../html/login.html">Login</a>
         </li>
         <li>
-            <a href="/registration">Registration</a>
+            <a href="../../html/registration.html">Registration</a>
         </li>
         <li>
-            <a href="/chats">Chats</a>
+            <a href="../../html/chats.html">Chats</a>
         </li>
         <li>
-            <a href="/page404">404</a>
+            <a href="../../html/page404.html">404</a>
         </li>
         <li>
-            <a href="/page5">500</a>
+            <a href="../../html/page5.html">500</a>
         </li>
         <li>
-            <a href="/profile">Profile</a>
+            <a href="../../html/profile.html">Profile</a>
         </li>
         <li>
-            <a href="/edit-profile">Edit profile</a>
+            <a href="../../html/edit-profile.html">Edit profile</a>
         </li>
         <li>
-            <a href="/edit-password">Edit password</a>
+            <a href="../../html/edit-password.html">Edit password</a>
         </li>
     </ul>
 </nav>

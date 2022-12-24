@@ -7,8 +7,7 @@ import Contact from "../../components/contact";
 import Messages from "../../components/messages";
 import ActiveContact from "../../components/activeContact";
 import BaseTextarea from "../../components/baseTextarea";
-import {validateForm, validateFullForm, ValidateRuleType} from "../../utils/validations";
-import {MessagesProps} from "../../components/messages/messages";
+import {validateFullForm, ValidateRuleType} from "../../utils/validations";
 import {onBlur, onFocus} from "../../helpers/events";
 
 export class Chats extends Block {
@@ -54,7 +53,7 @@ export class Chats extends Block {
             textareaErrorId: 'message_error',
             events: {
                 blur: (e: FocusEvent) => {
-                    onBlur(e, ValidateRuleType.Message);
+                    //onBlur(e, ValidateRuleType.Message);
                 },
                 focus: (e: FocusEvent) => {
                     onFocus(ValidateRuleType.Message);
