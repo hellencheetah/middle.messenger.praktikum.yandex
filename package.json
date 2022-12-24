@@ -13,6 +13,14 @@
     "dev": "parcel src/index.html src/html/*.html",
     "start": "npm run build && node server/app.js"
   },
+  "alias": {
+    "components": "./src/components",
+    "helpers": "./src/helpers",
+    "pages": "./src/pages",
+    "utils": "./src/utils",
+    "html": "./src/html",
+    "styles": "./src/styles"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hellencheetah/middle.messenger.praktikum.yandex.git"
