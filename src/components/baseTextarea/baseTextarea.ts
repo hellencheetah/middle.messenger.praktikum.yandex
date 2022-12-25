@@ -3,10 +3,13 @@ import Block from '../../utils/block';
 import Textarea from "../textarea";
 import './baseTextarea.scss';
 
+export interface BasetextareaProps {
+    textareaErrorId: string;
+    events: any;
+}
 export class BaseTextarea extends Block {
-    constructor(props) {
+    constructor(props: BasetextareaProps) {
         const textarea = new Textarea({
-            textareaErrorId: props.textareaErrorId,
             events: props.events,
         })
         super({

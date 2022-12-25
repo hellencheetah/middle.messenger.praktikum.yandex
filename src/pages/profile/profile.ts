@@ -5,7 +5,7 @@ import Button from "../../components/button";
 import './profile.scss';
 
 export class Profile extends Block {
-    constructor(props) {
+    constructor() {
 
         const data = [
             {
@@ -47,7 +47,7 @@ export class Profile extends Block {
             }
         })
 
-        super({profileData, button, ...props});
+        super({profileData, button });
     }
 
     render() {

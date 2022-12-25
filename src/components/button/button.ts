@@ -1,4 +1,3 @@
-import * as Handlebars from 'handlebars';
 import template from './button.template';
 import Block from '../../utils/block';
 import './button.scss';

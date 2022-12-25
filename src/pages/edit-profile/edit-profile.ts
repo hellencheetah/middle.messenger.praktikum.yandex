@@ -3,12 +3,12 @@ import Block from '../../utils/block';
 import './edit-profile.scss';
 import Button from "../../components/button";
 import BaseInput from "../../components/baseInput";
-import {validateForm, validateFullForm, ValidateRuleType} from "../../utils/validations";
+import {validateFullForm, ValidateRuleType} from "../../utils/validations";
 import {onBlur, onFocus} from "../../helpers/events";
 
 
 export class EditProfile extends Block {
-    constructor(props) {
+    constructor() {
         const button = new Button({
             btnText: 'Save',
             btnClass: 'edit-profile__btn',
@@ -38,7 +38,7 @@ export class EditProfile extends Block {
                     blur: (e: FocusEvent) => {
                         onBlur(e, ValidateRuleType.Email);
                     },
-                    focus: (e: FocusEvent) => {
+                    focus: () => {
                         onFocus(ValidateRuleType.Email);
                     }
                 }
@@ -54,7 +54,7 @@ export class EditProfile extends Block {
                     blur: (e: FocusEvent) => {
                         onBlur(e, ValidateRuleType.Login);
                     },
-                    focus: (e: FocusEvent) => {
+                    focus: () => {
                         onFocus(ValidateRuleType.Login);
                     }
                 }
@@ -70,7 +70,7 @@ export class EditProfile extends Block {
                     blur: (e: FocusEvent) => {
                         onBlur(e, ValidateRuleType.Firstname);
                     },
-                    focus: (e: FocusEvent) => {
+                    focus: () => {
                         onFocus(ValidateRuleType.Firstname);
                     }
                 }
@@ -86,7 +86,7 @@ export class EditProfile extends Block {
                     blur: (e: FocusEvent) => {
                         onBlur(e, ValidateRuleType.Lastname);
                     },
-                    focus: (e: FocusEvent) => {
+                    focus: () => {
                         onFocus(ValidateRuleType.Lastname);
                     }
                 }
@@ -122,14 +122,14 @@ export class EditProfile extends Block {
                     blur: (e: FocusEvent) => {
                         onBlur(e, ValidateRuleType.Phone);
                     },
-                    focus: (e: FocusEvent) => {
+                    focus: () => {
                         onFocus(ValidateRuleType.Phone);
                     }
                 }
             }),
         ]
 
-        super({ form, button, ...props });
+        super({ form, button });
     }
 
     render() {

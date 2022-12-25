@@ -1,4 +1,3 @@
-import * as Handlebars from 'handlebars';
 import template from './chats.template';
 import Block from '../../utils/block';
 import './chats.scss';
@@ -8,10 +7,10 @@ import Messages from "../../components/messages";
 import ActiveContact from "../../components/activeContact";
 import BaseTextarea from "../../components/baseTextarea";
 import {validateFullForm, ValidateRuleType} from "../../utils/validations";
-import {onBlur, onFocus} from "../../helpers/events";
+import {onFocus} from "../../helpers/events";
 
 export class Chats extends Block {
-    constructor(props) {
+    constructor() {
 
         const contacts: Block[] = [
             new Contact({
@@ -52,10 +51,10 @@ export class Chats extends Block {
         const baseTextarea: Block = new BaseTextarea({
             textareaErrorId: 'message_error',
             events: {
-                blur: (e: FocusEvent) => {
+                blur: () => {
                     //onBlur(e, ValidateRuleType.Message);
                 },
-                focus: (e: FocusEvent) => {
+                focus: () => {
                     onFocus(ValidateRuleType.Message);
                 }
             }
@@ -80,11 +79,12 @@ export class Chats extends Block {
 
         const messages: Block = new Messages({messagesData})
 
-        const activeContact: Block =  new ActiveContact({
+        // @ts-ignore
+        const activeContact =  new ActiveContact({
             name: 'Ivan Ivanov',
         })
 
-        super({button, contacts, messages, baseTextarea, activeContact,  ...props});
+        super({ button, contacts, messages, baseTextarea, activeContact });
     }
 
     render() {

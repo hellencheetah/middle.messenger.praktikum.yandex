@@ -5,7 +5,7 @@ import Button from "../../components/button";
 import BaseInput from "../../components/baseInput";
 
 export class EditPassword extends Block {
-    constructor(props) {
+    constructor() {
 
         const button = new Button({
             btnText: 'Save',
@@ -27,14 +27,14 @@ export class EditPassword extends Block {
                 inputName: 'oldPassword',
                 errorId: 'oldPassword_error',
                 events: {
-                    blur: e => {
-                        let error = ''
-                        const err = document.getElementById('oldPassword_error')
-                        err.innerHTML = error
+                    blur: () => {
+                        let error = '';
+                        const err = document.getElementById('oldPassword_error') as HTMLElement;
+                        err.innerHTML = error;
                     },
-                    focus: e => {
-                        const err = document.getElementById('oldPassword_error')
-                        err.innerHTML = ''
+                    focus: () => {
+                        const err = document.getElementById('oldPassword_error') as HTMLElement;
+                        err.innerHTML = '';
                     }
                 }
             }),
@@ -46,14 +46,14 @@ export class EditPassword extends Block {
                 inputModifier: 'form-control--with-label',
                 errorId: 'newPassword_error',
                 events: {
-                    blur: e => {
-                        let error = ''
-                        const err = document.getElementById('newPassword_error')
-                        err.innerHTML = error
+                    blur: () => {
+                        let error = '';
+                        const err = document.getElementById('oldPassword_error') as HTMLElement;
+                        err.innerHTML = error;
                     },
-                    focus: e => {
-                        const err = document.getElementById('newPassword_error')
-                        err.innerHTML = ''
+                    focus: () => {
+                        const err = document.getElementById('oldPassword_error') as HTMLElement;
+                        err.innerHTML = '';
                     }
                 }
             }),
@@ -65,19 +65,19 @@ export class EditPassword extends Block {
                 inputModifier: 'form-control--with-label',
                 errorId: 'confirmPassword_error',
                 events: {
-                    blur: e => {
-                        let error = ''
-                        const err = document.getElementById('confirmPassword_error')
-                        err.innerHTML = error
+                    blur: () => {
+                        let error = '';
+                        const err = document.getElementById('oldPassword_error') as HTMLElement;
+                        err.innerHTML = error;
                     },
-                    focus: e => {
-                        const err = document.getElementById('confirmPassword_error')
-                        err.innerHTML = ''
+                    focus: () => {
+                        const err = document.getElementById('oldPassword_error') as HTMLElement;
+                        err.innerHTML = '';
                     }
                 }
             }),
         ]
-        super({form, button, ...props});
+        super({form, button});
     }
 
     render() {

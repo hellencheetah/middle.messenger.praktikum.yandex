@@ -3,11 +3,11 @@ import Block from '../../utils/block';
 import Button from "../../components/button";
 import BaseInput from "../../components/baseInput";
 import "./login.scss";
-import {validateForm, validateFullForm, ValidateRuleType} from "../../utils/validations";
+import {validateFullForm, ValidateRuleType} from "../../utils/validations";
 import {onBlur, onFocus} from "../../helpers/events";
 
 export class Login extends Block {
-    constructor(props) {
+    constructor() {
 
         const button: Block = new Button({
             btnText: 'Sign in',
@@ -36,7 +36,7 @@ export class Login extends Block {
                     blur: (e: FocusEvent) => {
                         onBlur(e, ValidateRuleType.Email);
                     },
-                    focus: (e: FocusEvent) => {
+                    focus: () => {
                         onFocus(ValidateRuleType.Email);
                     }
                 }
@@ -50,7 +50,7 @@ export class Login extends Block {
                     blur: (e: FocusEvent) => {
                         onBlur(e, ValidateRuleType.Password);
                     },
-                    focus: (e: FocusEvent) => {
+                    focus: () => {
                         onFocus(ValidateRuleType.Password);
                     }
                 }
@@ -58,7 +58,7 @@ export class Login extends Block {
         ]
 
 
-        super({ button, form, ...props });
+        super({ button, form });
     }
 
 

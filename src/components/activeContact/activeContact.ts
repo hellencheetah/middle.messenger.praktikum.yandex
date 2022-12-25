@@ -7,8 +7,8 @@ export interface ActiveContact {
 }
 
 export class ActiveContact extends Block {
-    constructor({name, ...props}) {
-        super({name, ...props});
+    constructor(props: ActiveContact) {
+        super({...props});
     }
 
     render() {

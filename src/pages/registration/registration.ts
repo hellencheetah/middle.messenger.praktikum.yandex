@@ -3,11 +3,11 @@ import Block from '../../utils/block';
 import './registration.scss';
 import Button from "../../components/button";
 import BaseInput from "../../components/baseInput";
-import {validateForm, validateFullForm, ValidateRuleType} from "../../utils/validations";
+import {validateFullForm, ValidateRuleType} from "../../utils/validations";
 import {onBlur, onFocus} from "../../helpers/events";
 
 export class Registration extends Block {
-    constructor(props) {
+    constructor() {
         const button = new Button({
             btnText: 'Sign up',
             btnType: 'submit',
@@ -34,7 +34,7 @@ export class Registration extends Block {
                     blur: (e: FocusEvent) => {
                         onBlur(e, ValidateRuleType.Firstname);
                     },
-                    focus: (e: FocusEvent) => {
+                    focus: () => {
                         onFocus(ValidateRuleType.Firstname);
                     }
                 }
@@ -48,7 +48,7 @@ export class Registration extends Block {
                     blur: (e: FocusEvent) => {
                         onBlur(e, ValidateRuleType.Lastname);
                     },
-                    focus: (e: FocusEvent) => {
+                    focus: () => {
                         onFocus(ValidateRuleType.Lastname);
                     }
                 }
@@ -62,7 +62,7 @@ export class Registration extends Block {
                     blur: (e: FocusEvent) => {
                         onBlur(e, ValidateRuleType.Login);
                     },
-                    focus: (e: FocusEvent) => {
+                    focus: () => {
                         onFocus(ValidateRuleType.Login);
                     }
                 }
@@ -76,7 +76,7 @@ export class Registration extends Block {
                     blur: (e: FocusEvent) => {
                         onBlur(e, ValidateRuleType.Email);
                     },
-                    focus: (e: FocusEvent) => {
+                    focus: () => {
                         onFocus(ValidateRuleType.Email);
                     }
                 }
@@ -90,7 +90,7 @@ export class Registration extends Block {
                     blur: (e: FocusEvent) => {
                         onBlur(e, ValidateRuleType.Phone);
                     },
-                    focus: (e: FocusEvent) => {
+                    focus: () => {
                         onFocus(ValidateRuleType.Phone);
                     }
                 }
@@ -104,14 +104,14 @@ export class Registration extends Block {
                     blur: (e: FocusEvent) => {
                         onBlur(e, ValidateRuleType.Password);
                     },
-                    focus: (e: FocusEvent) => {
+                    focus: () => {
                         onFocus(ValidateRuleType.Password);
                     }
                 }
             }),
         ]
 
-        super({ button, form, ...props });
+        super({ button, form });
     }
 
     render() {
