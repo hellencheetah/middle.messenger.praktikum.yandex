@@ -5,5 +5,5 @@ import '../../styles/main.scss';
 
 
 
-renderDom("#app", new Page500({}));
+renderDom("#app", new Page500());
 

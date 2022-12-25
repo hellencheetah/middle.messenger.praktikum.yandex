@@ -1,5 +1,5 @@
 import template from './baseTextarea.template';
-import Block from '../../utils/block';
+import Block, {Props} from '../../utils/block';
 import Textarea from "../textarea";
 import './baseTextarea.scss';
 
@@ -8,7 +8,7 @@ export interface BasetextareaProps {
     events: any;
 }
 export class BaseTextarea extends Block {
-    constructor(props: BasetextareaProps) {
+    constructor(props: Props) {
         const textarea = new Textarea({
             events: props.events,
         })

@@ -8,17 +8,18 @@ export enum ValidateRuleType {
     Message = 'message'
 }
 
-type ValidateRule = {
-    value: string;
-    type: ValidateRuleType;
-}
-
 export enum FormValidityType {
     Valid = 'valid',
     Invalid = 'invalid',
 }
 
-const validations = {
+type ValidatationItem = {
+    regex: any;
+    message: string;
+    msg: string;
+}
+
+const validations: Record<string, ValidatationItem> = {
     message: {
         regex: /^[-\s]+(\s+[-\s]+)*$/,
         message: 'Поле обязательно для заполнения',
@@ -56,7 +57,7 @@ const validations = {
     },
 };
 
-export function validateForm (type, value) {
+export function validateForm (type: string, value: string) {
     if (type === ValidateRuleType.Message) {
         return validateMessageField(value);
     }
@@ -73,10 +74,10 @@ export function validateForm (type, value) {
 
 export function validateFullForm(formId: string) {
     // Получаем форму в виде объекта
-    const form = getDataFromForm(formId);
+    const form: Record<string, string> = getDataFromForm(formId);
 
     // Создаем объект ошибок
-    let errorsObject = {}
+    const errorsObject: Record<string, string> = {}
     const formKeys = Object.keys(form);
     formKeys.forEach(key => {
         errorsObject[key] = validateForm(key, form[key])
@@ -88,7 +89,7 @@ export function validateFullForm(formId: string) {
 
     if (formInvalid) {
         errorKeys.forEach(key => {
-            const errorElem = document.getElementById(`${key}_error`);
+            const errorElem = document.getElementById(`${key}_error`) as HTMLElement;
             errorElem.innerHTML = errorsObject[key];
         })
 
@@ -98,7 +99,7 @@ export function validateFullForm(formId: string) {
     return form;
 }
 
-function validateMessageField(value) {
+function validateMessageField(value: string) {
     const { message: { regex, msg } } = validations;
     if (value.length === 0 || regex.test(value)) {
         return msg;

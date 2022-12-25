@@ -3,5 +3,5 @@ import {renderDom} from "../../utils/renderDom";
 import {Login} from "./login";
 import '../../styles/main.scss';
 
-renderDom("#app", new Login({}));
+renderDom("#app", new Login());
 

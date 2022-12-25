@@ -3,5 +3,5 @@ import {Registration} from "./registration";
 import '../../styles/main.scss';
 export { Registration as default } from './registration'
 
-renderDom("#app", new Registration({}));
+renderDom("#app", new Registration());
 

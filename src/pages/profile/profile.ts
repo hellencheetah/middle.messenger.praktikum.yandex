@@ -41,7 +41,7 @@ export class Profile extends Block {
             btnClass: 'btn--link-like profile__options-btn',
             btnType: 'button',
             events: {
-                click: e => {
+                click: (e: Event) => {
                     console.log(e)
                 }
             }

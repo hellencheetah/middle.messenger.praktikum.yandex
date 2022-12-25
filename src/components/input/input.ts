@@ -1,5 +1,5 @@
 import template from './input.template';
-import Block from '../../utils/block';
+import Block, {Props} from '../../utils/block';
 import './input.scss';
 
 export interface InputProps {
@@ -13,7 +13,7 @@ export interface InputProps {
 }
 
 export class Input extends Block {
-    constructor(props: InputProps) {
+    constructor(props: Props) {
         super({
             ...props,
         });

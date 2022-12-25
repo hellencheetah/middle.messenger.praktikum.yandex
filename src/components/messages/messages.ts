@@ -1,5 +1,5 @@
 import template from './messages.template';
-import Block from '../../utils/block';
+import Block, {Props} from '../../utils/block';
 import './messages.scss';
 import Message from "../message";
 import {MessageProps} from "../message/message";
@@ -9,8 +9,8 @@ export interface MessagesProps {
 }
 
 export class Messages extends Block {
-    constructor(props: MessagesProps) {
-        const messages = props.messagesData.map(p => {
+    constructor(props: Props) {
+        const messages = props.messagesData.map((p: Block) => {
             return new Message(p);
         })
 

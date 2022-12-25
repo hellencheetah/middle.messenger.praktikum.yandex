@@ -4,4 +4,4 @@ import '../../styles/main.scss';
 export { EditPassword as default } from './edit-password'
 
 
-renderDom("#app", new EditPassword({}));
+renderDom("#app", new EditPassword());

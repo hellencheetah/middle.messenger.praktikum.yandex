@@ -1,5 +1,5 @@
 import template from './message.template';
-import Block from '../../utils/block';
+import Block, {Props} from '../../utils/block';
 import './message.scss';
 
 export interface MessageProps {
@@ -11,7 +11,7 @@ export interface MessageProps {
 }
 
 export class Message extends Block {
-    constructor(props: MessageProps) {
+    constructor(props: Props) {
         super({ ...props });
     }
 

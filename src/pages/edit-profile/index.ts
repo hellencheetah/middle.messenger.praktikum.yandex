@@ -3,4 +3,4 @@ import {EditProfile} from "./edit-profile";
 import '../../styles/main.scss';
 export { EditProfile as default } from './edit-profile';
 
-renderDom("#app", new EditProfile({}));
+renderDom("#app", new EditProfile());

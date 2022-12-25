@@ -2,6 +2,8 @@ import { EventBus } from "./event-bus";
 import { v4 as uuidv4 } from 'uuid';
 import * as Handlebars from "handlebars";
 
+export type Props = Record<string, any>;
+
 class Block {
     static EVENTS = {
         INIT: "init",
@@ -15,7 +17,7 @@ class Block {
     private _element: HTMLElement;
     private _meta = null;
     private eventBus: EventBus;
-    protected props: any;
+    protected props: Props;
     protected children: any;
 
 
@@ -51,7 +53,7 @@ class Block {
         return { props, children };
     }
 
-    private _registerEvents(eventBus) {
+    private _registerEvents(eventBus: EventBus) {
         eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
         eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
         eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
@@ -74,7 +76,6 @@ class Block {
     }
 
     private _componentDidUpdate(oldProps: any, newProps: any) {
-        const response = this.componentDidUpdate(oldProps, newProps);
         if (this.componentDidUpdate(oldProps, newProps)) {
             this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
         }
@@ -177,6 +178,11 @@ class Block {
         const { events } = this.props;
         if (!events) return;
 
+        if (events) {
+            Object.keys(events).forEach((eventName) => {
+                this._element.removeEventListener(eventName, events[eventName]);
+            })
+        }
 
     }
 

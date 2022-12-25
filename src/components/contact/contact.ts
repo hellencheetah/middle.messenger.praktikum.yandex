@@ -1,5 +1,5 @@
 import template from './contact.template';
-import Block from '../../utils/block';
+import Block, {Props} from '../../utils/block';
 import './contact.scss';
 
 export interface ContactProps {
@@ -9,7 +9,7 @@ export interface ContactProps {
 }
 
 export class Contact extends Block {
-    constructor(props: ContactProps) {
+    constructor(props: Props) {
         super({ ...props });
     }
 

@@ -13,7 +13,7 @@ export class Registration extends Block {
             btnType: 'submit',
             btnClass: '',
             events: {
-                click: e => {
+                click: (e: Event) => {
                     e.preventDefault();
                     const result = validateFullForm('registration-form');
                     if (result !== 'invalid') {

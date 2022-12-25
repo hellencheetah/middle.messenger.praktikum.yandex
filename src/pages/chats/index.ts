@@ -4,4 +4,4 @@ import '../../styles/main.scss';
 export { Chats as default } from './chats';
 
 
-renderDom("#app", new Chats({}));
+renderDom("#app", new Chats());

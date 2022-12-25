@@ -1,5 +1,5 @@
 import template from './baseInput.template';
-import Block from '../../utils/block';
+import Block, {Props} from '../../utils/block';
 import './baseInput.scss';
 import Input from "../input";
 
@@ -18,7 +18,7 @@ export interface BaseInputProps {
 
 export class BaseInput extends Block {
 
-    constructor(props: BaseInputProps) {
+    constructor(props: Props) {
         const input = new Input({
             inputName: props.inputName,
             inputPlaceholder: props.inputPlaceholder,

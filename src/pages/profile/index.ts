@@ -5,4 +5,4 @@ export { Profile as default } from './profile';
 
 
 
-renderDom("#app", new Profile({}));
+renderDom("#app", new Profile());
