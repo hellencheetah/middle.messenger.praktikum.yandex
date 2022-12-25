@@ -1,6 +1,6 @@
 export default `
     <div class="chats">
-            <div class="container">
+            <div class="container container--auth">
                 <div class="chats-wrapper">
                     <div class="chats__sidebar chats-block">
                         <div class="chats-search"></div>

@@ -4,12 +4,12 @@
   &-inner {
     display: flex;justify-content: center;
     background-color: $white;
-    height: 695px;
+    min-height: 500px;
     width: 800px;
     border-radius: $block-border-radius;
     box-shadow: $block-box-shadow;
     box-sizing: border-box;
-    padding: 72px 0 90px;
+    padding: 40px;
   }
 
   &-wrapper {
