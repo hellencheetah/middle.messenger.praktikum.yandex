@@ -1,0 +1,23 @@
+@import "src/styles/constants";
+
+.active-contact{
+    display: flex;
+    align-items: center;
+    height: 80px;
+    box-sizing: border-box;
+    border-bottom: 1px solid $border-color;
+    padding: 0 14px;
+
+
+    &__image {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: $chat-avatar-color;
+        margin-right: 20px;
+    }
+
+    &__name {
+        font-weight: 600;
+    }
+}
