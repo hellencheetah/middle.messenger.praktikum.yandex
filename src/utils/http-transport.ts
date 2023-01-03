@@ -12,43 +12,46 @@ type Options = {
     timeout?: number;
 };
 
-type HTTPMethod = (url: string, options?: Options) => Promise<unknown>
+type HTTPMethod = (url: string, data?: unknown, headers?: Record<string, string>) => Promise<unknown>
+
+// function queryStringify(data: any) {
+//     if (typeof data !== 'object') {
+//         throw new Error('Data must be object');
+//     }
+//
+//     const keys = Object.keys(data);
+//     return keys.reduce((result, key, index) => {
+//         return `${result}${key}=${data[key]}${index < keys.length - 1 ? '&' : ''}`;
+//     }, '?');
+// }
 
 class HTTPTransport {
 
-    queryStringify(data: any) {
-        if (typeof data !== 'object') {
-            throw new Error('Data must be object');
-        }
+    static API_URL = 'https://ya-praktikum.tech/api/v2';
+    url: string;
 
-        const keys = Object.keys(data);
-        return keys.reduce((result, key, index) => {
-            return `${result}${key}=${data[key]}${index < keys.length - 1 ? '&' : ''}`;
-        }, '?');
+    constructor(type: string) {
+        this.url = `${HTTPTransport.API_URL}${type}`;
     }
 
-    get: HTTPMethod = (url, options= {}) => {
-        return this.request(url, {...options, method: Methods.GET}, options.timeout);
+    get: HTTPMethod = (url, data, headers) => {
+        return this.request(this.url + url, {method: Methods.GET, data, headers});
     };
 
-    post: HTTPMethod = (url, options = {}) => {
-        return this.request(url, {...options, method: Methods.POST}, options.timeout);
+    post: HTTPMethod = (url, data, headers) => {
+        return this.request(this.url + url, {method: Methods.POST, data, headers});
     };
 
-    put: HTTPMethod = (url, options = {}) => {
-        return this.request(url, {...options, method: Methods.PUT}, options.timeout);
+    put: HTTPMethod = (url, data, headers) => {
+        return this.request(this.url + url, {method: Methods.PUT, data, headers});
     };
 
-    delete: HTTPMethod = (url, options = {}) => {
-        return this.request(url, {...options, method: Methods.DELETE}, options.timeout);
+    delete: HTTPMethod = (url, data, headers) => {
+        return this.request(this.url + url, {method: Methods.DELETE, data, headers});
     };
 
-    request = (
-        url: string,
-        options: Options = {},
-        timeout = 5000
-    ): Promise<XMLHttpRequest> =>  {
-        const {headers = {}, method, data} = options;
+    request = (url: string, options: Options = {}): Promise<XMLHttpRequest> =>  {
+        const { method, data = {}, headers = {} } = options;
 
         // @ts-ignore
         return new Promise(function(resolve, reject) {
@@ -58,9 +61,7 @@ class HTTPTransport {
             }
 
             const xhr = new XMLHttpRequest();
-            const isGet = method === Methods.GET;
-
-            xhr.open(method, isGet && !!data ? `${url}${this.queryStringify(data)}` : url);
+            xhr.open(method, url);
 
             Object.keys(headers).forEach(key => {
                 xhr.setRequestHeader(key, headers[key]);
@@ -68,23 +69,29 @@ class HTTPTransport {
 
             xhr.onload = () => {
                 const { status, response } = xhr;
-                return status === 200
-                    ? resolve(response)
-                    : reject(response);
+                if (status == 200) {
+                    resolve(response);
+                } else {
+                    //const error = new Error('ЧТО-ТО ПОШЛО НЕ ТАААК');
+                    reject(response)
+                }
             };
 
             resolve(xhr);
 
-            xhr.onabort = reject;
-            xhr.onerror = reject;
+            xhr.onabort = () => reject({ reason: 'abort' });
+            xhr.onerror = () => reject({ reason: 'network error' });
+            xhr.ontimeout = () => reject({ reason: 'timeout' });
 
-            xhr.timeout = timeout;
-            xhr.ontimeout = reject;
+            xhr.setRequestHeader("Accept", "application/json");
+            xhr.setRequestHeader('Content-type', 'application/json');
+            xhr.withCredentials = true;
+            xhr.responseType = 'json';
 
-            if (isGet || !data) {
+            if (method === Methods.GET || !data) {
                 xhr.send();
             } else {
-                xhr.send(data);
+                xhr.send(JSON.stringify(data));
             }
         });
     };
