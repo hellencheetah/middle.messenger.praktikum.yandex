@@ -14,7 +14,7 @@ export default `
                     </form>
 
                     <div class="login-form__items-text">
-                        Not registered? You can <a href="../registration/registration.hbs" class="link">sign up</a>
+                        Not registered? You can <a href="/sign-up" class="link">sign up</a>
                     </div>
                 </div
             </div>
