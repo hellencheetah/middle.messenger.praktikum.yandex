@@ -5,6 +5,7 @@ import Button from "../../components/button";
 import BaseInput from "../../components/baseInput";
 import {validateFullForm, ValidateRuleType} from "../../utils/validations";
 import {onBlur, onFocus} from "../../helpers/events";
+import AuthController from "../../controllers/authController";
 
 export class Registration extends Block {
     constructor() {
@@ -17,8 +18,8 @@ export class Registration extends Block {
                     e.preventDefault();
                     const result = validateFullForm('registration-form');
                     if (result !== 'invalid') {
-                        // api
-                        console.log(result)
+                        // @ts-ignore
+                        AuthController.register(result);
                     }
                 }
             }

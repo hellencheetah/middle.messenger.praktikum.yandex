@@ -1,12 +1,15 @@
+import {Props} from "./block";
+
 export type Indexed<T = any> = {
     [key in string]: T;
 };
 
-function isArray(value: unknown): value is [] {
-    return Array.isArray(value);
-}
+// function isArray(value: unknown): value is [] {
+//     return Array.isArray(value);
+// }
 
-function merge(lhs: Indexed, rhs: Indexed): Indexed {
+// merge
+const merge = (lhs: Props, rhs: Props) => {
     for (let p in rhs) {
         if (!rhs.hasOwnProperty(p)) {
             continue;
@@ -14,7 +17,7 @@ function merge(lhs: Indexed, rhs: Indexed): Indexed {
 
         try {
             if (rhs[p].constructor === Object) {
-                rhs[p] = merge(lhs[p] as Indexed, rhs[p] as Indexed);
+                rhs[p] = merge(lhs[p], rhs[p]);
             } else {
                 lhs[p] = rhs[p];
             }
@@ -26,23 +29,13 @@ function merge(lhs: Indexed, rhs: Indexed): Indexed {
     return lhs;
 }
 
-function set(object: Indexed | unknown, path: string, value: unknown): Indexed | unknown {
-    if (typeof object !== 'object' || object === null) {
-        return object;
-    }
+// set
+const set = (object: Props, path: string, value: any) => {
+    const result = path.split('.').reduceRight((acc, key) => ({[key]: acc}), value as any);
 
-    if (typeof path !== 'string') {
-        throw new Error('path must be string');
-    }
-
-    const result = path.split('.').reduceRight<Indexed>((acc, key) => ({[key]: acc,}), value as any);
-    return merge(object as Indexed, result);
+    return merge(object, result);
 }
 
-function queryStringify(data) {
-    let params = [];
-    //TODO
-}
 
-export { set, queryStringify, merge };
+export { set, merge };
 

@@ -110,7 +110,7 @@ function validateMessageField(value: string) {
 export function getDataFromForm(formId: string) {
     const formElement = document.getElementById(formId) as HTMLFormElement;
     const formData = new FormData(formElement);
-    let form = {};
+    let form: any = {};
     for (let [key, value] of formData.entries()) {
         form[key] = value;
     }

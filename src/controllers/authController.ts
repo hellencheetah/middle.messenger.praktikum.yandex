@@ -1,41 +1,42 @@
 import AuthApi, {ILoginData, IRegistrationData} from "../api/authApi";
+import router from "../utils/router/router";
+import store from "../utils/store";
+
 const authService = new AuthApi();
 
-export class LoginController {
-    async login(data: ILoginData) {
-        try {
-            await authService.login(data);
-            console.log(data)
-           // await this.getUser();
-        } catch (e) {
-            return e.reason;
-        }
+class AuthController {
+
+    login(data: ILoginData) {
+        authService.login(data)
+            .then(() => {
+                router.go('/messenger');
+            })
+            .catch((err) => console.log(err));
     }
 
-    async register(data: IRegistrationData) {
-        try {
-            await authService.register(data);
-            console.log(data)
-        } catch (e) {
-            return e.reason;
-        }
+    register(data: IRegistrationData) {
+        authService.register(data)
+            .then(() => {
+                router.go('/messenger');
+            })
+            .catch((err) => console.log(err));
     }
 
-    async logout() {
-        try {
-            await authService.logout();
-        } catch (e) {
-            return e.reason;
-        }
+    logout() {
+       authService.logout()
+           .then(() => {
+               router.go('/');
+           })
+           .catch((err) => console.log(err))
     }
 
-   async getUser() {
-        let res;
-        try {
-            res = await authService.getUser();
-        } catch (e) {
-            res = e.reason;
-        }
-        return res;
+   getUser() {
+        authService.getUser()
+            .then((res: XMLHttpRequest) => {
+                store.setState('currentUser', res.response);
+            })
+            .catch((err) => console.log(err))
     }
 }
+
+export default new AuthController();

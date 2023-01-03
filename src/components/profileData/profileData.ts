@@ -1,6 +1,7 @@
 import template from './profileData.template';
 import Block from '../../utils/block';
 import './profileData.scss';
+import store, {StoreEvents} from "../../utils/store";
 
 export interface ProfileDataItem {
     field: string;
@@ -12,8 +13,12 @@ export interface ProfileDataProps {
 }
 
 export class ProfileData extends Block {
-    constructor(props: ProfileDataProps) {
-        super({ ...props });
+    constructor() {
+        super()
+
+        store.on(StoreEvents.Updated, () => {
+            this.setProps(store.getState());
+        });
     }
 
     render() {

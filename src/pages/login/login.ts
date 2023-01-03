@@ -5,6 +5,8 @@ import BaseInput from "../../components/baseInput";
 import "./login.scss";
 import {validateFullForm, ValidateRuleType} from "../../utils/validations";
 import {onBlur, onFocus} from "../../helpers/events";
+import AuthController from "../../controllers/authController";
+
 
 export class Login extends Block {
     constructor() {
@@ -14,13 +16,13 @@ export class Login extends Block {
             btnType: 'submit',
             btnClass: '',
             events: {
-                click: e => {
+                click: (e: Event) => {
                     e.preventDefault();
                     const result = validateFullForm('login-form');
 
                     if (result !== 'invalid') {
-                        // api
-                        console.log(result)
+                        // @ts-ignore
+                        AuthController.login(result)
                     }
                 }
             }
@@ -28,16 +30,16 @@ export class Login extends Block {
 
         const form: Block[] = [
             new BaseInput({
-                inputPlaceholder: 'Email',
+                inputPlaceholder: 'Login',
                 inputType: 'text',
-                inputName: 'email',
-                errorId: 'email_error',
+                inputName: 'login',
+                errorId: 'login_error',
                 events: {
                     blur: (e: FocusEvent) => {
-                        onBlur(e, ValidateRuleType.Email);
+                        onBlur(e, ValidateRuleType.Login);
                     },
                     focus: () => {
-                        onFocus(ValidateRuleType.Email);
+                        onFocus(ValidateRuleType.Login);
                     }
                 }
             }),

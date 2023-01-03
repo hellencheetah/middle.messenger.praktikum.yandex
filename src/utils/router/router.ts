@@ -11,7 +11,7 @@ export interface IRouter {
     routes(): IRoute[];
 }
 
-export default class Router {
+class Router {
     history: History;
     routes: IRoute[];
     private _currentRoute: IRoute | null;
@@ -70,3 +70,5 @@ export default class Router {
         return this.routes.find((route) => route.match(pathname));
     }
 }
+
+export default new Router();

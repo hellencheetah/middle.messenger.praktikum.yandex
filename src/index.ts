@@ -1,5 +1,4 @@
 import './styles/main.scss';
-import Router from "./utils/router/router";
 import Registration from "./pages/registration";
 import Login from "./pages/login";
 import Chats from "./pages/chats";
@@ -8,11 +7,11 @@ import Page5 from "./pages/page5";
 import EditProfile from "./pages/edit-profile";
 import EditPassword from "./pages/edit-password";
 import Page404 from "./pages/page404";
+import router from "./utils/router/router";
 
 
 
 document.addEventListener("DOMContentLoaded", async () => {
-    const router = new Router();
     router
         .use("/", Login, {})
         .use("/sign-up", Registration, {})

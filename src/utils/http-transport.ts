@@ -67,26 +67,17 @@ class HTTPTransport {
                 xhr.setRequestHeader(key, headers[key]);
             });
 
-            xhr.onload = () => {
-                const { status, response } = xhr;
-                if (status == 200) {
-                    resolve(response);
-                } else {
-                    //const error = new Error('ЧТО-ТО ПОШЛО НЕ ТАААК');
-                    reject(response)
-                }
-            };
-
-            resolve(xhr);
-
-            xhr.onabort = () => reject({ reason: 'abort' });
-            xhr.onerror = () => reject({ reason: 'network error' });
-            xhr.ontimeout = () => reject({ reason: 'timeout' });
-
-            xhr.setRequestHeader("Accept", "application/json");
+            xhr.setRequestHeader('Accept', 'application/json');
             xhr.setRequestHeader('Content-type', 'application/json');
             xhr.withCredentials = true;
             xhr.responseType = 'json';
+
+            xhr.onload = () => resolve(xhr);
+            xhr.onabort = () => reject({ reason: 'Abort' });
+            xhr.onerror = () => reject({ reason: 'Error' });
+            xhr.ontimeout = () => reject({ reason: 'Timeout' });
+
+
 
             if (method === Methods.GET || !data) {
                 xhr.send();
