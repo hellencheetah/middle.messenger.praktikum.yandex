@@ -41,6 +41,14 @@
       font-size: 14px;
     }
   }
+    &--small {
+        input[type="text"],
+        input[type="password"],
+        input[type="tel"] {
+            height: 30px;
+            font-size: 14px;
+        }
+    }
 
     &__error {
         color: $error-color;

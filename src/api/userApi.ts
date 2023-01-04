@@ -1,10 +1,14 @@
 import HTTPTransport from "../utils/http-transport";
 import {IRegistrationData} from "./authApi";
-const instance = new HTTPTransport('/users');
+const instance = new HTTPTransport('/user');
 
 export interface IChangePasswordData {
     oldPassword: string;
     newPassword: string;
+}
+
+export interface IFindUserData {
+    login: string;
 }
 
 export default class UserApi {
@@ -21,7 +25,7 @@ export default class UserApi {
         return instance.put('/password', data);
     }
 
-    usersSearch(login: string) {
-        return instance.get('/password', {login});
+    findUserByLogin(data: IFindUserData) {
+        return instance.post('/search', data);
     }
 }

@@ -12,6 +12,7 @@ import BaseInput from "../../components/baseInput";
 import ChatsController from "../../controllers/chatsController";
 import store, {StoreEvents} from "../../utils/store";
 import Services from "../../utils/services";
+import AddUserMenu from "../../components/addUserMenu";
 
 
 export class Chats extends Block {
@@ -74,24 +75,52 @@ export class Chats extends Block {
             }
         });
 
-        const buttonOpenMenu: Block = new Button({
-            btnText: 'Menu',
+        const buttonDeleteChatMenu: Block = new Button({
+            btnText: 'Delete chat',
             btnType: 'button',
             btnClass: 'active-contact__options-btn',
             events: {
                 click: (e: Event) => {
-                   const menuElem = document.getElementById('menu') as HTMLElement;
-                   if (menuElem.style.display === 'block') {
-                       menuElem.style.display = 'none';
-                   } else {
-                       menuElem.style.display = 'block';
-                   }
+                    const menuElem = document.getElementById('delete-chat-menu') as HTMLElement;
+                    if (menuElem.style.display === 'block') {
+                        menuElem.style.display = 'none';
+                    } else {
+                        menuElem.style.display = 'block';
+                    }
+                }
+            }
+        });
+
+        const buttonAddUserMenu: Block = new Button({
+            btnText: 'Add user',
+            btnType: 'button',
+            btnClass: 'active-contact__options-btn',
+            events: {
+                click: (e: Event) => {
+                    Services.toggleMenu('add-user-menu');
+                }
+            }
+        });
+
+        const buttonDeleteUserMenu: Block = new Button({
+            btnText: 'Delete user',
+            btnType: 'button',
+            btnClass: 'active-contact__options-btn',
+            events: {
+                click: (e: Event) => {
+                    const menuElem = document.getElementById('delete-user-menu') as HTMLElement;
+                    if (menuElem.style.display === 'block') {
+                        menuElem.style.display = 'none';
+                    } else {
+                        menuElem.style.display = 'block';
+                    }
                 }
             }
         });
 
 
         const messages: Block = new Messages({messagesData})
+        const addUserMenu: Block = new AddUserMenu();
 
 
         super({
@@ -100,7 +129,10 @@ export class Chats extends Block {
             buttonCreate,
             messages,
             baseTextarea,
-            buttonOpenMenu,
+            buttonDeleteChatMenu,
+            buttonAddUserMenu,
+            buttonDeleteUserMenu,
+            addUserMenu,
             events: {
                 click: (e: Event) => Services.onClick(e),
             },

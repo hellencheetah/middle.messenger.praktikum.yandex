@@ -1,7 +1,9 @@
 // import router from "../utils/router/router";
 // import store from "../utils/store";
-import UserApi, {IChangePasswordData} from "../api/userApi";
+import UserApi, {IChangePasswordData, IFindUserData} from "../api/userApi";
 import {IRegistrationData} from "../api/authApi";
+import store from "../utils/store";
+import Services from "../utils/services";
 
 const usersService = new UserApi();
 
@@ -31,10 +33,11 @@ class UsersController {
             .catch((err) => console.log(err));
     }
 
-    usersSearch(login: string) {
-        usersService.usersSearch(login)
-            .then((res) => {
-                console.log(res)
+    findUserByLogin(data: IFindUserData) {
+        usersService.findUserByLogin(data)
+            .then((res: XMLHttpRequest) => {
+                store.setState('usersFound', res.response);
+                Services.openMenu('add-user-menu');
             })
             .catch((err) => console.log(err));
     }

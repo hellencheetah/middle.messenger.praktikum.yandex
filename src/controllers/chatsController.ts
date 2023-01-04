@@ -1,6 +1,7 @@
 // import router from "../utils/router/router";
 import store from "../utils/store";
 import ChatsApi, {IUsersData, IChatData} from "../api/chatsApi";
+import Services from "../utils/services";
 
 const chatsService = new ChatsApi();
 
@@ -18,17 +19,13 @@ class ChatsController {
     // Создаем новый чат, в ответ приходит id чата
     createNewChat(data: IChatData) {
         chatsService.createNewChat(data)
-            .then(() => {
-                this.getAllChats();
-            })
+            .then(() => this.getAllChats())
             .catch((err) => console.log(err));
     }
 
     addUsers(data: IUsersData) {
         chatsService.addUsers(data)
-            .then((res) => {
-                console.log(res)
-            })
+            .then(() => Services.closeMenu('add-user-menu'))
             .catch((err) => console.log(err));
     }
 

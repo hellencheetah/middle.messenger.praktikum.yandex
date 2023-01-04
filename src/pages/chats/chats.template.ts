@@ -44,13 +44,12 @@ export default `
                                 
                                 
                                 <div class="active-contact__options">
-                                    {{{buttonOpenMenu}}}
+                                    {{{buttonDeleteChatMenu}}}
+                                    {{{buttonAddUserMenu}}}
+                                    {{{buttonDeleteUserMenu}}}
                                     
-                                    <div id="menu" class="active-contact__menu">
-                                       {{{buttonAddUser}}}
                                     
-                                        {{{buttonDeleteUser}}}
-                                    </div>
+                                     {{{addUserMenu}}}
                                 </div>
                                 {{/if}}
                             </div>
