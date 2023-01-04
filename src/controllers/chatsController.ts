@@ -31,9 +31,7 @@ class ChatsController {
 
     deleteUsers(data: IUsersData) {
         chatsService.deleteUsers(data)
-            .then((res) => {
-                console.log(res)
-            })
+            .then(() => Services.closeMenu('add-user-menu'))
             .catch((err) => console.log(err));
     }
 

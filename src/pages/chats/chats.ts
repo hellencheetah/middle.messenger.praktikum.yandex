@@ -13,6 +13,7 @@ import ChatsController from "../../controllers/chatsController";
 import store, {StoreEvents} from "../../utils/store";
 import Services from "../../utils/services";
 import AddUserMenu from "../../components/addUserMenu";
+import DeleteUserMenu from "../../components/deleteUserMenu";
 
 
 export class Chats extends Block {
@@ -121,6 +122,7 @@ export class Chats extends Block {
 
         const messages: Block = new Messages({messagesData})
         const addUserMenu: Block = new AddUserMenu();
+        const deleteUserMenu: Block = new DeleteUserMenu();
 
 
         super({
@@ -133,6 +135,7 @@ export class Chats extends Block {
             buttonAddUserMenu,
             buttonDeleteUserMenu,
             addUserMenu,
+            deleteUserMenu,
             events: {
                 click: (e: Event) => Services.onClick(e),
             },

@@ -50,6 +50,7 @@ export default `
                                     
                                     
                                      {{{addUserMenu}}}
+                                     {{{deleteUserMenu}}}
                                 </div>
                                 {{/if}}
                             </div>
