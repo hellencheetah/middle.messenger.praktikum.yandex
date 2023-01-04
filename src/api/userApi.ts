@@ -20,4 +20,8 @@ export default class UserApi {
     changeUserPassword(data: IChangePasswordData) {
         return instance.put('/password', data);
     }
+
+    usersSearch(login: string) {
+        return instance.get('/password', {login});
+    }
 }

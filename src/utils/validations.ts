@@ -5,7 +5,8 @@ export enum ValidateRuleType {
     Firstname = 'first_name',
     Lastname = 'second_name',
     Phone = 'phone',
-    Message = 'message'
+    Message = 'message',
+    DisplayName = 'display_name',
 }
 
 export enum FormValidityType {
@@ -39,6 +40,11 @@ const validations: Record<string, ValidatationItem> = {
         regex: /^(?=.*[a-zA-Z])([a-zA-Z0-9-_]){3,20}$/,
         message: 'Логин должен быть от 3 до 20 символов, латиница, может содержать цифры, но не состоять из них, без пробелов, без спецсимволов',
         msg: 'Введите корректный логин',
+    },
+    display_name: {
+        regex: /^(?=.*[a-zA-Z])([a-zA-Z0-9-_]){3,20}$/,
+        message: 'Логин должен быть от 3 до 20 символов, латиница, может содержать цифры, но не состоять из них, без пробелов, без спецсимволов',
+        msg: 'Введите корректный никнейм',
     },
     email: {
         regex: /^([\w.-])+@([\w.-])+\.([A-Za-z]{2,4})$/,

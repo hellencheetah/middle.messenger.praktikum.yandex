@@ -7,8 +7,10 @@ import {validateFullForm, ValidateRuleType} from "../../utils/validations";
 import {onBlur, onFocus} from "../../helpers/events";
 
 
+
 export class EditProfile extends Block {
     constructor() {
+
         const button = new Button({
             btnText: 'Save',
             btnClass: 'edit-profile__btn',
@@ -91,26 +93,23 @@ export class EditProfile extends Block {
                     }
                 }
             }),
-            // new BaseInput({
-            //     inputPlaceholder: 'Nickname',
-            //     inputLabel: 'Nickname',
-            //     inputType: 'text',
-            //     inputName: 'display_name',
-            //     inputError: '',
-            //     inputModifier: 'form-control--with-label',
-            //     errorId: 'display_name_error',
-            //     events: {
-            //         blur: e => {
-            //             let error = validateForm('', e.target.value);
-            //             const err = document.getElementById('display_name_error');
-            //             err.innerHTML = error;
-            //         },
-            //         focus: e => {
-            //             const err = document.getElementById('display_name_error');
-            //             err.innerHTML = '';
-            //         }
-            //     }
-            // }),
+            new BaseInput({
+                inputPlaceholder: 'Nickname',
+                inputLabel: 'Nickname',
+                inputType: 'text',
+                inputName: 'display_name',
+                inputError: '',
+                inputModifier: 'form-control--with-label',
+                errorId: 'display_name_error',
+                events: {
+                    blur: (e: FocusEvent) => {
+                        onBlur(e, ValidateRuleType.DisplayName);
+                    },
+                    focus: () => {
+                        onFocus(ValidateRuleType.DisplayName);
+                    }
+                }
+            }),
             new BaseInput({
                 inputPlaceholder: 'Phone',
                 inputLabel: 'Phone',

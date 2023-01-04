@@ -72,7 +72,13 @@ class HTTPTransport {
             xhr.withCredentials = true;
             xhr.responseType = 'json';
 
-            xhr.onload = () => resolve(xhr);
+            xhr.onload = () => {
+                if (xhr.status === 200) {
+                    resolve(xhr)
+                } else {
+                    reject(xhr)
+                }
+            };
             xhr.onabort = () => reject({ reason: 'Abort' });
             xhr.onerror = () => reject({ reason: 'Error' });
             xhr.ontimeout = () => reject({ reason: 'Timeout' });

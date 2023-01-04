@@ -6,47 +6,44 @@ import Contact from "../../components/contact";
 import Messages from "../../components/messages";
 import ActiveContact from "../../components/activeContact";
 import BaseTextarea from "../../components/baseTextarea";
-import {validateFullForm, ValidateRuleType} from "../../utils/validations";
+import {getDataFromForm, validateFullForm, ValidateRuleType} from "../../utils/validations";
 import {onFocus} from "../../helpers/events";
+import BaseInput from "../../components/baseInput";
+import ChatsController from "../../controllers/chatsController";
+import store, {StoreEvents} from "../../utils/store";
+import Services from "../../utils/services";
+
 
 export class Chats extends Block {
     constructor() {
 
-        const contacts: Block[] = [
-            new Contact({
-                id: '1',
-                name: 'Ivan Ivanov',
-                events: {
-                    click: (e: Event) => {
-                        console.log(e)
-                    }
-                }
-            }),
-            new Contact({
-                id: '2',
-                name: 'Petr Petrov',
-                events: {
-                    click: (e: Event) => {
-                        console.log(e)
-                    }
-                }
-            }),
-        ]
+        ChatsController.getAllChats();
 
-        const messagesData = [
-            {
-                id: '1',
-                text: 'Great!',
-                time: '12.10',
-                my: true,
-            },
-            {
-                id: '2',
-                text: 'Thank you, how are you?',
-                time: '12:20',
-                my: false,
+
+
+        const inputNewChat = new BaseInput({
+            inputPlaceholder: 'Title',
+            inputType: 'text',
+            inputName: 'title',
+            errorId: 'title_error',
+            events: {}
+        })
+
+        const buttonCreate = new Button({
+            btnText: 'Create',
+            btnType: 'submit',
+            btnClass: 'chats-search__btn',
+            events: {
+                click: (e: Event) => {
+                    e.preventDefault();
+                    const form = getDataFromForm('add-chat-form');
+                    ChatsController.createNewChat(form);
+                }
             }
-        ]
+        });
+
+
+        const messagesData = []
 
         const baseTextarea: Block = new BaseTextarea({
             textareaErrorId: 'message_error',
@@ -77,14 +74,41 @@ export class Chats extends Block {
             }
         });
 
+        const buttonOpenMenu: Block = new Button({
+            btnText: 'Menu',
+            btnType: 'button',
+            btnClass: 'active-contact__options-btn',
+            events: {
+                click: (e: Event) => {
+                   const menuElem = document.getElementById('menu') as HTMLElement;
+                   if (menuElem.style.display === 'block') {
+                       menuElem.style.display = 'none';
+                   } else {
+                       menuElem.style.display = 'block';
+                   }
+                }
+            }
+        });
+
+
         const messages: Block = new Messages({messagesData})
 
-        // @ts-ignore
-        const activeContact =  new ActiveContact({
-            name: 'Ivan Ivanov',
-        })
 
-        super({ button, contacts, messages, baseTextarea, activeContact });
+        super({
+            button,
+            inputNewChat,
+            buttonCreate,
+            messages,
+            baseTextarea,
+            buttonOpenMenu,
+            events: {
+                click: (e: Event) => Services.onClick(e),
+            },
+        });
+
+        store.on(StoreEvents.Updated, () => {
+            this.setProps(store.getState());
+        });
     }
 
     render() {
