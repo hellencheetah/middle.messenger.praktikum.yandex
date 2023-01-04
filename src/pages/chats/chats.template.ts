@@ -9,24 +9,27 @@ export default `
                             {{{buttonCreate}}}
                         </form>
 
-                        <ul class="chats__sidebar-contacts">
-                            <li>
-                                {{#each chats}}
-                                    <div 
-                                        class="contact" 
-                                        data-id="{{id}}" 
-                                        data-value="chat-item" 
-                                        data-title="{{title}}"
-                                    >
-                                        <div class="contact__image"></div>
-                                        <div class="contact__text">{{title}}</div>
-                                        {{#if show-unread}}
-                                            <span class="contact__unread"></span>
-                                        {{/if}}
-                                        </div>
-                                {{/each}}
-                            </li>
-                        </ul>
+                        <div class="chats__sidebar-wrapper">
+                                <ul class="chats__sidebar-contacts">
+                                <li>
+                                    {{#each chats}}
+                                        <div 
+                                            class="contact" 
+                                            data-id="{{id}}" 
+                                            data-value="chat-item" 
+                                            data-title="{{title}}"
+                                        >
+                                            <div class="contact__image"></div>
+                                            <div class="contact__text">{{title}}</div>
+                                            {{#if show-unread}}
+                                                <span class="contact__unread"></span>
+                                            {{/if}}
+                                            </div>
+                                    {{/each}}
+                                </li>
+                            </ul>
+                        </div>
+                        
                     </div>
 
                     <div class="chats__main chats-block">

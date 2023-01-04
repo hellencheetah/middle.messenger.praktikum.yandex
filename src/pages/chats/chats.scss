@@ -18,6 +18,11 @@
         height: 100%;
         margin-right: 30px;
 
+        &-wrapper {
+            height: 614px;
+            overflow: auto;
+        }
+
         &-contacts {
             margin: 0;
             padding: 0;
