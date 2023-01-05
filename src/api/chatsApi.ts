@@ -38,6 +38,6 @@ export default class ChatsApi {
     }
 
     getChatUsers(id: number) {
-        return instance.post(`/${id}/users`);
+        return instance.get(`/${id}/users`);
     }
 }

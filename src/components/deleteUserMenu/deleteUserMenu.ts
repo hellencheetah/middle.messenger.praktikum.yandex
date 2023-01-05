@@ -2,12 +2,10 @@ import template from './deleteUserMenu.template';
 import Block from '../../utils/block';
 import './deleteUserMenu.scss';
 import Button from "../button";
-import {getDataFromForm} from "../../utils/validations";
-import UsersController from "../../controllers/usersController";
 import store, {StoreEvents} from "../../utils/store";
 import Services from "../../utils/services";
 import ChatsController from "../../controllers/chatsController";
-console.log(store.getState())
+
 export class DeleteUserMenu extends Block {
     constructor() {
 
@@ -25,7 +23,7 @@ export class DeleteUserMenu extends Block {
         });
 
         const deleteUserButton: Block = new Button({
-            btnText: 'Delete',
+            btnText: 'Yes',
             btnType: 'button',
             btnClass: '',
             events: {

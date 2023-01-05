@@ -4,6 +4,14 @@ export default
     <h3 class="delete-user-menu__title">Delete user</h3>
     
     {{{button}}}
+    
+    {{#if userLoginToDelete}}
+        <div class="delete-user-menu__options">
+            <div class="delete-user-menu__options-text">Delete user {{{userLoginToDelete}}}?</div>
+            
+            {{{deleteUserButton}}}
+        </div>
+    {{/if}}
    
      <div class="delete-user-menu__list">
         {{#each currentChatUsers}}
@@ -11,6 +19,7 @@ export default
                 class="delete-user-menu__list-item" 
                 data-value="chat-user" 
                 data-id="{{id}}"
+                data-login="{{login}}"
             >
                 {{{login}}}
             </div>

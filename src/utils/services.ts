@@ -24,7 +24,27 @@ class Services {
             }
             ChatsController.addUsers(data);
         }
+
+        else if (element.dataset.value === 'chat-user') {
+            const userId = element.dataset.id;
+            const userLogin = element.dataset.login;
+
+            store.setState('userIdToDelete', userId);
+            store.setState('userLoginToDelete', userLogin);
+            const elem = document.getElementById('delete-user-menu') as HTMLElement;
+            elem.style.display = 'block';
+
+
+
+            // const chatId = store.getState().currentChatId;
+            // const data = {
+            //     users: [ userId ],
+            //     chatId,
+            // }
+            // ChatsController.addUsers(data);
+        }
     }
+
 
     public openMenu(id: string) {
         const elem = document.getElementById(id) as HTMLElement;

@@ -46,8 +46,9 @@ class ChatsController {
 
     getChatUsers(id: number) {
         chatsService.getChatUsers(id)
-            .then((res) => {
-                console.log(res)
+            .then((res: XMLHttpRequest) => {
+                store.setState('currentChatUsers', res.response);
+                Services.openMenu('delete-user-menu');
             })
             .catch((err) => console.log(err));
     }

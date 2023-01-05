@@ -16,6 +16,17 @@
         margin-bottom: 10px;
     }
 
+    &__options {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+        margin-bottom: 10px;
+
+        &-text {
+            margin-right: 4px;
+        }
+    }
+
 
     &__list {
         height: 50%;
