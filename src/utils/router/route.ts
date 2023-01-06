@@ -1,9 +1,10 @@
 const isEqual = (lhs: string, rhs: string) => lhs === rhs;
 
 const render = (block: any) => {
-    const root = document.querySelector("#app");
-    root!.innerHTML = "";
-    root!.appendChild(block.getContent());
+    const root = document.querySelector("#app") as HTMLElement;
+    root.innerHTML = '';
+    root.appendChild(block.getContent());
+    return root;
 }
 
 export interface IRoute {
@@ -42,7 +43,6 @@ export default class Route {
     match(pathname: string) {
         return isEqual(pathname, this._pathname);
     }
-
 
     render() {
         if (!this._block) {
