@@ -2,9 +2,7 @@ import template from './chats.template';
 import Block from '../../utils/block';
 import './chats.scss';
 import Button from "../../components/button";
-import Contact from "../../components/contact";
 import Messages from "../../components/messages";
-import ActiveContact from "../../components/activeContact";
 import BaseTextarea from "../../components/baseTextarea";
 import {getDataFromForm, validateFullForm, ValidateRuleType} from "../../utils/validations";
 import {onFocus} from "../../helpers/events";
@@ -42,9 +40,6 @@ export class Chats extends Block {
                 }
             }
         });
-
-
-        const messagesData = []
 
         const baseTextarea: Block = new BaseTextarea({
             textareaErrorId: 'message_error',
@@ -112,6 +107,7 @@ export class Chats extends Block {
         });
 
 
+        const messagesData: any = [];
         const messages: Block = new Messages({messagesData})
         const addUserMenu: Block = new AddUserMenu();
         const deleteUserMenu: Block = new DeleteUserMenu();

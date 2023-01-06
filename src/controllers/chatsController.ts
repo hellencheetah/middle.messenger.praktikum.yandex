@@ -33,13 +33,21 @@ class ChatsController {
 
     addUsers(data: IUsersData) {
         chatsService.addUsers(data)
-            .then(() => closeMenu('add-user-menu'))
+            .then(() =>{
+                closeMenu('add-user-menu');
+                store.setState('userToAdd', null);
+                store.setState('usersFound', []);
+            })
             .catch((err) => console.log(err));
     }
 
     deleteUsers(data: IUsersData) {
         chatsService.deleteUsers(data)
-            .then(() => closeMenu('delete-user-menu'))
+            .then(() => {
+                closeMenu('delete-user-menu');
+                store.setState('userToDelete', null);
+                store.setState('currentChatUsers', []);
+            })
             .catch((err) => console.log(err));
     }
 
