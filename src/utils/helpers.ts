@@ -1,4 +1,6 @@
 import {Props} from "./block";
+import store from "./store";
+import {IError} from "./http-transport";
 
 export type Indexed<T = any> = {
     [key in string]: T;
@@ -55,6 +57,13 @@ const toggleMenu = (id: string) => {
     }
 }
 
+const setServerError = (err: IError) => {
+    store.setState('server-error', err.text);
+    setTimeout(() => {
+        store.setState('server-error', null);
+    }, 5000)
+}
 
-export { set, merge, openMenu, closeMenu, toggleMenu };
+
+export { set, merge, openMenu, closeMenu, toggleMenu, setServerError };
 

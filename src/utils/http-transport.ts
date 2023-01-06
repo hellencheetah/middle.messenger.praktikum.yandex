@@ -12,6 +12,11 @@ type Options = {
     timeout?: number;
 };
 
+export interface IError {
+    text: string;
+    code: number;
+}
+
 type HTTPMethod = (url: string, data?: unknown, headers?: Record<string, string>) => Promise<unknown>
 
 // function queryStringify(data: any) {
@@ -76,7 +81,8 @@ class HTTPTransport {
                 if (xhr.status === 200) {
                     resolve(xhr)
                 } else {
-                    reject(xhr)
+                    const error = { text: xhr.response.reason, code: xhr.status };
+                    reject(error);
                 }
             };
             xhr.onabort = () => reject({ reason: 'Abort' });

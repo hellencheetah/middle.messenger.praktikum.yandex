@@ -2,7 +2,9 @@
 import UserApi, {IChangePasswordData, IFindUserData} from "../api/userApi";
 import {IRegistrationData} from "../api/authApi";
 import store from "../utils/store";
-import {openMenu} from "../utils/helpers";
+import {openMenu, setServerError} from "../utils/helpers";
+import router from "../utils/router/router";
+import AuthController from "./authController";
 
 const usersService = new UserApi();
 
@@ -18,20 +20,19 @@ class UsersController {
 
     changeUserProfile(data: IRegistrationData) {
         usersService.changeUserProfile(data)
-            .then((res: XMLHttpRequest) => {
-                this.getUserProfile(res.response.id);
-                store.setState('currentUser', res.response);
-                localStorage.setItem('user', JSON.stringify(res.response));
+            .then(() => {
+                AuthController.getUser();
+                router.go('/settings');
             })
             .catch((err) => console.log(err));
     }
 
     changeUserPassword(data: IChangePasswordData) {
         usersService.changeUserPassword(data)
-            .then((res) => {
-                console.log(res)
+            .then(() => {
+                router.go('/settings');
             })
-            .catch((err) => console.log(err));
+            .catch((err) => setServerError(err))
     }
 
     findUserByLogin(data: IFindUserData) {

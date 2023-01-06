@@ -18,4 +18,7 @@ export default `
         </div>
     </div>
 </div>
+{{#if server-error}}
+      <div class="global-error">{{{server-error}}}</div>
+{{/if}}
 `

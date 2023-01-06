@@ -6,6 +6,7 @@ import BaseInput from "../../components/baseInput";
 import {validateFullForm, ValidateRuleType} from "../../utils/validations";
 import {onBlur, onFocus} from "../../helpers/events";
 import AuthController from "../../controllers/authController";
+import store, {StoreEvents} from "../../utils/store";
 
 export class Registration extends Block {
     constructor() {
@@ -113,6 +114,10 @@ export class Registration extends Block {
         ]
 
         super({ button, form });
+
+        store.on(StoreEvents.Updated, () => {
+            this.setProps(store.getState());
+        });
     }
 
     render() {

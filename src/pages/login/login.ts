@@ -6,6 +6,7 @@ import "./login.scss";
 import {validateFullForm, ValidateRuleType} from "../../utils/validations";
 import {onBlur, onFocus} from "../../helpers/events";
 import AuthController from "../../controllers/authController";
+import store, {StoreEvents} from "../../utils/store";
 
 
 export class Login extends Block {
@@ -61,6 +62,10 @@ export class Login extends Block {
 
 
         super({ button, form });
+
+        store.on(StoreEvents.Updated, () => {
+            this.setProps(store.getState());
+        });
     }
 
 

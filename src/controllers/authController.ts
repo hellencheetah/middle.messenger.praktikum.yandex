@@ -1,6 +1,7 @@
 import AuthApi, {ILoginData, IRegistrationData} from "../api/authApi";
 import router from "../utils/router/router";
 import store from "../utils/store";
+import {setServerError} from "../utils/helpers";
 
 const authService = new AuthApi();
 
@@ -11,7 +12,7 @@ class AuthController {
             .then(() => {
                 router.go('/messenger');
             })
-            .catch((err) => console.log(err));
+            .catch((err) => setServerError(err));
     }
 
     register(data: IRegistrationData) {
@@ -19,7 +20,7 @@ class AuthController {
             .then(() => {
                 router.go('/messenger');
             })
-            .catch((err) => console.log(err));
+            .catch((err) => setServerError(err));
     }
 
     logout() {
