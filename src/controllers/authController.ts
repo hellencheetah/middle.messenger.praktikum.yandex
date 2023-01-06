@@ -26,6 +26,8 @@ class AuthController {
        authService.logout()
            .then(() => {
                router.go('/');
+               localStorage.removeItem('user');
+               store.clearStore();
            })
            .catch((err) => console.log(err))
     }
@@ -34,6 +36,7 @@ class AuthController {
         authService.getUser()
             .then((res: XMLHttpRequest) => {
                 store.setState('currentUser', res.response);
+                localStorage.setItem('user', JSON.stringify(res.response));
             })
             .catch((err) => console.log(err))
     }

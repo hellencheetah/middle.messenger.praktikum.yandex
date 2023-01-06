@@ -19,6 +19,10 @@ class Store extends EventBus {
 
         this.emit(StoreEvents.Updated);
     }
+
+    public clearStore(): void {
+        this.state = {};
+    }
 }
 
 export default new Store();

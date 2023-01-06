@@ -18,6 +18,13 @@
         height: 100%;
         margin-right: 30px;
 
+        &-head {
+            height: 120px;
+            border-bottom: 1px solid $border-color;
+            box-sizing: border-box;
+            padding: 10px;
+        }
+
         &-wrapper {
             height: 73%;
             overflow-y: auto;
@@ -68,10 +75,7 @@
     &-search {
         display: flex;
         align-items: center;
-        height: 120px;
-        border-bottom: 1px solid $border-color;
         box-sizing: border-box;
-        padding: 10px;
 
         &__btn {
             width: 120px;

@@ -3,12 +3,15 @@ export default `
             <div class="container container--auth">
                 <div class="chats-wrapper">
                     <div class="chats__sidebar chats-block">
-                        <form id="add-chat-form" class="chats-search">
-                            {{{inputNewChat}}}
-                            
-                            {{{buttonCreate}}}
-                        </form>
-
+                      <div class="chats__sidebar-head">
+                           <a href="/settings" class="link">Settings</a>
+                            <form id="add-chat-form" class="chats-search">
+                                {{{inputNewChat}}}
+                                
+                                {{{buttonCreate}}}
+                            </form>
+                        </div>
+                       
                         <div class="chats__sidebar-wrapper">
                                 <ul class="chats__sidebar-contacts">
                                 <li>

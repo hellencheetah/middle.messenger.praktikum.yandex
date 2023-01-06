@@ -18,8 +18,10 @@ class UsersController {
 
     changeUserProfile(data: IRegistrationData) {
         usersService.changeUserProfile(data)
-            .then((res) => {
-                console.log(res)
+            .then((res: XMLHttpRequest) => {
+                this.getUserProfile(res.response.id);
+                store.setState('currentUser', res.response);
+                localStorage.setItem('user', JSON.stringify(res.response));
             })
             .catch((err) => console.log(err));
     }

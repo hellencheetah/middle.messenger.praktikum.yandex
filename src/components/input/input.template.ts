@@ -4,5 +4,6 @@ export default
          type={{inputType}}
          name={{inputName}}
          placeholder="{{inputPlaceholder}}"
+         value="{{inputValue}}"
     >
 `

@@ -14,7 +14,7 @@ export default `
               </li>
               <li class="profile-data__item">
                      <div>Lastname</div>
-                     <div>{{currentUser.last_name}}</div>
+                     <div>{{currentUser.second_name}}</div>
               </li>
                 <li class="profile-data__item">
                      <div>Nickname</div>

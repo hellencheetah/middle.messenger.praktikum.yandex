@@ -80,7 +80,7 @@ export function validateForm (type: string, value: string) {
 
 export function validateFullForm(formId: string) {
     // Получаем форму в виде объекта
-    const form: Record<string, string> = getDataFromForm(formId);
+    const form = getDataFromForm(formId);
 
     // Создаем объект ошибок
     const errorsObject: Record<string, string> = {}
