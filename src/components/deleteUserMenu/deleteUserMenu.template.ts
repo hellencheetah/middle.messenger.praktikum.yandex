@@ -5,11 +5,12 @@ export default
     
     {{{button}}}
     
-    {{#if userLoginToDelete}}
+    {{#if userToDelete}}
         <div class="delete-user-menu__options">
-            <div class="delete-user-menu__options-text">Delete user {{{userLoginToDelete}}}?</div>
+            <div class="delete-user-menu__options-text">Delete {{{userToDelete.login}}}?</div>
             
             {{{deleteUserButton}}}
+            {{{cancelUserButton}}}
         </div>
     {{/if}}
    

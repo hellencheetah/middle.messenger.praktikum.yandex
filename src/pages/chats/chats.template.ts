@@ -34,11 +34,11 @@ export default `
 
                     <div class="chats__main chats-block">
                         <div class="active-contact">
-                        {{#if currentChatId}}
+                        {{#if currentChat}}
                                 <div class="active-contact__main">
                                     <div class="active-contact__image"></div> 
                                     <div class="active-contact__name">
-                                        {{currentChatTitle}}
+                                        {{currentChat.title}}
                                     </div>
                                 </div>
                                 

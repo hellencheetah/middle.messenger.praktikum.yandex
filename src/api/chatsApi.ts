@@ -10,6 +10,10 @@ export interface IChatData {
     title: string;
 }
 
+export interface IDeleteChatData {
+    chatId: number;
+}
+
 export default class ChatsApi {
 
     getAllChats() {
@@ -18,6 +22,10 @@ export default class ChatsApi {
 
     createNewChat(data: IChatData) {
         return instance.post('/', data);
+    }
+
+    deleteChatById(data: IDeleteChatData) {
+        return instance.delete('/', data);
     }
 
     addUsers(data: IUsersData) {

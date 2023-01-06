@@ -14,13 +14,12 @@ import store, {StoreEvents} from "../../utils/store";
 import Services from "../../utils/services";
 import AddUserMenu from "../../components/addUserMenu";
 import DeleteUserMenu from "../../components/deleteUserMenu";
+import {toggleMenu} from "../../utils/helpers";
 
 
 export class Chats extends Block {
     constructor() {
-
         ChatsController.getAllChats();
-
 
 
         const inputNewChat = new BaseInput({
@@ -81,12 +80,10 @@ export class Chats extends Block {
             btnType: 'button',
             btnClass: 'active-contact__options-btn',
             events: {
-                click: (e: Event) => {
-                    const menuElem = document.getElementById('delete-chat-menu') as HTMLElement;
-                    if (menuElem.style.display === 'block') {
-                        menuElem.style.display = 'none';
-                    } else {
-                        menuElem.style.display = 'block';
+                click: () => {
+                    if (window.confirm('Do you really want to delete this chat?')) {
+                        const chatId = store.getState().currentChat.id;
+                        ChatsController.deleteChatById({ chatId });
                     }
                 }
             }
@@ -97,8 +94,8 @@ export class Chats extends Block {
             btnType: 'button',
             btnClass: 'active-contact__options-btn',
             events: {
-                click: (e: Event) => {
-                    Services.toggleMenu('add-user-menu');
+                click: () => {
+                    toggleMenu('add-user-menu');
                 }
             }
         });
@@ -108,13 +105,8 @@ export class Chats extends Block {
             btnType: 'button',
             btnClass: 'active-contact__options-btn',
             events: {
-                click: (e: Event) => {
-                    const menuElem = document.getElementById('delete-user-menu') as HTMLElement;
-                    if (menuElem.style.display === 'block') {
-                        menuElem.style.display = 'none';
-                    } else {
-                        menuElem.style.display = 'block';
-                    }
+                click: () => {
+                    toggleMenu('delete-user-menu');
                 }
             }
         });

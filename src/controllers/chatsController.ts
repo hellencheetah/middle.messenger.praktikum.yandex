@@ -1,7 +1,6 @@
-// import router from "../utils/router/router";
 import store from "../utils/store";
-import ChatsApi, {IUsersData, IChatData} from "../api/chatsApi";
-import Services from "../utils/services";
+import ChatsApi, {IUsersData, IChatData, IDeleteChatData} from "../api/chatsApi";
+import {closeMenu, openMenu} from "../utils/helpers";
 
 const chatsService = new ChatsApi();
 
@@ -23,15 +22,24 @@ class ChatsController {
             .catch((err) => console.log(err));
     }
 
+    deleteChatById(data: IDeleteChatData) {
+        chatsService.deleteChatById(data)
+            .then(() =>{
+                this.getAllChats();
+                store.setState('currentChat', null);
+            })
+            .catch((err) => console.log(err));
+    }
+
     addUsers(data: IUsersData) {
         chatsService.addUsers(data)
-            .then(() => Services.closeMenu('add-user-menu'))
+            .then(() => closeMenu('add-user-menu'))
             .catch((err) => console.log(err));
     }
 
     deleteUsers(data: IUsersData) {
         chatsService.deleteUsers(data)
-            .then(() => Services.closeMenu('add-user-menu'))
+            .then(() => closeMenu('delete-user-menu'))
             .catch((err) => console.log(err));
     }
 
@@ -48,7 +56,7 @@ class ChatsController {
         chatsService.getChatUsers(id)
             .then((res: XMLHttpRequest) => {
                 store.setState('currentChatUsers', res.response);
-                Services.openMenu('delete-user-menu');
+                openMenu('delete-user-menu');
             })
             .catch((err) => console.log(err));
     }

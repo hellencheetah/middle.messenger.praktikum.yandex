@@ -1,9 +1,8 @@
-// import router from "../utils/router/router";
-// import store from "../utils/store";
+
 import UserApi, {IChangePasswordData, IFindUserData} from "../api/userApi";
 import {IRegistrationData} from "../api/authApi";
 import store from "../utils/store";
-import Services from "../utils/services";
+import {openMenu} from "../utils/helpers";
 
 const usersService = new UserApi();
 
@@ -37,7 +36,7 @@ class UsersController {
         usersService.findUserByLogin(data)
             .then((res: XMLHttpRequest) => {
                 store.setState('usersFound', res.response);
-                Services.openMenu('add-user-menu');
+                openMenu('add-user-menu');
             })
             .catch((err) => console.log(err));
     }

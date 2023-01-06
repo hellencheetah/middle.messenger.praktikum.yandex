@@ -7,6 +7,8 @@ import {getDataFromForm} from "../../utils/validations";
 import UsersController from "../../controllers/usersController";
 import store, {StoreEvents} from "../../utils/store";
 import Services from "../../utils/services";
+import {openMenu} from "../../utils/helpers";
+import ChatsController from "../../controllers/chatsController";
 
 export class AddUserMenu extends Block {
     constructor() {
@@ -35,12 +37,30 @@ export class AddUserMenu extends Block {
         });
 
         const addUserButton: Block = new Button({
-            btnText: 'Add',
+            btnText: 'Yes',
             btnType: 'button',
             btnClass: '',
             events: {
-                click: (e: Event) => {
-                    console.log(e)
+                click: () => {
+                    const userToAdd = store.getState().userToAdd;
+                    const chatId = store.getState().currentChat.id;
+                    const data = {
+                        users: [userToAdd.id],
+                        chatId,
+                    }
+                    ChatsController.addUsers(data);
+                }
+            }
+        });
+
+        const cancelUserButton: Block = new Button({
+            btnText: 'No',
+            btnType: 'button',
+            btnClass: 'btn--ghost',
+            events: {
+                click: () => {
+                    store.setState('userToAdd', null);
+                    openMenu('add-user-menu');
                 }
             }
         });
@@ -50,6 +70,7 @@ export class AddUserMenu extends Block {
             button,
             input,
             addUserButton,
+            cancelUserButton,
             events: {
                 click: Services.onClick,
             }

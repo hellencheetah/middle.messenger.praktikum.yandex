@@ -36,6 +36,25 @@ const set = (object: Props, path: string, value: any) => {
     return merge(object, result);
 }
 
+const openMenu = (id: string) => {
+    const elem = document.getElementById(id) as HTMLElement;
+    elem.style.display = 'block';
+}
 
-export { set, merge };
+const closeMenu = (id: string) => {
+    const elem = document.getElementById(id) as HTMLElement;
+    elem.style.display = 'none';
+}
+
+const toggleMenu = (id: string) => {
+    const elem = document.getElementById(id) as HTMLElement;
+    if (elem.style.display === 'block') {
+        elem.style.display = 'none';
+    } else {
+        elem.style.display = 'block';
+    }
+}
+
+
+export { set, merge, openMenu, closeMenu, toggleMenu };
 

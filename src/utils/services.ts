@@ -1,6 +1,5 @@
 import store from "./store";
-import ChatsController from "../controllers/chatsController";
-import {IUsersData} from "../api/chatsApi";
+import {openMenu} from "./helpers";
 
 class Services {
     public onClick(event: Event): void {
@@ -10,58 +9,25 @@ class Services {
             const chatId = element.dataset.id;
             const chatTitle = element.dataset.title;
 
-            store.setState('currentChatId', chatId);
-            store.setState('currentChatTitle', chatTitle);
+            store.setState('currentChat', {id: chatId, title: chatTitle});
         }
 
         else if (element.dataset.value === 'found-user') {
             const userId = element.dataset.id;
+            const userLogin = element.dataset.login;
 
-            const chatId = store.getState().currentChatId;
-            const data = {
-                users: [ userId ],
-                chatId,
-            }
-            ChatsController.addUsers(data);
+
+            store.setState('userToAdd', {id: userId, login: userLogin});
+            openMenu('add-user-menu');
         }
 
         else if (element.dataset.value === 'chat-user') {
             const userId = element.dataset.id;
             const userLogin = element.dataset.login;
 
-            store.setState('userIdToDelete', userId);
-            store.setState('userLoginToDelete', userLogin);
-            const elem = document.getElementById('delete-user-menu') as HTMLElement;
-            elem.style.display = 'block';
+            store.setState('userToDelete', {id: userId, login: userLogin});
+            openMenu('delete-user-menu');
 
-
-
-            // const chatId = store.getState().currentChatId;
-            // const data = {
-            //     users: [ userId ],
-            //     chatId,
-            // }
-            // ChatsController.addUsers(data);
-        }
-    }
-
-
-    public openMenu(id: string) {
-        const elem = document.getElementById(id) as HTMLElement;
-        elem.style.display = 'block';
-    }
-
-    public closeMenu(id: string) {
-        const elem = document.getElementById(id) as HTMLElement;
-        elem.style.display = 'none';
-    }
-
-    public toggleMenu(id: string) {
-        const elem = document.getElementById(id) as HTMLElement;
-        if (elem.style.display === 'block') {
-            elem.style.display = 'none';
-        } else {
-            elem.style.display = 'block';
         }
     }
 }

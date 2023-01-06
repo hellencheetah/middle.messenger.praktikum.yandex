@@ -5,6 +5,7 @@ import Button from "../button";
 import store, {StoreEvents} from "../../utils/store";
 import Services from "../../utils/services";
 import ChatsController from "../../controllers/chatsController";
+import {openMenu} from "../../utils/helpers";
 
 export class DeleteUserMenu extends Block {
     constructor() {
@@ -16,7 +17,7 @@ export class DeleteUserMenu extends Block {
             events: {
                 click: (e: Event) => {
                     e.preventDefault();
-                    const chatId = store.getState().currentChatId;
+                    const chatId = store.getState().currentChat.id;
                     ChatsController.getChatUsers(chatId);
                 }
             }
@@ -27,8 +28,26 @@ export class DeleteUserMenu extends Block {
             btnType: 'button',
             btnClass: '',
             events: {
-                click: (e: Event) => {
-                    console.log(e)
+                click: () => {
+                    const userToDelete = store.getState().userToDelete;
+                    const chatId = store.getState().currentChat.id;
+                    const data = {
+                        users: [userToDelete.id],
+                        chatId,
+                    }
+                    ChatsController.deleteUsers(data);
+                }
+            }
+        });
+
+        const cancelUserButton: Block = new Button({
+            btnText: 'No',
+            btnType: 'button',
+            btnClass: 'btn--ghost',
+            events: {
+                click: () => {
+                    store.setState('userToDelete', null);
+                    openMenu('delete-user-menu');
                 }
             }
         });
@@ -37,6 +56,7 @@ export class DeleteUserMenu extends Block {
         super({
             button,
             deleteUserButton,
+            cancelUserButton,
             events: {
                 click: Services.onClick,
             }
