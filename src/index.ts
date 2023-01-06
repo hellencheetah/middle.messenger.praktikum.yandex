@@ -1,25 +1,25 @@
 import './styles/main.scss';
-import Registration from "./pages/registration";
 import Login from "./pages/login";
-import Chats from "./pages/chats";
-import Profile from "./pages/profile";
-import Page5 from "./pages/page5";
-import EditProfile from "./pages/edit-profile";
-import EditPassword from "./pages/edit-password";
-import Page404 from "./pages/page404";
+import { Registration } from "./pages/registration/registration";
+import { Chats } from "./pages/chats/chats";
+import { Profile } from "./pages/profile/profile";
+import { Page500 } from "./pages/page5/page5";
+import { EditProfile } from "./pages/edit-profile/edit-profile";
+import { EditPassword } from "./pages/edit-password/edit-password";
+import { Page404 } from "./pages/page404/page404";
 import router from "./utils/router/router";
 
 
 
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener('DOMContentLoaded', async () => {
     router
-        .use("/", Login, {})
-        .use("/sign-up", Registration, {})
-        .use("/messenger", Chats, {})
-        .use("/settings", Profile, {})
-        .use("/page500", Page5, {})
-        .use("/edit-profile", EditProfile, {})
-        .use("/edit-password", EditPassword, {})
-        .use("*", Page404, {})
+        .use('/', Login, {})
+        .use('/sign-up', Registration, {})
+        .use('/messenger', Chats, {})
+        .use('/settings', Profile, {})
+        .use('/page500', Page500, {})
+        .use('/edit-profile', EditProfile, {})
+        .use('/edit-password', EditPassword, {})
+        .use('*', Page404, {})
         .start()
 });

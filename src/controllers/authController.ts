@@ -9,9 +9,7 @@ class AuthController {
 
     login(data: ILoginData) {
         authService.login(data)
-            .then(() => {
-                router.go('/messenger');
-            })
+            .then(() => router.go('/messenger'))
             .catch((err) => setServerError(err));
     }
 

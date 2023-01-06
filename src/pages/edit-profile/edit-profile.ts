@@ -12,8 +12,12 @@ import UsersController from "../../controllers/usersController";
 
 export class EditProfile extends Block {
     constructor() {
-        const userFormStorage = localStorage.getItem('user') ?? '';
-        const user = JSON.parse(userFormStorage);
+        const userFormStorage = localStorage.getItem('user');
+        let user;
+        if (userFormStorage) {
+            user = JSON.parse(userFormStorage);
+        }
+
 
         const button = new Button({
             btnText: 'Save',
