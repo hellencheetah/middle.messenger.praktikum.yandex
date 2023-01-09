@@ -13,11 +13,13 @@ import Services from "../../utils/services";
 import AddUserMenu from "../../components/addUserMenu";
 import DeleteUserMenu from "../../components/deleteUserMenu";
 import {toggleMenu} from "../../utils/helpers";
+import AuthController from "../../controllers/authController";
 
 
 export class Chats extends Block {
     constructor() {
         ChatsController.getAllChats();
+        AuthController.getUser();
 
 
         const inputNewChat = new BaseInput({

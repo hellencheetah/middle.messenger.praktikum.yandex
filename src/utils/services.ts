@@ -1,5 +1,6 @@
 import store from "./store";
 import {openMenu} from "./helpers";
+import Socket from "./web-socket";
 
 class Services {
     public onClick(event: Event): void {
@@ -10,6 +11,7 @@ class Services {
             const chatTitle = element.dataset.title;
 
             store.setState('currentChat', {id: chatId, title: chatTitle});
+
         }
 
         else if (element.dataset.value === 'found-user') {

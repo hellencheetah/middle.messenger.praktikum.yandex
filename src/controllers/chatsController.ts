@@ -1,6 +1,7 @@
 import store from "../utils/store";
 import ChatsApi, {IUsersData, IChatData, IDeleteChatData} from "../api/chatsApi";
 import {closeMenu, openMenu} from "../utils/helpers";
+import Socket from "../utils/web-socket";
 
 const chatsService = new ChatsApi();
 
@@ -12,6 +13,17 @@ class ChatsController {
             .then((res: XMLHttpRequest) => {
                 store.setState('chats', res.response);
             })
+            .then(() => {
+            store.getState().chats.forEach( chat => {
+                chatsService.getRequestToken(chat.id)
+                    .then((res: XMLHttpRequest) => {
+                        const token = res.response.token;
+                        const userId = store.getState().currentUser.id;
+                        const socket = new Socket(userId, chat.id, token);
+                    })
+
+            })
+        })
             .catch((err) => console.log(err));
     }
 
@@ -52,10 +64,10 @@ class ChatsController {
     }
 
 
-    getRequestToken(id: number) {
+    public getRequestToken(id: number) {
         chatsService.getRequestToken(id)
-            .then((res) => {
-                console.log(res)
+            .then((res: XMLHttpRequest) => {
+                return res.response.token;
             })
             .catch((err) => console.log(err));
     }
