@@ -2,6 +2,8 @@ import store from "../utils/store";
 import ChatsApi, {IUsersData, IChatData, IDeleteChatData} from "../api/chatsApi";
 import {closeMenu, openMenu} from "../utils/helpers";
 import Socket from "../utils/web-socket";
+import {Props} from "../utils/block";
+import Services from "../utils/services";
 
 const chatsService = new ChatsApi();
 
@@ -12,18 +14,21 @@ class ChatsController {
         chatsService.getAllChats()
             .then((res: XMLHttpRequest) => {
                 store.setState('chats', res.response);
+                return res.response
             })
-            .then(() => {
-            store.getState().chats.forEach( chat => {
-                chatsService.getRequestToken(chat.id)
-                    .then((res: XMLHttpRequest) => {
-                        const token = res.response.token;
-                        const userId = store.getState().currentUser.id;
-                        const socket = new Socket(userId, chat.id, token);
-                    })
+            .then((chats) => {
+                chats.forEach((chat: Props) => {
+                     chatsService.getRequestToken(chat.id)
+                         .then((res: XMLHttpRequest) => {
+                             const token = res.response.token;
+                             const userId = store.getState().currentUser.id;
+                             const socket = new Socket(userId, chat.id, token);
+                             store.setState(`sockets.${chat.id}`, socket);
+                             socket.message((e) => Services.onMessage(e))
+                         })
+                 })
 
             })
-        })
             .catch((err) => console.log(err));
     }
 
@@ -36,7 +41,7 @@ class ChatsController {
 
     deleteChatById(data: IDeleteChatData) {
         chatsService.deleteChatById(data)
-            .then(() =>{
+            .then(() => {
                 this.getAllChats();
                 store.setState('currentChat', null);
             })
@@ -45,7 +50,7 @@ class ChatsController {
 
     addUsers(data: IUsersData) {
         chatsService.addUsers(data)
-            .then(() =>{
+            .then(() => {
                 closeMenu('add-user-menu');
                 store.setState('userToAdd', null);
                 store.setState('usersFound', []);

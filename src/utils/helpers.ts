@@ -64,6 +64,17 @@ const setServerError = (err: IError) => {
     }, 5000)
 }
 
+const findChatInStoreById = (chatId: string) => {
+    let chatSocket;
+    const storeState = store.getState().sockets;
+    Object.entries(storeState)
+        .forEach(([key, value]) => {
+            if (key === chatId) {
+                chatSocket = value;
+            }
+        });
+    return chatSocket;
+}
 
-export { set, merge, openMenu, closeMenu, toggleMenu, setServerError };
+export {set, merge, openMenu, closeMenu, toggleMenu, setServerError, findChatInStoreById};
 

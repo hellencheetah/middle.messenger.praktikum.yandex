@@ -12,7 +12,7 @@ import store, {StoreEvents} from "../../utils/store";
 import Services from "../../utils/services";
 import AddUserMenu from "../../components/addUserMenu";
 import DeleteUserMenu from "../../components/deleteUserMenu";
-import {toggleMenu} from "../../utils/helpers";
+import {findChatInStoreById, toggleMenu} from "../../utils/helpers";
 import AuthController from "../../controllers/authController";
 
 
@@ -66,7 +66,13 @@ export class Chats extends Block {
 
                     if (result !== 'invalid') {
                         // api
-                        console.log(result)
+                        const chat = store.getState().currentChat;
+                        const chatId = chat.id;
+                        const socket = findChatInStoreById(chatId);
+                        socket.send({
+                            type: 'message',
+                            content: result.message,
+                        })
                     }
                 }
             }

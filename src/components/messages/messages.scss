@@ -1,5 +1,49 @@
+@import "src/styles/constants";
+
 .messages {
   margin: 0;
   padding: 30px;
   list-style-type: none;
+}
+
+.message {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 40px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    &--my {
+        justify-content: flex-end;
+    }
+
+    &-body {
+        display: flex;
+        justify-content: space-between;
+        min-width: 80px;
+        max-width: 55%;
+        background: #F8F8F8;
+        border-radius: 14px 14px 14px 0;
+        padding: 12px 23px;
+
+        &--my {
+            background: $my-message-color;
+            border-radius: 14px 14px 0 14px;
+        }
+
+        &__text {
+            margin-right: 10px;
+        }
+
+        &__time {
+            display: flex;
+            align-items: flex-end;
+            font-size: 10px;
+            color: #8D8A8A;
+        }
+    }
 }
