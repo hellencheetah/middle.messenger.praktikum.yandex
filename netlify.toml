@@ -1,4 +1,6 @@
 [build] =
+  base = "/"
+  publish= "dist"
   CI= npm run build
 
 [[redirects]]
