@@ -1,2 +1,6 @@
 [build] =
   CI= npm run build
+  [[redirects]]
+    from = "/*"
+    to = "/"
+    status = 200
