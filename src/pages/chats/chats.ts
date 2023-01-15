@@ -69,6 +69,7 @@ export class Chats extends Block {
                         const chat = store.getState().currentChat;
                         const chatId = chat.id;
                         const socket = findChatInStoreById(chatId);
+
                         socket.send({
                             type: 'message',
                             content: result.message,
@@ -114,9 +115,7 @@ export class Chats extends Block {
             }
         });
 
-
-        const messagesData: any = [];
-        const messages: Block = new Messages({messagesData})
+        const messages: Block = new Messages({})
         const addUserMenu: Block = new AddUserMenu();
         const deleteUserMenu: Block = new DeleteUserMenu();
 
