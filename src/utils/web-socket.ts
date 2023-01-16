@@ -34,15 +34,16 @@ export default class Socket {
         console.log('Opened');
     }
 
-    public message(event) {
+    public message(event: MessageEvent) {
         Services.onMessage(event);
     }
 
-    private close(event): void {
+    private close(event: CloseEvent): void {
         console.log('Closed', event);
+        Services.onClose();
     }
 
-    private error(event): void {
+    private error(event: ErrorEvent): void {
         console.log('Error', event);
     }
 }

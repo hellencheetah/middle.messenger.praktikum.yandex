@@ -56,9 +56,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 140px;
+            min-height: 120px;
             border-top: 1px solid $border-color;
-            padding: 0 30px;
+            padding: 0 20px;
 
             .form-textarea {
                 width: 100%;
@@ -129,10 +129,13 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 80px;
+    min-height: 80px;
     box-sizing: border-box;
-    border-bottom: 1px solid $border-color;
     padding: 0 14px;
+
+    &--bordered {
+        border-bottom: 1px solid $border-color;
+    }
 
     &__main {
         display: flex;

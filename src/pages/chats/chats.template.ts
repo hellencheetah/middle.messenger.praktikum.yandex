@@ -36,7 +36,7 @@ export default `
                     </div>
 
                     <div class="chats__main chats-block">
-                        <div class="active-contact">
+                        <div class="active-contact {{#if currentChat}}active-contact--bordered{{/if}}">
                         {{#if currentChat}}
                                 <div class="active-contact__main">
                                     <div class="active-contact__image"></div> 
@@ -59,12 +59,12 @@ export default `
                             </div>
 
                         <div class="chats__main-chat">
-                            {{{messages}}}
+                              {{{messages}}}
                         </div>
 
                         <form id="message-form" class="chats__main-textarea">
                             {{{baseTextarea}}}
-
+                            
                             {{{button}}}
                         </form>
                     </div>

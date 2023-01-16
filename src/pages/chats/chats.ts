@@ -46,9 +46,6 @@ export class Chats extends Block {
         const baseTextarea: Block = new BaseTextarea({
             textareaErrorId: 'message_error',
             events: {
-                blur: () => {
-                    //onBlur(e, ValidateRuleType.Message);
-                },
                 focus: () => {
                     onFocus(ValidateRuleType.Message);
                 }
@@ -69,11 +66,14 @@ export class Chats extends Block {
                         const chat = store.getState().currentChat;
                         const chatId = chat.id;
                         const socket = findChatInStoreById(chatId);
-
-                        socket.send({
-                            type: 'message',
-                            content: result.message,
-                        })
+                        const textarea = document.getElementById('textarea') as HTMLInputElement;
+                        textarea.value = '';
+                        if (socket) {
+                            socket.send({
+                                type: 'message',
+                                content: result.message,
+                            })
+                        }
                     }
                 }
             }

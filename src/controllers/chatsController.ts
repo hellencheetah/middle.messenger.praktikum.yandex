@@ -14,7 +14,7 @@ class ChatsController {
         chatsService.getAllChats()
             .then((res: XMLHttpRequest) => {
                 store.setState('chats', res.response);
-                return res.response
+                return res.response;
             })
             .then((chats) => {
                 chats.forEach((chat: Props) => {
@@ -24,7 +24,7 @@ class ChatsController {
                              const userId = store.getState().currentUser.id;
                              const socket = new Socket(userId, chat.id, token);
                              store.setState(`sockets.${chat.id}`, socket);
-                             socket.message((e) => Services.onMessage(e))
+                             socket.message((e: MessageEvent) => Services.onMessage(e))
                          })
                  })
 
@@ -44,6 +44,7 @@ class ChatsController {
             .then(() => {
                 this.getAllChats();
                 store.setState('currentChat', null);
+                store.setState('messages', []);
             })
             .catch((err) => console.log(err));
     }

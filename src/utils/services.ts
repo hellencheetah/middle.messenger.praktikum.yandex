@@ -1,5 +1,7 @@
 import store from "./store";
-import {findChatInStoreById, openMenu} from "./helpers";
+import {findChatInStoreById, isArray, openMenu} from "./helpers";
+import {Message, MessageItem} from "../models/main";
+
 
 class Services {
     public onClick(event: Event): void {
@@ -14,10 +16,10 @@ class Services {
         }
     }
 
-    onMessage(event) {
+    onMessage(event: MessageEvent) {
         if (event.data) {
             const data = JSON.parse(event.data)
-            if (!Array.isArray(data)) {
+            if (!isArray(data)) {
                 this.addNewMessageToChat(data)
             } else {
                 this.saveChatMessages(data);
@@ -25,8 +27,7 @@ class Services {
         }
     }
 
-
-    private addNewMessageToChat(data): void {
+    private addNewMessageToChat(data: MessageItem): void {
         const {messages, currentUser: { id }} = store.getState();
         const message = data;
         const hours = new Date(message.time).getHours();
@@ -36,7 +37,7 @@ class Services {
         store.setState('messages', messageToSave);
     }
 
-    private saveChatMessages(messages): void {
+    private saveChatMessages(messages: Message[]): void {
         if (messages.length > 0) {
             const {currentUser: {id}} = store.getState();
             const messagesToSave = messages
@@ -57,17 +58,19 @@ class Services {
 
         store.setState('currentChat', {id: chatId, title: chatTitle});
         const socket = findChatInStoreById(chatId);
-        socket.send({
-            content: '0',
-            type: 'get old',
-        });
+        if (socket) {
+            socket.send({
+                content: '0',
+                type: 'get old',
+            });
+        }
     }
 
     private onClickFoundUser(element: HTMLElement) {
         const userId = element.dataset.id;
         const userLogin = element.dataset.login;
 
-        store.setState('userToAdd', {id: userId, login: userLogin});
+        store.setState('userToAdd', { id: userId, login: userLogin });
         openMenu('add-user-menu');
     }
 
@@ -75,8 +78,12 @@ class Services {
         const userId = element.dataset.id;
         const userLogin = element.dataset.login;
 
-        store.setState('userToDelete', {id: userId, login: userLogin});
+        store.setState('userToDelete', { id: userId, login: userLogin });
         openMenu('delete-user-menu');
+    }
+
+    public onClose() {
+        store.setState('currentChat', null);
     }
 }
 

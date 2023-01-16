@@ -1,14 +1,15 @@
 import {Props} from "./block";
 import store from "./store";
 import {IError} from "./http-transport";
+import Socket from "./web-socket";
 
 export type Indexed<T = any> = {
     [key in string]: T;
 };
 
-// function isArray(value: unknown): value is [] {
-//     return Array.isArray(value);
-// }
+function isArray(value: unknown): value is [] {
+    return Array.isArray(value);
+}
 
 // merge
 const merge = (lhs: Props, rhs: Props) => {
@@ -64,7 +65,7 @@ const setServerError = (err: IError) => {
     }, 5000)
 }
 
-const findChatInStoreById = (chatId: string) => {
+const findChatInStoreById = (chatId: string | undefined): Socket | undefined => {
     let chatSocket;
     const storeState = store.getState().sockets;
     Object.entries(storeState)
@@ -76,5 +77,5 @@ const findChatInStoreById = (chatId: string) => {
     return chatSocket;
 }
 
-export {set, merge, openMenu, closeMenu, toggleMenu, setServerError, findChatInStoreById};
+export {set, merge, openMenu, closeMenu, toggleMenu, setServerError, findChatInStoreById, isArray};
 
