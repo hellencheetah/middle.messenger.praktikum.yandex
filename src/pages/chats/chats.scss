@@ -70,6 +70,14 @@
             width: 120px;
             height: 50px;
         }
+
+        &-empty {
+            display: block;
+            text-align: center;
+            margin-bottom: 120px;
+            color: $placeholder-color;
+            padding: 0 20px;
+        }
     }
 
     &-search {
@@ -81,6 +89,7 @@
             width: 120px;
             height: 50px;
             margin-left: 10px;
+            margin-bottom: 15px;
         }
     }
 }

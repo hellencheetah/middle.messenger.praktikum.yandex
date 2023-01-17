@@ -10,7 +10,13 @@ class AuthController {
     login(data: ILoginData) {
         authService.login(data)
             .then(() => router.go('/messenger'))
-            .catch((err) => setServerError(err));
+            .catch((err) => {
+                if (err.text === 'User already in system') {
+                    router.go('/messenger');
+                } else {
+                    setServerError(err)
+                }
+            });
     }
 
     register(data: IRegistrationData) {
@@ -37,7 +43,13 @@ class AuthController {
                 store.setState('currentUser', res.response);
                 localStorage.setItem('user', JSON.stringify(res.response));
             })
-            .catch((err) => console.log(err))
+            .catch((err) => {
+                if (err.text === 'Cookie is not valid') {
+                    router.go('/')
+                } else {
+                    console.log(err)
+                }
+            })
     }
 }
 

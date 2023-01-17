@@ -58,17 +58,26 @@ export default `
                                 {{/if}}
                             </div>
 
-                        <div class="chats__main-chat">
-                              {{{messages}}}
-                        </div>
-
+                    
+                            <div class="chats__main-chat">
+                                  {{{messages}}}
+                            </div>
+                      
+                       
+                        {{#if currentChat}} 
                         <form id="message-form" class="chats__main-textarea">
                             {{{baseTextarea}}}
                             
                             {{{button}}}
                         </form>
+                        {{else}}
+                            <div class="chats__main-empty">Выберите чат из списка или создайте новый</div>
+                        {{/if}}
                     </div>
                 </div>
             </div>
+            {{#if server-error}}
+             <div class="global-error">{{{server-error}}}</div>
+            {{/if}}
         </div>
 `

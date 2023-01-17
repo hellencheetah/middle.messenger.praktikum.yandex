@@ -1,9 +1,8 @@
 import store from "../utils/store";
 import ChatsApi, {IUsersData, IChatData, IDeleteChatData} from "../api/chatsApi";
-import {closeMenu, openMenu} from "../utils/helpers";
+import {closeMenu, openMenu, setServerError} from "../utils/helpers";
 import Socket from "../utils/web-socket";
 import {Props} from "../utils/block";
-import Services from "../utils/services";
 
 const chatsService = new ChatsApi();
 
@@ -24,7 +23,6 @@ class ChatsController {
                              const userId = store.getState().currentUser.id;
                              const socket = new Socket(userId, chat.id, token);
                              store.setState(`sockets.${chat.id}`, socket);
-                             socket.message((e: MessageEvent) => Services.onMessage(e))
                          })
                  })
 
@@ -46,7 +44,13 @@ class ChatsController {
                 store.setState('currentChat', null);
                 store.setState('messages', []);
             })
-            .catch((err) => console.log(err));
+            .catch((err) => {
+                if (err.text === 'Action is not permitted') {
+                    setServerError(err)
+                } else {
+                    console.log(err)
+                }
+            });
     }
 
     addUsers(data: IUsersData) {
