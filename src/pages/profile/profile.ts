@@ -5,16 +5,14 @@ import Button from "../../components/button";
 import './profile.scss';
 import AuthController from "../../controllers/authController";
 import store, {StoreEvents} from "../../utils/store";
+import AvatarBlock from "../../components/avatarBlock";
 
 export class Profile extends Block {
     constructor() {
         AuthController.getUser();
-        store.on(StoreEvents.Updated, () => {
-            const user = store.getState().currentUser;
-            this.setProps(user); // обновили пропс
-        });
 
        const profileData = new ProfileData();
+       const avatarBlock = new AvatarBlock();
 
         const button = new Button({
             btnText: 'Logout',
@@ -28,7 +26,13 @@ export class Profile extends Block {
             }
         })
 
-        super({profileData, button });
+        super({avatarBlock, profileData, button });
+
+        store.on(StoreEvents.Updated, () => {
+            const user = store.getState().currentUser;
+            this.setProps(user); // обновили пропс
+        });
+
     }
 
     render() {

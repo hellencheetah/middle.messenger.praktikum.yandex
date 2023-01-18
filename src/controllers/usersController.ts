@@ -43,6 +43,16 @@ class UsersController {
             })
             .catch((err) => console.log(err));
     }
+
+    changeUserAvatar(data: FormData) {
+        usersService.changeUserAvatar(data)
+            .then(() => {
+                AuthController.getUser();
+                router.go('/settings');
+            })
+            .catch((err) => console.log(err));
+    }
+
 }
 
 export default new UsersController();

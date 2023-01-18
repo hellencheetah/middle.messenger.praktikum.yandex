@@ -28,4 +28,8 @@ export default class UserApi {
     findUserByLogin(data: IFindUserData) {
         return instance.post('/search', data);
     }
+
+    changeUserAvatar(data: FormData) {
+        return instance.put('/profile/avatar', data);
+    }
 }

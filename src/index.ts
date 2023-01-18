@@ -6,6 +6,7 @@ import { Profile } from "./pages/profile/profile";
 import { Page500 } from "./pages/page5/page5";
 import { EditProfile } from "./pages/edit-profile/edit-profile";
 import { EditPassword } from "./pages/edit-password/edit-password";
+import { EditAvatar } from "./pages/edit-avatar/edit-avatar";
 import { Page404 } from "./pages/page404/page404";
 import router from "./utils/router/router";
 
@@ -20,6 +21,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         .use('/page500', Page500, {})
         .use('/edit-profile', EditProfile, {})
         .use('/edit-password', EditPassword, {})
+        .use('/edit-avatar', EditAvatar, {})
         .use('*', Page404, {})
         .start()
 });

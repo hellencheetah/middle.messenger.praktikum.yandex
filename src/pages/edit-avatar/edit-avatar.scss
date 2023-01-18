@@ -1,0 +1,27 @@
+@import '../../styles/constants.scss';
+
+.edit-avatar {
+
+  &-inner {
+    display: flex;
+    justify-content: center;
+    background-color: $white;
+    min-height: 520px;
+    width: 800px;
+    border-radius: $block-border-radius;
+    box-shadow: $block-box-shadow;
+    box-sizing: border-box;
+    padding: 82px 0;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__btn {
+    width: 210px;
+    height: 50px;
+    margin: 30px auto 0;
+  }
+}

@@ -3,7 +3,9 @@ export default `
        <div class="container container--auth">
              <div class="profile-inner">
                    <div class="profile-wrapper">
-                       <div class="profile__avatar"></div>
+            
+                      {{{avatarBlock}}}
+                       <a href="/edit-avatar" class="profile__options-link">Change avatar</a>
 
                         <div class="profile__data">
                             {{{profileData}}}
