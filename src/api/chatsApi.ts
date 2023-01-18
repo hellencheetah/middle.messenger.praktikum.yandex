@@ -48,4 +48,8 @@ export default class ChatsApi {
     getChatUsers(id: number) {
         return instance.get(`/${id}/users`);
     }
+
+    changeChatAvatar(data: FormData) {
+        return instance.put(`/avatar`, data);
+    }
 }

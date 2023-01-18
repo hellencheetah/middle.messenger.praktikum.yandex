@@ -21,8 +21,15 @@ export default `
                                             data-id="{{id}}" 
                                             data-value="chat-item" 
                                             data-title="{{title}}"
+                                            data-avatar="{{avatar}}"
                                         >
-                                            <div class="contact__image"></div>
+                                            <div class="contact__image">
+                                                {{#if avatar}}
+                                                      <img src="https://ya-praktikum.tech/api/v2/resources{{ avatar }}" class="contact__image-item">   
+                                                     {{else}}
+                                                       <div class="contact__image-empty"></div>
+                                                 {{/if}}
+                                            </div>
                                             <div class="contact__text">{{title}}</div>
                                             {{#if show-unread}}
                                                 <span class="contact__unread"></span>
@@ -39,7 +46,13 @@ export default `
                         <div class="active-contact {{#if currentChat}}active-contact--bordered{{/if}}">
                         {{#if currentChat}}
                                 <div class="active-contact__main">
-                                    <div class="active-contact__image"></div> 
+                                    <div class="active-contact__image">
+                                        {{#if currentChat.avatar}}
+                                            <img src="https://ya-praktikum.tech/api/v2/resources{{ currentChat.avatar }}" class="active-contact__image-item">   
+                                            {{else}}
+                                             <div class="active-contact__image-empty"></div>
+                                         {{/if}}
+                                    </div> 
                                     <div class="active-contact__name">
                                         {{currentChat.title}}
                                     </div>
@@ -47,11 +60,12 @@ export default `
                                 
                                 
                                 <div class="active-contact__options">
+                                    {{{buttonAddImage}}}
                                     {{{buttonDeleteChatMenu}}}
                                     {{{buttonAddUserMenu}}}
                                     {{{buttonDeleteUserMenu}}}
                                     
-                                    
+                                    {{{addChatImage}}}
                                      {{{addUserMenu}}}
                                      {{{deleteUserMenu}}}
                                 </div>

@@ -90,6 +90,16 @@ class ChatsController {
             })
             .catch((err) => console.log(err));
     }
+
+    changeChatAvatar(data: FormData) {
+       chatsService.changeChatAvatar(data)
+           .then((res: XMLHttpRequest) => {
+               const currentChat = store.getState().currentChat;
+               store.setState('currentChat', {...currentChat, avatar: res.response.avatar});
+               this.getAllChats();
+           })
+           .catch((err) => console.log(err))
+    }
 }
 
 export default new ChatsController();

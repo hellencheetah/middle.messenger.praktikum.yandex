@@ -10,8 +10,9 @@ class Services {
         if (element.dataset.value === 'chat-item') {
             const chatId = element.dataset.id;
             const chatTitle = element.dataset.title;
+            const chatAvatar = element.dataset.avatar;
 
-            store.setState('currentChat', {id: chatId, title: chatTitle});
+            store.setState('currentChat', {id: chatId, title: chatTitle, avatar: chatAvatar});
             const socket = findChatInStoreById(chatId);
             if (socket) {
                 socket.send({

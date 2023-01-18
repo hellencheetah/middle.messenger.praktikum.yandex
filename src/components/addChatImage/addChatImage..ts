@@ -1,24 +1,25 @@
-import template from './edit-avatar.template';
+import template from './addChatImage..template';
 import Block from '../../utils/block';
-import './edit-avatar.scss';
-import Button from "../../components/button";
+import './addChatImage.scss';
+import Button from "../button";
 import store, {StoreEvents} from "../../utils/store";
-import UsersController from "../../controllers/usersController";
+import Services from "../../utils/services";
+import ChatsController from "../../controllers/chatsController";
 
-export class EditAvatar extends Block {
+
+export class AddChatImage extends Block {
     constructor() {
 
-        const button = new Button({
+        const button: Block = new Button({
             btnText: 'Save',
-            btnClass: 'edit-avatar__btn',
-            btnType: 'submit',
+            btnType: 'button',
+            btnClass: 'add-user-menu__btn',
             events: {
-                click: (e: Event) => {
-                    e.preventDefault();
-                    const err = document.getElementById('avatar-error') as HTMLElement;
+                click: () => {
+                    const err = document.getElementById('image-error') as HTMLElement;
                     err.innerHTML = '';
                     const permittedFileTypes = ['jpg', 'jpeg', 'png'];
-                    const file = document.getElementById('avatar') as any;
+                    const file = document.getElementById('chat-image') as any;
                     if (!file || !file.files.length) return;
 
                     const fileName = file.files[0].name.toLowerCase();
@@ -27,14 +28,21 @@ export class EditAvatar extends Block {
                         err.innerHTML = 'Допустимы только файлы jpg, jpeg или png';
                         return;
                     }
+                    const chatId = store.getState().currentChat.id;
                     const formData = new FormData();
                     formData.append('avatar', file.files[0]);
-                    UsersController.changeUserAvatar(formData);
+                    formData.append('chatId', chatId);
+                    ChatsController.changeChatAvatar(formData);
                 }
             }
         });
 
-        super({ button });
+        super({
+            button,
+            events: {
+                click: Services.onClick,
+            }
+        });
 
         store.on(StoreEvents.Updated, () => {
             this.setProps(store.getState());

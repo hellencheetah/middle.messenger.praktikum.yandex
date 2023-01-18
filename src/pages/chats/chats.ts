@@ -14,6 +14,7 @@ import AddUserMenu from "../../components/addUserMenu";
 import DeleteUserMenu from "../../components/deleteUserMenu";
 import {findChatInStoreById, toggleMenu} from "../../utils/helpers";
 import AuthController from "../../controllers/authController";
+import AddChatImage from "../../components/addChatImage";
 
 
 export class Chats extends Block {
@@ -93,6 +94,17 @@ export class Chats extends Block {
             }
         });
 
+        const buttonAddImage: Block = new Button({
+            btnText: 'Add chat image',
+            btnType: 'button',
+            btnClass: 'active-contact__options-btn',
+            events: {
+                click: () => {
+                    toggleMenu('add-chat-image');
+                }
+            }
+        });
+
         const buttonAddUserMenu: Block = new Button({
             btnText: 'Add user',
             btnType: 'button',
@@ -118,6 +130,7 @@ export class Chats extends Block {
         const messages: Block = new Messages({})
         const addUserMenu: Block = new AddUserMenu();
         const deleteUserMenu: Block = new DeleteUserMenu();
+        const addChatImage: Block = new AddChatImage();
 
 
         super({
@@ -126,10 +139,12 @@ export class Chats extends Block {
             buttonCreate,
             messages,
             baseTextarea,
+            buttonAddImage,
             buttonDeleteChatMenu,
             buttonAddUserMenu,
             buttonDeleteUserMenu,
             addUserMenu,
+            addChatImage,
             deleteUserMenu,
             events: {
                 click: (e: Event) => Services.onClick(e),
