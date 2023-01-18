@@ -21,9 +21,7 @@ export default class Socket {
 
     private initSocket() {
         this.socket.addEventListener('open', this.open.bind(this));
-        this.socket.addEventListener('close', this.close.bind(this));
         this.socket.addEventListener('message', this.message.bind(this));
-        this.socket.addEventListener('error', this.error.bind(this));
     }
 
     public send(data: any): void {
@@ -38,13 +36,5 @@ export default class Socket {
         Services.onMessage(event);
     }
 
-    private close(event: CloseEvent): void {
-        console.log('Closed', event);
-        Services.onClose();
-    }
-
-    private error(event: ErrorEvent): void {
-        console.log('Error', event);
-    }
 }
 
