@@ -19,16 +19,16 @@ export interface IError {
 
 type HTTPMethod = (url: string, data?: unknown, headers?: Record<string, string>) => Promise<unknown>
 
-// function queryStringify(data: any) {
-//     if (typeof data !== 'object') {
-//         throw new Error('Data must be object');
-//     }
-//
-//     const keys = Object.keys(data);
-//     return keys.reduce((result, key, index) => {
-//         return `${result}${key}=${data[key]}${index < keys.length - 1 ? '&' : ''}`;
-//     }, '?');
-// }
+function queryStringify(data: any) {
+    if (typeof data !== 'object') {
+        throw new Error('Data must be object');
+    }
+
+    const keys = Object.keys(data);
+    return keys.reduce((result, key, index) => {
+        return `${result}${key}=${data[key]}${index < keys.length - 1 ? '&' : ''}`;
+    }, '?');
+}
 
 class HTTPTransport {
 
@@ -66,11 +66,15 @@ class HTTPTransport {
             }
 
             const xhr = new XMLHttpRequest();
-            xhr.open(method, url);
+            const isGet = method === Methods.GET;
+
+            xhr.open(method, isGet && !!data ? `${url}${queryStringify(data)}` : url);
 
             Object.keys(headers).forEach(key => {
                 xhr.setRequestHeader(key, headers[key]);
             });
+
+
 
             xhr.setRequestHeader('Accept', 'application/json');
             xhr.withCredentials = true;
