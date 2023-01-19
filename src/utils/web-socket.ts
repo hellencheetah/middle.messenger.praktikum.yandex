@@ -29,11 +29,17 @@ export default class Socket {
     }
 
     private open(): void {
-        console.log('Opened');
+        this.pingPong();
     }
 
     public message(event: MessageEvent) {
         Services.onMessage(event);
+    }
+
+    private pingPong() {
+        setInterval(() => {
+            this.send({ type: 'ping' })
+        }, 20000);
     }
 
 }

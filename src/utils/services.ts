@@ -47,6 +47,7 @@ class Services {
     }
 
     private addNewMessageToChat(data: MessageItem): void {
+        if (data.type !== 'message') return;
         const {messages, currentUser: { id }} = store.getState();
         const message = data;
         const time = new Date(message.time).toLocaleTimeString().slice(0, 5)
