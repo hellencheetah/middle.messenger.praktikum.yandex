@@ -3,38 +3,16 @@ import Block from '../../utils/block';
 import ProfileData from "../../components/profileData";
 import Button from "../../components/button";
 import './profile.scss';
+import AuthController from "../../controllers/authController";
+import store, {StoreEvents} from "../../utils/store";
+import AvatarBlock from "../../components/avatarBlock";
 
 export class Profile extends Block {
     constructor() {
+        AuthController.getUser();
 
-        const data = [
-            {
-                field: 'Email',
-                value: 'innovv@mail.ru',
-            },
-            {
-                field: 'Login',
-                value: 'ivvann',
-            },
-            {
-                field: 'Firstname',
-                value: 'Ivan',
-            },
-            {
-                field: 'Lastname',
-                value: 'Ivanov',
-            },
-            {
-                field: 'Nickname',
-                value: 'Ivvann',
-            },
-            {
-                field: 'Phone',
-                value: '+7 (909) 765 12 34',
-            },
-        ]
-
-        const profileData = new ProfileData({ data })
+       const profileData = new ProfileData();
+       const avatarBlock = new AvatarBlock();
 
         const button = new Button({
             btnText: 'Logout',
@@ -42,12 +20,19 @@ export class Profile extends Block {
             btnType: 'button',
             events: {
                 click: (e: Event) => {
-                    console.log(e)
+                    e.preventDefault();
+                    AuthController.logout();
                 }
             }
         })
 
-        super({profileData, button });
+        super({avatarBlock, profileData, button });
+
+        store.on(StoreEvents.Updated, () => {
+            const user = store.getState().currentUser;
+            this.setProps(user); // обновили пропс
+        });
+
     }
 
     render() {

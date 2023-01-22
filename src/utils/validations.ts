@@ -5,7 +5,10 @@ export enum ValidateRuleType {
     Firstname = 'first_name',
     Lastname = 'second_name',
     Phone = 'phone',
-    Message = 'message'
+    Message = 'message',
+    DisplayName = 'display_name',
+    OldPassword = 'oldPassword',
+    NewPassword = 'newPassword',
 }
 
 export enum FormValidityType {
@@ -40,6 +43,11 @@ const validations: Record<string, ValidatationItem> = {
         message: 'Логин должен быть от 3 до 20 символов, латиница, может содержать цифры, но не состоять из них, без пробелов, без спецсимволов',
         msg: 'Введите корректный логин',
     },
+    display_name: {
+        regex: /^(?=.*[a-zA-Z])([a-zA-Z0-9-_]){3,20}$/,
+        message: 'Логин должен быть от 3 до 20 символов, латиница, может содержать цифры, но не состоять из них, без пробелов, без спецсимволов',
+        msg: 'Введите корректный никнейм',
+    },
     email: {
         regex: /^([\w.-])+@([\w.-])+\.([A-Za-z]{2,4})$/,
         message: 'Введите корректный email',
@@ -50,6 +58,16 @@ const validations: Record<string, ValidatationItem> = {
         message: 'Пароль должен быть от 8 до 40 символов, хотя бы одна заглавная буква и цифра.',
         msg: 'Пароль слишком простой',
     },
+    newPassword: {
+        regex: /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,40}$/,
+        message: 'Пароль должен быть от 8 до 40 символов, хотя бы одна заглавная буква и цифра.',
+        msg: 'Пароль слишком простой',
+    },
+    oldPassword: {
+        regex: /^[-\s]+(\s+[-\s]+)*$/,
+        message: 'Поле обязательно для заполнения',
+        msg: 'Поле обязательно для заполнения',
+    },
     phone: {
         regex: /^[+-d]?\d{10,15}$/,
         message: 'Телефон должен быть от 10 до 15 символов, состоять из цифр, может начинаться с плюса.',
@@ -58,7 +76,7 @@ const validations: Record<string, ValidatationItem> = {
 };
 
 export function validateForm (type: string, value: string) {
-    if (type === ValidateRuleType.Message) {
+    if (type === ValidateRuleType.Message || type === ValidateRuleType.OldPassword) {
         return validateMessageField(value);
     }
     let error = '';
@@ -74,13 +92,17 @@ export function validateForm (type: string, value: string) {
 
 export function validateFullForm(formId: string) {
     // Получаем форму в виде объекта
-    const form: Record<string, string> = getDataFromForm(formId);
+    const form = getDataFromForm(formId);
 
     // Создаем объект ошибок
     const errorsObject: Record<string, string> = {}
     const formKeys = Object.keys(form);
     formKeys.forEach(key => {
-        errorsObject[key] = validateForm(key, form[key])
+        if (key === 'confirmPassword') {
+            errorsObject[key] = validateConfirmPassword(form);
+        } else {
+            errorsObject[key] = validateForm(key, form[key])
+        }
     })
 
     // Устанавливаем ошибки в соответствующие блоки
@@ -107,10 +129,18 @@ function validateMessageField(value: string) {
     return '';
 }
 
+function validateConfirmPassword (form: Record<string, string>) {
+    const { newPassword, confirmPassword } = form;
+    if (newPassword !== confirmPassword) {
+        return 'Пароли не совпадают';
+    }
+    return ''
+}
+
 export function getDataFromForm(formId: string) {
     const formElement = document.getElementById(formId) as HTMLFormElement;
     const formData = new FormData(formElement);
-    let form = {};
+    let form: any = {};
     for (let [key, value] of formData.entries()) {
         form[key] = value;
     }

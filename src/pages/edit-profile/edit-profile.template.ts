@@ -9,6 +9,7 @@ export default `
                 {{#each form}}
                    {{{this}}}
                 {{/each}}
+             
             </div>
             
 
@@ -17,4 +18,7 @@ export default `
         </div>
     </div>
 </div>
+{{#if server-error}}
+      <div class="global-error">{{{server-error}}}</div>
+{{/if}}
 `

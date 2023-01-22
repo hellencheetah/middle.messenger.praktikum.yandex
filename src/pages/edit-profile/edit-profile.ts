@@ -5,10 +5,20 @@ import Button from "../../components/button";
 import BaseInput from "../../components/baseInput";
 import {validateFullForm, ValidateRuleType} from "../../utils/validations";
 import {onBlur, onFocus} from "../../helpers/events";
+import store, {StoreEvents} from "../../utils/store";
+import UsersController from "../../controllers/usersController";
+
 
 
 export class EditProfile extends Block {
     constructor() {
+        const userFormStorage = localStorage.getItem('user');
+        let user;
+        if (userFormStorage) {
+            user = JSON.parse(userFormStorage);
+        }
+
+
         const button = new Button({
             btnText: 'Save',
             btnClass: 'edit-profile__btn',
@@ -19,8 +29,7 @@ export class EditProfile extends Block {
                     e.preventDefault();
                     const result = validateFullForm('edit-profile-form');
                     if (result !== 'invalid') {
-                        // api
-                        console.log(result)
+                        UsersController.changeUserProfile(result);
                     }
                 }
             }
@@ -32,6 +41,7 @@ export class EditProfile extends Block {
                 inputLabel: 'Email',
                 inputType: 'text',
                 inputName: 'email',
+                inputValue: user.email,
                 inputModifier: 'form-control--with-label',
                 errorId: 'email_error',
                 events: {
@@ -47,6 +57,7 @@ export class EditProfile extends Block {
                 inputPlaceholder: 'Login',
                 inputLabel: 'Login',
                 inputType: 'text',
+                inputValue: user.login,
                 inputModifier: 'form-control--with-label',
                 inputName: 'login',
                 errorId: 'login_error',
@@ -63,6 +74,7 @@ export class EditProfile extends Block {
                 inputPlaceholder: 'Firstname',
                 inputLabel: 'Firstname',
                 inputType: 'text',
+                inputValue: user.first_name,
                 inputName: 'first_name',
                 inputModifier: 'form-control--with-label',
                 errorId: 'first_name_error',
@@ -80,6 +92,7 @@ export class EditProfile extends Block {
                 inputLabel: 'Lastname',
                 inputType: 'text',
                 inputName: 'second_name',
+                inputValue: user.second_name,
                 inputModifier: 'form-control--with-label',
                 errorId: 'second_name_error',
                 events: {
@@ -91,31 +104,30 @@ export class EditProfile extends Block {
                     }
                 }
             }),
-            // new BaseInput({
-            //     inputPlaceholder: 'Nickname',
-            //     inputLabel: 'Nickname',
-            //     inputType: 'text',
-            //     inputName: 'display_name',
-            //     inputError: '',
-            //     inputModifier: 'form-control--with-label',
-            //     errorId: 'display_name_error',
-            //     events: {
-            //         blur: e => {
-            //             let error = validateForm('', e.target.value);
-            //             const err = document.getElementById('display_name_error');
-            //             err.innerHTML = error;
-            //         },
-            //         focus: e => {
-            //             const err = document.getElementById('display_name_error');
-            //             err.innerHTML = '';
-            //         }
-            //     }
-            // }),
+            new BaseInput({
+                inputPlaceholder: 'Nickname',
+                inputLabel: 'Nickname',
+                inputType: 'text',
+                inputName: 'display_name',
+                inputError: '',
+                inputValue: user.display_name,
+                inputModifier: 'form-control--with-label',
+                errorId: 'display_name_error',
+                events: {
+                    blur: (e: FocusEvent) => {
+                        onBlur(e, ValidateRuleType.DisplayName);
+                    },
+                    focus: () => {
+                        onFocus(ValidateRuleType.DisplayName);
+                    }
+                }
+            }),
             new BaseInput({
                 inputPlaceholder: 'Phone',
                 inputLabel: 'Phone',
                 inputType: 'text',
                 inputName: 'phone',
+                inputValue: user.phone,
                 inputModifier: 'form-control--with-label',
                 errorId: 'phone_error',
                 events: {
@@ -130,6 +142,10 @@ export class EditProfile extends Block {
         ]
 
         super({ form, button });
+
+        store.on(StoreEvents.Updated, () => {
+            this.setProps(store.getState());
+        });
     }
 
     render() {

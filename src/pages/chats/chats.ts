@@ -2,58 +2,51 @@ import template from './chats.template';
 import Block from '../../utils/block';
 import './chats.scss';
 import Button from "../../components/button";
-import Contact from "../../components/contact";
 import Messages from "../../components/messages";
-import ActiveContact from "../../components/activeContact";
 import BaseTextarea from "../../components/baseTextarea";
-import {validateFullForm, ValidateRuleType} from "../../utils/validations";
+import {getDataFromForm, validateFullForm, ValidateRuleType} from "../../utils/validations";
 import {onFocus} from "../../helpers/events";
+import BaseInput from "../../components/baseInput";
+import ChatsController from "../../controllers/chatsController";
+import store, {StoreEvents} from "../../utils/store";
+import Services from "../../utils/services";
+import AddUserMenu from "../../components/addUserMenu";
+import DeleteUserMenu from "../../components/deleteUserMenu";
+import {findChatInStoreById, toggleMenu} from "../../utils/helpers";
+import AuthController from "../../controllers/authController";
+import AddChatImage from "../../components/addChatImage";
+
 
 export class Chats extends Block {
     constructor() {
+        ChatsController.getAllChats();
+        AuthController.getUser();
 
-        const contacts: Block[] = [
-            new Contact({
-                id: '1',
-                name: 'Ivan Ivanov',
-                events: {
-                    click: (e: Event) => {
-                        console.log(e)
-                    }
-                }
-            }),
-            new Contact({
-                id: '2',
-                name: 'Petr Petrov',
-                events: {
-                    click: (e: Event) => {
-                        console.log(e)
-                    }
-                }
-            }),
-        ]
 
-        const messagesData = [
-            {
-                id: '1',
-                text: 'Great!',
-                time: '12.10',
-                my: true,
-            },
-            {
-                id: '2',
-                text: 'Thank you, how are you?',
-                time: '12:20',
-                my: false,
+        const inputNewChat = new BaseInput({
+            inputPlaceholder: 'Title',
+            inputType: 'text',
+            inputName: 'title',
+            errorId: 'title_error',
+            events: {}
+        })
+
+        const buttonCreate = new Button({
+            btnText: 'Create',
+            btnType: 'submit',
+            btnClass: 'chats-search__btn',
+            events: {
+                click: (e: Event) => {
+                    e.preventDefault();
+                    const form = getDataFromForm('add-chat-form');
+                    ChatsController.createNewChat(form);
+                }
             }
-        ]
+        });
 
         const baseTextarea: Block = new BaseTextarea({
             textareaErrorId: 'message_error',
             events: {
-                blur: () => {
-                    //onBlur(e, ValidateRuleType.Message);
-                },
                 focus: () => {
                     onFocus(ValidateRuleType.Message);
                 }
@@ -71,20 +64,96 @@ export class Chats extends Block {
 
                     if (result !== 'invalid') {
                         // api
-                        console.log(result)
+                        const chat = store.getState().currentChat;
+                        const chatId = chat.id;
+                        const socket = findChatInStoreById(chatId);
+                        const textarea = document.getElementById('textarea') as HTMLInputElement;
+                        textarea.value = '';
+                        if (socket) {
+                            socket.send({
+                                type: 'message',
+                                content: result.message,
+                            })
+                        }
                     }
                 }
             }
         });
 
-        const messages: Block = new Messages({messagesData})
+        const buttonDeleteChatMenu: Block = new Button({
+            btnText: 'Delete chat',
+            btnType: 'button',
+            btnClass: 'active-contact__options-btn',
+            events: {
+                click: () => {
+                    if (window.confirm('Do you really want to delete this chat?')) {
+                        const chatId = store.getState().currentChat.id;
+                        ChatsController.deleteChatById({ chatId });
+                    }
+                }
+            }
+        });
 
-        // @ts-ignore
-        const activeContact =  new ActiveContact({
-            name: 'Ivan Ivanov',
-        })
+        const buttonAddImage: Block = new Button({
+            btnText: 'Add chat image',
+            btnType: 'button',
+            btnClass: 'active-contact__options-btn',
+            events: {
+                click: () => {
+                    toggleMenu('add-chat-image');
+                }
+            }
+        });
 
-        super({ button, contacts, messages, baseTextarea, activeContact });
+        const buttonAddUserMenu: Block = new Button({
+            btnText: 'Add user',
+            btnType: 'button',
+            btnClass: 'active-contact__options-btn',
+            events: {
+                click: () => {
+                    toggleMenu('add-user-menu');
+                }
+            }
+        });
+
+        const buttonDeleteUserMenu: Block = new Button({
+            btnText: 'Delete user',
+            btnType: 'button',
+            btnClass: 'active-contact__options-btn',
+            events: {
+                click: () => {
+                    toggleMenu('delete-user-menu');
+                }
+            }
+        });
+
+        const messages: Block = new Messages({})
+        const addUserMenu: Block = new AddUserMenu();
+        const deleteUserMenu: Block = new DeleteUserMenu();
+        const addChatImage: Block = new AddChatImage();
+
+
+        super({
+            button,
+            inputNewChat,
+            buttonCreate,
+            messages,
+            baseTextarea,
+            buttonAddImage,
+            buttonDeleteChatMenu,
+            buttonAddUserMenu,
+            buttonDeleteUserMenu,
+            addUserMenu,
+            addChatImage,
+            deleteUserMenu,
+            events: {
+                click: (e: Event) => Services.onClick(e),
+            },
+        });
+
+        store.on(StoreEvents.Updated, () => {
+            this.setProps(store.getState());
+        });
     }
 
     render() {

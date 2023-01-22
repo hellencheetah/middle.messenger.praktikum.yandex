@@ -6,6 +6,7 @@ export interface InputProps {
     inputName: string;
     inputPlaceholder: string;
     inputType: string;
+    inputValue?: string|number;
     events?: {
         blur?: (e: Event) => void;
         focus?: (e: Event) => void;

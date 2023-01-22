@@ -1,28 +1,27 @@
 import './styles/main.scss';
-import { renderDom } from "./utils/renderDom";
-import Menu  from "./components/menu";
-const Main = new Menu({});
+import Login from "./pages/login";
+import { Registration } from "./pages/registration/registration";
+import { Chats } from "./pages/chats/chats";
+import { Profile } from "./pages/profile/profile";
+import { Page500 } from "./pages/page5/page5";
+import { EditProfile } from "./pages/edit-profile/edit-profile";
+import { EditPassword } from "./pages/edit-password/edit-password";
+import { EditAvatar } from "./pages/edit-avatar/edit-avatar";
+import { Page404 } from "./pages/page404/page404";
+import router from "./utils/router/router";
 
-document.addEventListener("DOMContentLoaded", () => {
-    renderDom("#app", Main);
+
+
+document.addEventListener('DOMContentLoaded', async () => {
+    router
+        .use('/', Login, {})
+        .use('/sign-up', Registration, {})
+        .use('/messenger', Chats, {})
+        .use('/settings', Profile, {})
+        .use('/page500', Page500, {})
+        .use('/edit-profile', EditProfile, {})
+        .use('/edit-password', EditPassword, {})
+        .use('/edit-avatar', EditAvatar, {})
+        .use('*', Page404, {})
+        .start()
 });
-
-// if (window.location.pathname === '/') {
-//     renderDom("#app", Main);
-// } else if (window.location.pathname === '/login') {
-//     renderDom("#app", LoginPage);
-// } else if (window.location.pathname === '/registration') {
-//     renderDom("#app", RegistrationPage);
-// } else if (window.location.pathname === '/chats') {
-//     renderDom("#app", ChatsPage);
-// } else if (window.location.pathname === '/page5') {
-//     renderDom("#app", Page5);
-// } else if (window.location.pathname === '/page404') {
-//     renderDom("#app", Page4);
-// } else if (window.location.pathname === '/profile') {
-//     renderDom("#app", ProfilePage);
-// } else if (window.location.pathname === '/edit-password') {
-//     renderDom("#app", EditPasswordPage);
-// } else if (window.location.pathname === '/edit-profile') {
-//     renderDom("#app", EditProfilePage);
-// }

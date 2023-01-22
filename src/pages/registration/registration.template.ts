@@ -15,9 +15,12 @@ export default `
                     </form>
 
                     <div class="registration-form__items-text">
-                        You have an account? You can <a href="../login/login.hbs" class="link">sign in</a>
+                        You have an account? You can <a href="/" class="link">sign in</a>
                     </div>
                 </div
             </div>
         </div>
+        {{#if server-error}}
+            <div class="global-error">{{{server-error}}}</div>
+        {{/if}}
 `

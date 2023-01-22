@@ -23,6 +23,7 @@ export class BaseInput extends Block {
             inputName: props.inputName,
             inputPlaceholder: props.inputPlaceholder,
             inputType: props.inputType,
+            inputValue: props.inputValue,
             events: props.events,
         })
         super({ input, ...props });

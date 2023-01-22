@@ -43,3 +43,21 @@ a {
   font-weight: 600;
   cursor: pointer;
 }
+
+.global-error {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 50px;
+    right: 50px;
+    width: 300px;
+    min-height: 70px;
+    transition: 1s;
+    background: $error-color;
+    color: $white;
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding: 20px;
+
+}

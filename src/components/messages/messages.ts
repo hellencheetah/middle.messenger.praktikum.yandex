@@ -3,6 +3,7 @@ import Block, {Props} from '../../utils/block';
 import './messages.scss';
 import Message from "../message";
 import {MessageProps} from "../message/message";
+import store, {StoreEvents} from "../../utils/store";
 
 export interface MessagesProps {
     messagesData: MessageProps[];
@@ -10,14 +11,16 @@ export interface MessagesProps {
 
 export class Messages extends Block {
     constructor(props: Props) {
-        const messages = props.messagesData.map((p: Block) => {
-            return new Message(p);
-        })
 
-        super({ messages, ...props });
+        super({ ...props });
+
+        store.on(StoreEvents.Updated, () => {
+            this.setProps(store.getState());
+        });
     }
 
     render() {
         return this.compile(template, {...this.props});
     }
+
 }
