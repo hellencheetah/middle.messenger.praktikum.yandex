@@ -15,7 +15,6 @@ class Block {
     public id = uuidv4();
 
     private _element: HTMLElement;
-    private _meta = null;
     private eventBus: EventBus;
     protected props: Props;
     protected children: any;
@@ -26,7 +25,6 @@ class Block {
         const { props, children } = this.getChildren(propsAndChildren);
         this.children = children;
         this.initChildrenComponents();
-        this._meta = {props};
         this.props = this._makePropsProxy(props);
         this.eventBus = new EventBus();
         this._registerEvents(this.eventBus);
@@ -34,8 +32,8 @@ class Block {
     }
 
     getChildren(propsAndChildren: any) {
-        const children = {};
-        const props = {};
+        const children: any = {};
+        const props: Props = {};
 
         Object.entries(propsAndChildren).map(([key, value]) => {
             if (value instanceof Block) {
@@ -81,11 +79,13 @@ class Block {
         }
     }
 
-    componentDidUpdate(oldProps, newProps) {
+
+    componentDidUpdate(oldProps: any, newProps: any) {
+        console.log(oldProps,newProps)
         return true;
     }
 
-    setProps = (nextProps) => {
+    setProps = (nextProps: any) => {
         if (!nextProps) {
             return;
         }
@@ -131,6 +131,7 @@ class Block {
                 return;
             }
 
+            // @ts-ignore
             props[key] = `<div data-id="id-${child.id}"></div>`;
         });
 
@@ -139,7 +140,9 @@ class Block {
 
         Object.entries(this.children).forEach(([key, child]) => {
             if (Array.isArray(child)) {
+                console.log(key)
                 child.forEach(ch => {
+                    // @ts-ignore
                     const stub = fragment.content.querySelector(`[data-id="id-${ch.id}"]`);
                     if (!stub) {
                         return;
@@ -148,14 +151,17 @@ class Block {
                 })
             }
 
+            // @ts-ignore
             const stub = fragment.content.querySelector(`[data-id="id-${child.id}"]`);
 
             if (!stub) {
                 return;
             }
+            // @ts-ignore
             stub.replaceWith(child.getContent()!);
         });
 
+        // @ts-ignore
         return fragment.content;
     }
 
@@ -211,7 +217,7 @@ class Block {
         });
     }
 
-    _createDocumentElement(tagName) {
+    _createDocumentElement(tagName: string) {
         return document.createElement(tagName);
     }
 

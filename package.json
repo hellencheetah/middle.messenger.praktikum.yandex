@@ -9,9 +9,9 @@
     "types": false
   },
   "scripts": {
-    "build": "parcel build src/index.html",
-    "dev": "parcel src/index.html",
-    "start": "npm run build && node server/app.js"
+    "build": "webpack --mode production",
+    "dev": "webpack serve --mode development",
+    "server": "node server/app.js"
   },
   "alias": {
     "components": "./src/components",
@@ -34,22 +34,33 @@
   "devDependencies": {
     "@anikin/parcel-transformer-handlebars": "1.0.9",
     "@parcel/transformer-sass": "2.8.0",
+    "@types/uuid": "9.0.0",
     "@typescript-eslint/eslint-plugin": "5.46.0",
     "@typescript-eslint/parser": "5.46.0",
+    "css-loader": "6.7.3",
     "eslint": "8.29.0",
     "events": "3.3.0",
+    "file-loader": "^6.2.0",
+    "handlebars-loader": "1.7.3",
+    "html-webpack-plugin": "5.5.0",
+    "mini-css-extract-plugin": "2.7.2",
     "parcel": "2.8.0",
     "sass": "1.56.1",
+    "sass-loader": "13.2.0",
     "stylelint": "14.16.0",
     "stylelint-config-standard": "29.0.0",
+    "ts-loader": "9.4.2",
     "ts-node": "10.9.1",
-    "typescript": "4.9.4"
+    "typescript": "4.9.4",
+    "webpack": "5.75.0",
+    "webpack-cli": "5.0.1",
+    "webpack-dev-server": "4.11.1"
   },
   "dependencies": {
-    "chai": "^4.3.7",
+    "chai": "4.3.7",
     "express": "4.18.2",
     "handlebars": "4.7.7",
-    "mocha": "^10.2.0",
+    "mocha": "10.2.0",
     "uuid": "9.0.0"
   }
 }

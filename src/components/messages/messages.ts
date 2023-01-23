@@ -1,7 +1,6 @@
 import template from './messages.template';
 import Block, {Props} from '../../utils/block';
 import './messages.scss';
-import Message from "../message";
 import {MessageProps} from "../message/message";
 import store, {StoreEvents} from "../../utils/store";
 
