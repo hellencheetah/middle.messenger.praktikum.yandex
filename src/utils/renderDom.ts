@@ -1,4 +1,4 @@
-import Block from "./Block";
+import Block from "./block";
 
 export function renderDom(query: string, component: Block){
 
