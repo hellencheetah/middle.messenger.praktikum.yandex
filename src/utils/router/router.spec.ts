@@ -50,13 +50,12 @@ describe('Router', () => {
 
     it('Check routing', () => {
         router
-            .use('/1', TestBlock_1, {})
+            .use('/', TestBlock_1, {})
             .use('/2', TestBlock_2, {})
             .start();
         router.go('/2');
-        console.log(window.history)
         // @ts-ignore
-        expect(window.location.pathname).to.equal('/2');
+        expect(router.getCurrentRoute()._pathname).to.equal('/2');
     });
 
 });
