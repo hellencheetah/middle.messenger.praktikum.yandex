@@ -1,6 +1,6 @@
 import { JSDOM } from 'jsdom';
 import { expect } from 'chai';
-import router from './Router';
+import router from './router';
 
 class TestBlock_1 {
    getContent() {
