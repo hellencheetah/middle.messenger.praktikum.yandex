@@ -43,12 +43,12 @@ const dom = new JSDOM(`
 
 describe('Router', () => {
 
-    it('Check component', () => {
+    it('should there be an element', () => {
         router.use('/', TestBlock_1, {}).start();
         expect(document.getElementById('my-component-1')).not.to.be.null;
     });
 
-    it('Check routing', () => {
+    it('should go to right path', () => {
         router
             .use('/', TestBlock_1, {})
             .use('/2', TestBlock_2, {})
