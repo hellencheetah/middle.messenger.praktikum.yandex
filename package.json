@@ -12,6 +12,7 @@
     "build": "webpack --mode production",
     "dev": "webpack serve --mode development",
     "server": "node server/app.js",
+    "start": "node server/app.js",
     "test": "./node_modules/.bin/mocha --require ts-node/register --require test.js",
     "lint": "eslint . --fix"
   },
