@@ -1,16 +1,5 @@
 import Route, {IRoute} from "./route";
 
-export interface IRouter {
-    use(pathname: string, block: any, props: any): IRouter;
-    start(): void;
-    go(pathname?: string): void;
-    getCurrentRoute(): void;
-    back(): void;
-    back(): void;
-    forward(): void;
-    routes(): IRoute[];
-}
-
 class Router {
     history: History;
     routes: IRoute[];
@@ -68,6 +57,10 @@ class Router {
 
     getRoute(pathname: string) {
         return this.routes.find((route) => route.match(pathname));
+    }
+
+    getCurrentRoute() {
+        return this._currentRoute;
     }
 }
 
